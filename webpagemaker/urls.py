@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include
 
-from .examples import urls
+from .api import urls
 
 from funfactory.monkeypatches import patch
 patch()

@@ -3,26 +3,6 @@
 
 from funfactory.settings_base import *
 
-# Bundles is a dictionary of two dictionaries, css and js, which list css files
-# and js files that can be bundled together by the minify app.
-MINIFY_BUNDLES = {
-    'css': {
-        'example_css': (
-            'css/examples/main.css',
-        ),
-        'example_mobile_css': (
-            'css/examples/mobile.css',
-        ),
-    },
-    'js': {
-        'example_js': (
-            'js/examples/libs/jquery-1.4.4.min.js',
-            'js/examples/libs/jquery.cookie.js',
-            'js/examples/init.js',
-        ),
-    }
-}
-
 # Defines the views served for root URLs.
 ROOT_URLCONF = 'webpagemaker.urls'
 
@@ -30,7 +10,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Application base, containing global templates.
     'webpagemaker.base',
     # Example code. Can (and should) be removed for actual projects.
-    'webpagemaker.examples',
+    'webpagemaker.api',
 ]
 
 
