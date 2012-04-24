@@ -30,7 +30,7 @@ class PublishTests(test_utils.TestCase):
         eq_(response.status_code, 413)
         eq_(response.content, "Request Entity Too Large")
 
-    def test_no_content_is_rejected(self):
+    def test_void_content_is_rejected(self):
         response = self.client.post('/api/page', data="",
                                     content_type="text/html")
         eq_(response.status_code, 400)
