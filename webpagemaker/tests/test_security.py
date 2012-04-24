@@ -28,7 +28,8 @@ class SecurityTests(test_utils.TestCase):
         """
 
         # TODO: Do we want to reject invalid HTML outright, or 
-        # fix them up to have syntactically correct HTML?
+        # fix them up to have syntactically correct HTML? It looks
+        # like bleach tends to do the latter.
 
         raise NotImplementedError()
 
