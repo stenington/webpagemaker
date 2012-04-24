@@ -1,0 +1,6 @@
+html5lib==0.95
+redis==2.4.11
+web.py==0.36
+wsgiref==0.1.2
+
+-e git+git://github.com/simonwex/bleach.git@f06faf533e51eb2e19fe1d640011a8be992761da#egg=bleach
