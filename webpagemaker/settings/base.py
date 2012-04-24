@@ -13,7 +13,6 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'webpagemaker.api',
 ]
 
-
 # Because Jinja2 is the default template loader, add any non-Jinja templated
 # apps here:
 JINGO_EXCLUDE_APPS = [
@@ -38,3 +37,17 @@ JINGO_EXCLUDE_APPS = [
 # ]
 
 LOGGING = dict(loggers=dict(playdoh = {'level': logging.DEBUG}))
+
+# Webpagemaker API settings
+
+SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
+    # The API endpoint
+    'api',
+    # Published pages
+    'p',
+]
+
+# Maximum size, in bytes, of published pages. Note that if you change this
+# from its default, you may need to modify your database, since this
+# setting's value is used in schema generation.
+MAX_PUBLISHED_PAGE_SIZE = 10000

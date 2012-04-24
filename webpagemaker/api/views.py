@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
@@ -14,11 +15,11 @@ def publish_page(request):
     body = request.raw_post_data
     if len(body) == 0:
         return HttpResponseBadRequest("HTML body expected.")
-    if len(body) > 10000:
+    if len(body) > settings.MAX_PUBLISHED_PAGE_SIZE:
         return HttpResponse("Request Entity Too Large", status=413)
     page = models.Page(html=body)
     page.save()
-    response = HttpResponse(str(page.id), content_type="text/plain")
+    response = HttpResponse('/p/%d' % page.id, content_type="text/plain")
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
