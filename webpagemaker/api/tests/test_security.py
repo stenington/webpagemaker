@@ -1,4 +1,5 @@
 import test_utils
+from nose.tools import ok_
 
 class SecurityTests(test_utils.TestCase):
     """
@@ -73,6 +74,9 @@ class SecurityTests(test_utils.TestCase):
         # is reached. We might want to also provide ways for the front-end
         # to check the rate limit status [2].
         #
+        # Note that the rate-limiting can also be done by infrastructure
+        # "in front" of this app, e.g. a Zeus load balancer.
+        #
         # [1] https://dev.twitter.com/docs/rate-limiting#rest
         # [2] https://dev.twitter.com/docs/rate-limiting/faq#checking
 
@@ -85,8 +89,8 @@ class SecurityTests(test_utils.TestCase):
         attack vector", we require that the publish endpoint limit
         documents to 10,000 characters.
         """
-        
-        # TODO: We should probably test to make sure that the publish
-        # endpoint returns '413 Request Entity Too Large' here.
 
-        raise NotImplementedError()
+        # This objective is satisfied by the following test, which we're
+        # merely verifying the existence of here.
+        from .test_api import PublishTests
+        ok_(PublishTests.test_massive_content_is_rejected)
