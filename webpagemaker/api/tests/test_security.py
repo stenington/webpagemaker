@@ -10,11 +10,9 @@ class SecurityTests(test_utils.TestCase):
     """
     
     def test_documents_require_doctype_definition(self):
-        """
-        To mitigate the risk "Copyrighted work can be stored and
-        distributed through the API", we require that documents
-        require DOCTYPE definitions.
-        """
+        # To mitigate the risk "Copyrighted work can be stored and
+        # distributed through the API", we require that documents
+        # require DOCTYPE definitions.
         
         # TODO: Do we want to reject documents w/o DOCTYPE
         # definitions outright, or modify them to contain proper
@@ -23,11 +21,9 @@ class SecurityTests(test_utils.TestCase):
         raise SkipTest()
 
     def test_documents_require_correct_html(self):
-        """
-        To mitigate the risk "Copyrighted work can be stored and
-        distributed through the API", we require that documents
-        require syntactically correct HTML.
-        """
+        # To mitigate the risk "Copyrighted work can be stored and
+        # distributed through the API", we require that documents
+        # require syntactically correct HTML.
 
         # TODO: Do we want to reject invalid HTML outright, or 
         # fix them up to have syntactically correct HTML? It looks
@@ -36,20 +32,16 @@ class SecurityTests(test_utils.TestCase):
         raise SkipTest()
 
     def test_nofollow_links_inserted_in_anchors(self):
-        """
-        To mitigate the risk "Documents hosted via the API could be used
-        as link farms", we require that all links have nofollow attributes
-        inserted in them.
-        """
+        # To mitigate the risk "Documents hosted via the API could be used
+        # as link farms", we require that all links have nofollow attributes
+        # inserted in them.
 
         raise SkipTest()
     
     def test_javascript_is_stripped(self):
-        """
-        To mitigate the risk "Javascript could be used in a multitude of
-        ways to compromise client machines", we require that all JS
-        be stripped before it is served.
-        """
+        # To mitigate the risk "Javascript could be used in a multitude of
+        # ways to compromise client machines", we require that all JS
+        # be stripped before it is served.
         
         # This objective is satisfied by the following tests, which we're
         # merely verifying the existence of here. Obviously these aren't
@@ -61,11 +53,9 @@ class SecurityTests(test_utils.TestCase):
         ok_(PublishTests.test_script_tags_are_stripped)
 
     def test_publishing_is_rate_limited(self):
-        """
-        To mitigate the risk "Database insertion could be used as a DOS
-        attack vector", we require that the publish endpoint be
-        rate-limited.
-        """
+        # To mitigate the risk "Database insertion could be used as a DOS
+        # attack vector", we require that the publish endpoint be
+        # rate-limited.
         
         # TODO: How do we want to do the rate limiting? Twitter's
         # REST API rate limiting for unauthenticated calls [1] are:
@@ -87,12 +77,10 @@ class SecurityTests(test_utils.TestCase):
         raise SkipTest()
     
     def test_publishing_is_size_limited(self):
-        """
-        To mitigate the risks "Copyrighted work can be stored and distributed
-        through the API" and "Database insertion could be used as a DOS
-        attack vector", we require that the publish endpoint limit
-        documents to 10,000 characters.
-        """
+        # To mitigate the risks "Copyrighted work can be stored and
+        # distributed through the API" and "Database insertion could be used
+        # as a DOS attack vector", we require that the publish endpoint limit
+        # documents to 10,000 characters.
 
         # This objective is satisfied by the following test, which we're
         # merely verifying the existence of here.
