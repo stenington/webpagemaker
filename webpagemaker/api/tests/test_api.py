@@ -2,6 +2,7 @@ from django.conf import settings
 
 import test_utils
 from nose.tools import eq_
+from nose.plugins.skip import SkipTest
 
 class PublishTests(test_utils.TestCase):
     def _publish_and_verify(self, html, expected_html=None):
@@ -61,6 +62,15 @@ class PublishTests(test_utils.TestCase):
                u"<title>hi</title></head>" + \
                u"<body>hello\u2026</body></html>"
         self._publish_and_verify(HTML.encode("utf-8"))
+
+    def test_malformed_html_is_made_valid(self):
+        raise SkipTest()
+        # TODO: This either needs to be fixed in bleach, which isn't
+        # delivering the doctype, or our assumptions are wrong.
+        self._publish_and_verify(
+            'hi',
+            '<!DOCTYPE html><html><head></head><body>hi</body></html>'
+        )
 
     def test_javascript_attributes_are_stripped(self):
         self._publish_and_verify_body(body='<a onclick="foo()">u</a>',

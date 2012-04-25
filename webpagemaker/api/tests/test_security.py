@@ -1,5 +1,6 @@
 import test_utils
 from nose.tools import ok_
+from nose.plugins.skip import SkipTest
 
 class SecurityTests(test_utils.TestCase):
     """
@@ -19,7 +20,7 @@ class SecurityTests(test_utils.TestCase):
         # definitions outright, or modify them to contain proper
         # DOCTYPE definitions if possible?
         
-        raise NotImplementedError()
+        raise SkipTest()
 
     def test_documents_require_correct_html(self):
         """
@@ -32,7 +33,7 @@ class SecurityTests(test_utils.TestCase):
         # fix them up to have syntactically correct HTML? It looks
         # like bleach tends to do the latter.
 
-        raise NotImplementedError()
+        raise SkipTest()
 
     def test_nofollow_links_inserted_in_anchors(self):
         """
@@ -41,7 +42,7 @@ class SecurityTests(test_utils.TestCase):
         inserted in them.
         """
 
-        raise NotImplementedError()
+        raise SkipTest()
     
     def test_javascript_is_stripped(self):
         """
@@ -83,7 +84,7 @@ class SecurityTests(test_utils.TestCase):
         # [1] https://dev.twitter.com/docs/rate-limiting#rest
         # [2] https://dev.twitter.com/docs/rate-limiting/faq#checking
 
-        raise NotImplementedError()
+        raise SkipTest()
     
     def test_publishing_is_size_limited(self):
         """
