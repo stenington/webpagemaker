@@ -50,11 +50,14 @@ class SecurityTests(test_utils.TestCase):
         be stripped before it is served.
         """
         
-        # TODO: This is largely bleach's job. Seems like we can either make
-        # a big suite full of lots of test cases, or just write a few
-        # test cases and assume Bleach will take care of the rest.
-
-        raise NotImplementedError()
+        # This objective is satisfied by the following tests, which we're
+        # merely verifying the existence of here. Obviously these aren't
+        # exhaustive, but they're really just integration tests to make
+        # sure that we're properly configuring and talking to bleach.
+        from .test_api import PublishTests
+        ok_(PublishTests.test_javascript_attributes_are_stripped)
+        ok_(PublishTests.test_javascript_links_are_stripped)
+        ok_(PublishTests.test_script_tags_are_stripped)
 
     def test_publishing_is_rate_limited(self):
         """
