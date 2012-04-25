@@ -20,7 +20,24 @@ executable on your `PATH`.
 
 You'll also want to get [virtualenv][].
 
-Then, try this:
+### Installing the prerequisites on Ubuntu
+
+Use `sudo apt-get install <packagename>` to install the following
+packages (it is always a good idea to run `sudo apt-get update` to
+make sure you will be receiving the most up to date repository list
+before installing):
+
+    mysql-server
+    libmysqlclient-dev
+    python
+    python-dev
+    python-pip
+
+To install `virtualenv`, run `sudo pip install virtualenv`.
+
+#### Setting up webpagemaker
+
+Once all prerequisites are install, run the following commands:
 
     git clone --recursive git://github.com/mozilla/webpagemaker.git
     cd webpagemaker
