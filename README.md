@@ -46,9 +46,12 @@ Once all prerequisites are install, run the following commands:
     pip install -r requirements/compiled.txt
     cp webpagemaker/settings/local.py-dist webpagemaker/settings/local.py
 
-At this point, you'll want to edit that `local.py` file. If you want to use
-the default database mentioned there, `playdoh_app`, you can create it
-using this command:
+At this point you'll want to edit the `local.py` file, which
+contains all the settings used when talking to the MySQL instance,
+including login credentials.
+
+If you want to use the default database mentioned there, `playdoh_app`,
+you can create it using this command:
 
     mysql -u root -e 'create database playdoh_app;'
 
