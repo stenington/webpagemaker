@@ -4,6 +4,7 @@ use of the `class` attribute. HTML like this should be perfectly fine:
 ```html
 <!DOCTYPE html><html><head></head><body>
 <a class="blah">u</a>
+<footer class="gloop">sup</footer>
 </body></html>
 ```
 
