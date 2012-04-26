@@ -20,7 +20,24 @@ executable on your `PATH`.
 
 You'll also want to get [virtualenv][].
 
-Then, try this:
+### Installing the prerequisites on Ubuntu
+
+Use `sudo apt-get install <packagename>` to install the following
+packages (it is always a good idea to run `sudo apt-get update` to
+make sure you will be receiving the most up to date repository list
+before installing):
+
+  * mysql-server
+  * libmysqlclient-dev
+  * python
+  * python-dev
+  * python-pip
+
+To install `virtualenv`, run `sudo pip install virtualenv`.
+
+#### Setting up webpagemaker
+
+Once all prerequisites are install, run the following commands:
 
     git clone --recursive git://github.com/mozilla/webpagemaker.git
     cd webpagemaker
@@ -29,9 +46,12 @@ Then, try this:
     pip install -r requirements/compiled.txt
     cp webpagemaker/settings/local.py-dist webpagemaker/settings/local.py
 
-At this point, you'll want to edit that `local.py` file. If you want to use
-the default database mentioned there, `playdoh_app`, you can create it
-using this command:
+At this point you'll want to edit the `local.py` file, which
+contains all the settings used when talking to the MySQL instance,
+including login credentials.
+
+If you want to use the default database mentioned there, `playdoh_app`,
+you can create it using this command:
 
     mysql -u root -e 'create database playdoh_app;'
 
