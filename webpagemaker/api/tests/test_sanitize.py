@@ -1,20 +1,15 @@
 """
-    This test suite makes tests out of all the subdirectories of the
+    This test suite makes tests out of all the Markdown files in the
     'html' directory.
     
-    Suppose there is directory called 'foo' in 'html', and that
-    'foo/in.html' exists.
+    Each Markdown file (other than README.md) should contain
+    only one or two HTML snippets. The first snippet is always the
+    input to the sanitizer, and the second snippet, if present, is the
+    expected output. If no second snippet is present, the expected
+    output is the same as the input.
     
-    If 'foo/out.html' exists, then this suite will generate a test called
-    test_foo_sanitization which loads 'foo/in.html', sanitizes it, and
-    compares the result to 'foo/out.html'.
-    
-    Otherwise, if 'foo/out.html' does not exist, this suite will generate
-    a test called test_foo_idempotency which loads 'foo/in.html',
-    sanitizes it, and ensures that the result is unchanged.
-    
-    Furthermore, if 'foo/in.html' starts with the text '<!-- SKIP THIS TEST',
-    the test will be skipped via a SkipTest exception.
+    If the Markdown file ever contains the line '## SKIP THIS TEST', then
+    the test is skipped via a SkipTest exception.
 """
 
 import os
@@ -28,27 +23,49 @@ ROOT = os.path.dirname(__file__)
 HTML_DIR = os.path.join(ROOT, 'html')
 
 def init():
-    def make_test(dirname):
-        input_path = os.path.join(HTML_DIR, dirname, 'in.html')
-        output_path = os.path.join(HTML_DIR, dirname, 'out.html')
+    def make_test(filename):
+        skip_test = False
+        snippets = []
+        in_snippet = False
+        input_html = None
+        output_html = None
+        
+        for line in open(os.path.join(HTML_DIR, filename), 'r'):
+            if line.upper().startswith("## SKIP THIS TEST"):
+                skip_test = True
+            if line.strip() == '```html':
+                in_snippet = True
+                snippets.append([])
+            elif line.strip() == '```':
+                in_snippet = False
+            elif in_snippet:
+                snippets[-1].append(line)
 
         def test():
-            input_html = open(input_path, 'r').read()
-            if input_html.startswith('<!-- SKIP THIS TEST'):
+            if skip_test:
                 raise SkipTest()
-            output_html = open(output_path, 'r').read()
+            if len(snippets) == 1:
+                input_html = ''.join(snippets[0]).strip()
+                output_html = input_html
+            elif len(snippets) == 2:
+                input_html = ''.join(snippets[0]).strip()
+                output_html = ''.join(snippets[1]).strip()
+            else:
+                raise Exception("Cannot identify snippets in %s." % filename)
+
             eq_(sanitize.sanitize(input_html), output_html)
 
-        if not os.path.exists(output_path):
-            output_path = input_path
-            test.__name__ = 'test_%s_idempotency' % dirname
-        else:
-            test.__name__ = 'test_%s_sanitization' % dirname
+        test.__name__ = 'test_%s' % filename.split('.')[0]
+        
+        if len(snippets) == 1:
+            test.__doc__ = "%s (idempotency test)" % filename
+        elif len(snippets) == 2:
+            test.__doc__ = "%s (sanitization test)" % filename
 
         globals()[test.__name__] = test
-        
-    for dirname in os.listdir(HTML_DIR):
-        if os.path.isdir(os.path.join(HTML_DIR, dirname)):
-            make_test(dirname)
+
+    for filename in os.listdir(HTML_DIR):
+        if filename.endswith('.md') and filename != 'README.md':
+            make_test(filename)
 
 init()
