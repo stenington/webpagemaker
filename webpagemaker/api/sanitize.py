@@ -19,7 +19,8 @@ ALLOWED_TAGS = [
 ALLOWED_ATTRS = {
     # TODO: We should probably add to this. What meta attributes can't
     # be abused for SEO purposes?
-    "meta": ["charset"]
+    "meta": ["charset"],
+    "*": ["class"]
 }
 
 if bleach.VERSION < (1, 1, 1):
