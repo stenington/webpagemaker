@@ -47,10 +47,10 @@ class SecurityTests(test_utils.TestCase):
         # merely verifying the existence of here. Obviously these aren't
         # exhaustive, but they're really just integration tests to make
         # sure that we're properly configuring and talking to bleach.
-        from .test_api import PublishTests
-        ok_(PublishTests.test_javascript_attributes_are_stripped)
-        ok_(PublishTests.test_javascript_links_are_stripped)
-        ok_(PublishTests.test_script_tags_are_stripped)
+        from . import test_sanitize
+        ok_(test_sanitize.test_js_attribute_sanitization)
+        ok_(test_sanitize.test_js_link_sanitization)
+        ok_(test_sanitize.test_script_tag_sanitization)
 
     def test_publishing_is_rate_limited(self):
         # To mitigate the risk "Database insertion could be used as a DOS

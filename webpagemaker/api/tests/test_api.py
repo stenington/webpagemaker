@@ -2,7 +2,6 @@ from django.conf import settings
 
 import test_utils
 from nose.tools import eq_
-from nose.plugins.skip import SkipTest
 
 class PublishTests(test_utils.TestCase):
     def _publish_and_verify(self, html, expected_html=None):
@@ -28,17 +27,6 @@ class PublishTests(test_utils.TestCase):
         eq_(type(response.content), str)
         eq_(response.content, expected_html)
 
-    def _publish_and_verify_body(self, body, expected_body):
-        """
-        Like _publish_and_verify, but takes the content of a
-        <body> element and wraps it in an HTML5 document for us.
-        """
-        
-        before = "<!DOCTYPE html><html><head></head><body>"
-        after = "</body></html>"
-        self._publish_and_verify(before + body + after,
-                                 before + expected_body + after)
-
     def test_massive_content_is_rejected(self):
         massive_content = "*" * (settings.MAX_PUBLISHED_PAGE_SIZE + 1)
         response = self.client.post('/api/page', data=massive_content,
@@ -62,24 +50,3 @@ class PublishTests(test_utils.TestCase):
                u"<title>hi</title></head>" + \
                u"<body>hello\u2026</body></html>"
         self._publish_and_verify(HTML.encode("utf-8"))
-
-    def test_malformed_html_is_made_valid(self):
-        raise SkipTest()
-        # TODO: This either needs to be fixed in bleach, which isn't
-        # delivering the doctype, or our assumptions are wrong.
-        self._publish_and_verify(
-            'hi',
-            '<!DOCTYPE html><html><head></head><body>hi</body></html>'
-        )
-
-    def test_javascript_attributes_are_stripped(self):
-        self._publish_and_verify_body(body='<a onclick="foo()">u</a>',
-                                      expected_body="<a>u</a>")
-
-    def test_javascript_links_are_stripped(self):
-        self._publish_and_verify_body(body='<a href="javascript:foo()">u</a>',
-                                      expected_body="<a>u</a>")
-        
-    def test_script_tags_are_stripped(self):
-        self._publish_and_verify_body(body="<script>alert('yo');</script>",
-                                      expected_body="alert('yo');")
