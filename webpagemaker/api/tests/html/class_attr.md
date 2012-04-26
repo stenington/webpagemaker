@@ -6,3 +6,7 @@ use of the `class` attribute. HTML like this should be perfectly fine:
 <a class="blah">u</a>
 </body></html>
 ```
+
+Fortunately, the documents users are making are completely devoid of
+JavaScript, so there's no danger in e.g. a jQuery selector going awry
+and causing a security breach.
