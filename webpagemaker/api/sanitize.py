@@ -21,7 +21,8 @@ ALLOWED_ATTRS = {
     # be abused for SEO purposes?
     "meta": ["charset"],
     "*": ["class"],
-    "img": ["src"]
+    "img": ["src"],
+    "a": ["href"]
 }
 
 if bleach.VERSION < (1, 1, 1):
