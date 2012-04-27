@@ -8,7 +8,7 @@ from . import models
 from . import sanitize
 
 def home(request):
-    return HttpResponse("Hello, world!", content_type="text/plain")
+    return HttpResponse("Hello, world!!", content_type="text/plain")
 
 @csrf_exempt
 @require_POST
