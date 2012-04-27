@@ -37,7 +37,7 @@ To install `virtualenv`, run `sudo pip install virtualenv`.
 
 #### Setting up webpagemaker
 
-Once all prerequisites are install, run the following commands:
+Once all prerequisites are installed, run the following commands:
 
     git clone --recursive git://github.com/mozilla/webpagemaker.git
     cd webpagemaker
