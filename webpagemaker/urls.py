@@ -31,6 +31,9 @@ if settings.DEBUG:
     )
 
     # Also add an endpoint for a github post-commit hook.                       
+    from django.views.decorators.csrf import csrf_exempt
+    
+    @csrf_exempt
     def git_pull(request):
         from django.http import HttpResponse
         import subprocess
