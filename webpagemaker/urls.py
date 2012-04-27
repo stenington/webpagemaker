@@ -29,3 +29,16 @@ if settings.DEBUG:
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
+
+    # Also add an endpoint for a github post-commit hook.                       
+    def git_pull(request):
+        from django.http import HttpResponse
+        import subprocess
+        import os
+        git_root = os.path.join(os.path.dirname(__file__), '..')
+        subprocess.check_call(['git', 'pull'], cwd=git_root)
+        return HttpResponse('git pull succeeded')
+
+    urlpatterns += patterns('',
+        (r'^git-pull$', git_pull)
+    )
