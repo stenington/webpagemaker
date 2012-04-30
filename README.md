@@ -45,6 +45,20 @@ Once all prerequisites are installed, run the following commands:
     cd webpagemaker
     virtualenv .virtualenv
     source .virtualenv/bin/activate
+
+**BEFORE PROCEEDING TO THE NEXT STEP** you will need to modify the
+playdoh requirements in `vendor/src/funfactory/funfactory/requirements/compiled.txt`
+
+In order to ensure everything works correctly, you need to make sure it
+requires Django v1.3.1, so you will have to add the following line if
+it's missing from the requirements:
+
+    Django==1.3.1
+
+**ONLY AFTER MAKING SURE** this requirement exists, proceed with the 
+installation by running the following commands in the webpagemaker
+directory:
+
     pip install -r requirements/compiled.txt
     cp webpagemaker/settings/local.py-dist webpagemaker/settings/local.py
 
@@ -56,6 +70,10 @@ If you want to use the default database mentioned there, `playdoh_app`,
 you can create it using this command:
 
     mysql -u root -e 'create database playdoh_app;'
+
+OR by using this command, if your MySQL is password protected:
+
+    mysql -u root -pYourPassWordHere -e 'create database playdoh_app;'
 
 Then, synchronize the tables and initial data:
 
