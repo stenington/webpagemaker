@@ -29,11 +29,13 @@ before installing):
 
   * mysql-server
   * libmysqlclient-dev
-  * python
   * python-dev
   * python-pip
 
 To install `virtualenv`, run `sudo pip install virtualenv`.
+
+(Python itself comes installed with Ubuntu, you will not need to
+install this separately. In fact, doing so may cause problems)
 
 #### Setting up webpagemaker
 
