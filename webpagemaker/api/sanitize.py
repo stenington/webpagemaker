@@ -30,6 +30,7 @@ if bleach.VERSION < (1, 1, 1):
                     "https://github.com/simonwex/bleach.git")
 
 def sanitize(html):
-    return bleach.clean(html, strip=True, strip_comments=False,
+    html = bleach.clean(html, strip=True, strip_comments=False,
                         tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS,
                         parse_as_fragment=False)
+    return bleach.protect_search_score(html, parse_as_fragment=False)

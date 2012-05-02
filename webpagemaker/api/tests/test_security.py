@@ -36,7 +36,12 @@ class SecurityTests(test_utils.TestCase):
         # as link farms", we require that all links have nofollow attributes
         # inserted in them.
 
-        raise SkipTest()
+        # This objective is satisfied by the following tests, which we're
+        # merely verifying the existence of here. Obviously these aren't
+        # exhaustive, but they're really just integration tests to make
+        # sure that we're properly configuring and talking to bleach.
+        from . import test_sanitize
+        ok_(test_sanitize.test_http_href)
     
     def test_javascript_is_stripped(self):
         # To mitigate the risk "Javascript could be used in a multitude of
