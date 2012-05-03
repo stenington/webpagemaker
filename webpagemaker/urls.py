@@ -68,7 +68,9 @@ if settings.DEBUG:
                 return HttpResponseBadRequest('can only get html')
             html = f.read().replace('<base href=".">',
                                     '<base href="%s">' % f.geturl())
-            return HttpResponse(html)
+            response = HttpResponse(html)
+            response['Access-Control-Allow-Origin'] = '*'
+            return response
         return HttpResponseBadRequest('need url')
     
     urlpatterns += patterns('',
