@@ -7,9 +7,6 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from . import models
 from . import sanitize
 
-def home(request):
-    return HttpResponse("Hello, world!!", content_type="text/plain")
-
 @csrf_exempt
 @require_POST
 def publish_page(request):

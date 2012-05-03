@@ -9,8 +9,8 @@ ROOT_URLCONF = 'webpagemaker.urls'
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     # Application base, containing global templates.
     'webpagemaker.base',
-    # Example code. Can (and should) be removed for actual projects.
     'webpagemaker.api',
+    'webpagemaker.website',
 ]
 
 # Because Jinja2 is the default template loader, add any non-Jinja templated
