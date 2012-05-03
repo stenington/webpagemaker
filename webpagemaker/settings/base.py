@@ -45,6 +45,8 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
     'api',
     # Published pages
     'p',
+    # Mission development API (debug only)
+    'mission-slurp'
 ]
 
 # Maximum size, in bytes, of published pages. Note that if you change this

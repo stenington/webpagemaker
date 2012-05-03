@@ -44,8 +44,34 @@ if settings.DEBUG:
         import os
         git_root = os.path.join(os.path.dirname(__file__), '..')
         subprocess.check_call(['git', 'pull'], cwd=git_root)
+        subprocess.check_call(['git', 'submodule', 'update'], cwd=git_root)
         return HttpResponse('git pull succeeded')
 
     urlpatterns += patterns('',
         (r'^git-pull$', git_pull)
     )
+
+    # And add an endpoint for mission authors to test things out.
+    
+    def mission_slurp(request):
+        from django.http import HttpResponse, HttpResponseBadRequest
+        import urllib2
+        url = request.GET.get('url')
+        if url:
+            try:
+                f = urllib2.urlopen(url, None, 5)
+            except ValueError:
+                return HttpResponseBadRequest('bad url')
+            except Exception:
+                return HttpResponseBadRequest('something terrible happened')
+            if f.info().gettype() != 'text/html':
+                return HttpResponseBadRequest('can only get html')
+            html = f.read().replace('<base href=".">',
+                                    '<base href="%s">' % f.geturl())
+            return HttpResponse(html)
+        return HttpResponseBadRequest('need url')
+    
+    urlpatterns += patterns('',
+        (r'^mission-slurp$', mission_slurp)
+    )
+    
