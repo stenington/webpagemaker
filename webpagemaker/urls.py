@@ -66,8 +66,9 @@ if settings.DEBUG:
                 return HttpResponseBadRequest('something terrible happened')
             if f.info().gettype() != 'text/html':
                 return HttpResponseBadRequest('can only get html')
+            finalurl = f.geturl().encode('utf8')
             html = f.read().replace('<base href=".">',
-                                    '<base href="%s">' % f.geturl())
+                                    '<base href="%s">' % finalurl)
             response = HttpResponse(html)
             response['Access-Control-Allow-Origin'] = '*'
             return response
