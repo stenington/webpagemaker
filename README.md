@@ -81,6 +81,32 @@ Whenever you create a new terminal session, you'll need to re-run
   [mysql]: http://dev.mysql.com/downloads/
   [virtualenv]: http://pypi.python.org/pypi/virtualenv
 
+## Troubleshooting
+
+### Mac OS X
+
+If you get the following error:
+
+```
+django.core.exceptions.ImproperlyConfigured: Error loading MySQLdb module: dlopen(/Users/.../site-packages/_mysql.so, 2): Library not loaded: libmysqlclient.18.dylib
+  Referenced from: /Users/.../site-packages/_mysql.so
+  Reason: image not found
+```
+
+You will need to add the path to your `_mysql.so` to `DYLD_LIBRARY_PATH` in
+your `~/.profile` like this:
+
+```
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/mysql/lib
+```
+
+Note that you may also need to put MySQL's `bin` directory on your `PATH`
+like so:
+
+```
+export PATH=$PATH:/usr/local/mysql/bin
+```
+
 ## Other Resources
 
   * [Official Project Status Page](https://wiki.mozilla.org/Webpagemakerapi)
