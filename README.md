@@ -69,6 +69,9 @@ Then, synchronize the tables and initial data:
 
     python manage.py syncdb
 
+Note that you might get prompted to create a superuser. If you do, don't worry
+about it, since the app doesn't currently support logins at all.
+
 Finally, start the development server:
 
     python manage.py runserver
