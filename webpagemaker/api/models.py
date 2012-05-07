@@ -9,3 +9,4 @@ class Page(models.Model):
 
     html = models.TextField(max_length=settings.MAX_PUBLISHED_PAGE_SIZE,
                             verbose_name=_lazy(u'HTML'))
+    original_url = models.URLField(blank=True, default='')

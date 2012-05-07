@@ -20,7 +20,8 @@ def publish_page(request):
         parsed = urlparse(request.POST['original-url'])
         if parsed.scheme not in ['http', 'https']:
             return HttpResponseBadRequest("Invalid origin URL.")
-    page = models.Page(html=request.POST['html'])
+    page = models.Page(html=request.POST['html'],
+                       original_url=request.POST.get('original-url', ''))
     page.save()
     response = HttpResponse('/p/%d' % page.id, content_type="text/plain")
     response['Access-Control-Allow-Origin'] = '*'
