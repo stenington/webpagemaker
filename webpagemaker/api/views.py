@@ -10,12 +10,11 @@ from . import sanitize
 @csrf_exempt
 @require_POST
 def publish_page(request):
-    body = request.raw_post_data
-    if len(body) == 0:
+    if not request.POST.get('html', ''):
         return HttpResponseBadRequest("HTML body expected.")
-    if len(body) > settings.MAX_PUBLISHED_PAGE_SIZE:
+    if len(request.POST['html']) > settings.MAX_PUBLISHED_PAGE_SIZE:
         return HttpResponse("Request Entity Too Large", status=413)
-    page = models.Page(html=body)
+    page = models.Page(html=request.POST['html'])
     page.save()
     response = HttpResponse('/p/%d' % page.id, content_type="text/plain")
     response['Access-Control-Allow-Origin'] = '*'

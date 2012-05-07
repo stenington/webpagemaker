@@ -14,8 +14,7 @@ class PublishTests(test_utils.TestCase):
 
         if expected_html is None:
             expected_html = html
-        response = self.client.post('/api/page', data=html,
-                                    content_type="text/html")
+        response = self.client.post('/api/page', {'html': html})
         eq_(response.status_code, 200)
         eq_(response['Access-Control-Allow-Origin'], '*')
 
@@ -29,14 +28,12 @@ class PublishTests(test_utils.TestCase):
 
     def test_massive_content_is_rejected(self):
         massive_content = "*" * (settings.MAX_PUBLISHED_PAGE_SIZE + 1)
-        response = self.client.post('/api/page', data=massive_content,
-                                    content_type="text/html")
+        response = self.client.post('/api/page', {'html': massive_content})
         eq_(response.status_code, 413)
         eq_(response.content, "Request Entity Too Large")
 
     def test_void_content_is_rejected(self):
-        response = self.client.post('/api/page', data="",
-                                    content_type="text/html")
+        response = self.client.post('/api/page', {'html': ''})
         eq_(response.status_code, 400)
         eq_(response.content, "HTML body expected.")
 
