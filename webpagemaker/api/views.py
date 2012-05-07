@@ -16,7 +16,7 @@ def publish_page(request):
         return HttpResponseBadRequest("HTML body expected.")
     if len(request.POST['html']) > settings.MAX_PUBLISHED_PAGE_SIZE:
         return HttpResponse("Request Entity Too Large", status=413)
-    if 'original-url' in request.POST:
+    if request.POST.get('original-url', ''):
         parsed = urlparse(request.POST['original-url'])
         if parsed.scheme not in ['http', 'https']:
             return HttpResponseBadRequest("Invalid origin URL.")
