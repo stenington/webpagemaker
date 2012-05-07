@@ -47,6 +47,14 @@ class PublishTests(test_utils.TestCase):
           })
         eq_(response.status_code, 200)
 
+    def test_origin_url_is_returned(self):
+        response = self.client.post('/api/page', {
+          'html': 'hi',
+          'original-url': 'http://blah.com/'
+          })
+        response = self.client.get(response.content)
+        eq_(response['x-original-url'], 'http://blah.com/')
+
     def test_void_content_is_rejected(self):
         response = self.client.post('/api/page', {'html': ''})
         eq_(response.status_code, 400)

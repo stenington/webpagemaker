@@ -30,5 +30,7 @@ def publish_page(request):
 def get_page(request, page_id):
     page = get_object_or_404(models.Page, pk=page_id)
     response = HttpResponse(sanitize.sanitize(page.html))
+    if page.original_url:
+        response['X-Original-URL'] = page.original_url
     response['Access-Control-Allow-Origin'] = '*'
     return response
