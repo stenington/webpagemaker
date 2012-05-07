@@ -1,3 +1,5 @@
+from urlparse import urlparse
+
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -14,6 +16,10 @@ def publish_page(request):
         return HttpResponseBadRequest("HTML body expected.")
     if len(request.POST['html']) > settings.MAX_PUBLISHED_PAGE_SIZE:
         return HttpResponse("Request Entity Too Large", status=413)
+    if 'original-url' in request.POST:
+        parsed = urlparse(request.POST['original-url'])
+        if parsed.scheme not in ['http', 'https']:
+            return HttpResponseBadRequest("Invalid origin URL.")
     page = models.Page(html=request.POST['html'])
     page.save()
     response = HttpResponse('/p/%d' % page.id, content_type="text/plain")

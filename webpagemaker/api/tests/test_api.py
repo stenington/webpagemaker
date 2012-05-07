@@ -32,6 +32,21 @@ class PublishTests(test_utils.TestCase):
         eq_(response.status_code, 413)
         eq_(response.content, "Request Entity Too Large")
 
+    def test_bad_origin_url_is_rejected(self):
+        response = self.client.post('/api/page', {
+          'html': 'hi',
+          'original-url': 'javascript:LOL'
+          })
+        eq_(response.status_code, 400)
+        eq_(response.content, "Invalid origin URL.")
+
+    def test_good_origin_url_is_accepted(self):
+        response = self.client.post('/api/page', {
+          'html': 'hi',
+          'original-url': 'http://foo.com/'
+          })
+        eq_(response.status_code, 200)
+
     def test_void_content_is_rejected(self):
         response = self.client.post('/api/page', {'html': ''})
         eq_(response.status_code, 400)
