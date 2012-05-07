@@ -32,6 +32,13 @@ class PublishTests(test_utils.TestCase):
         eq_(response.status_code, 413)
         eq_(response.content, "Request Entity Too Large")
 
+    def test_long_origin_url_is_truncated(self):
+        response = self.client.post('/api/page', {
+          'html': 'hi',
+          'original-url': 'http://foo.com/%s' % ('*' * 5000)
+          })
+        eq_(response.status_code, 200)
+
     def test_bad_origin_url_is_rejected(self):
         response = self.client.post('/api/page', {
           'html': 'hi',
