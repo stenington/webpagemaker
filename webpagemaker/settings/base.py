@@ -7,6 +7,9 @@ from funfactory.settings_base import *
 ROOT_URLCONF = 'webpagemaker.urls'
 
 INSTALLED_APPS = list(INSTALLED_APPS) + [
+    'django.contrib.messages',
+    'django.contrib.admin',
+    
     # Application base, containing global templates.
     'webpagemaker.base',
     'webpagemaker.api',
