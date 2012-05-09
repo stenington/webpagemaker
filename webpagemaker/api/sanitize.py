@@ -22,7 +22,8 @@ ALLOWED_ATTRS = {
     "meta": ["charset"],
     "*": ["class", "id"],
     "img": ["src"],
-    "a": ["href"]
+    "a": ["href"],
+    "base": ["href"],
 }
 
 if bleach.VERSION < (1, 1, 1):
