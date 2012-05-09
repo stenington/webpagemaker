@@ -1,0 +1,110 @@
+<!doctype html>
+<!--
+.-----------::::::::::::::::::::::::::::::::::::..
+`/++o++oooooossssssssysyoyyyyyyyyyyyyyyyyyyyyyyy``
+`:++++++oooooosssssssyy+:oyyyyyyyyyyyyyyyyyyyyyy.`
+`:+++++oooooossssssssys:/:syyysyyyyhhyyyyyyyyyyy.`
+`:+oooooooossssssyyyys:////yyyyyyyyyyyyyyyyyyyyy..
+`:+oooooosssssssysyyy+/////+syyyyyyyyyyyyyyyyyyy..
+`:oooosssssssssyyyyys//////:syyyyyyyhyyyyyyyyyyy..
+./oossssyyssyyyyyyyy//+/+///:syyyyyyyyyyysyyyyyy..
+./ssooossssssssssss+/+o++++///soosssssssssosossy-.
+./ys+:///////+/+++++/++o++++///+++++//+/////+oyy-.
+./yyyyo+/++/+ooosooo+oosssso/ooo+oso++++//osyhyy-.
+./yhhyhhyo+/++++/+++++/////+/////++/+//+syyyyyyy:.
+./hhhhhhdhhyo/+++++++/------////////+oyyyyyyyyhy:.
+-/yhhhhhhhhhhhs+/+/++--------/////osyyyyyhyyyhhh/.
+-/hhhhhhhdhhhhhs/++//--------/+///yyyyhhhhhhhhhh/.
+-/hhhyyhhhdhhhy////++/------////+/+yhyhyhhhhhhhh/.
+-/hhhhdhhhhhdd++++++/++////+//+/++/shhyhhhhhhhhh+.
+-/hhhhhhhhhhhs++/++/++/+so+//+/++++/yhhhhhhhhhhh+.
+-/hhhhhhhhhhy/+/+++/+shhhhyso//++++++hhhhhhhhhhh+.
+-/hhhhdhddhh+/++/+oyhyhhhhhyyys+/++++shhhhhdhhhh+.
+-/hhhhdhdhdo/+/+shyhhhhhhhhhyyhhyo+++/yhdhhdhhhh+.
+-/hhhhhhdhy//oyhhhyhhhhhhhhhhhhhhyys+/+hhhhhhhhh+.
+./hhhhhhhhsshhhhhhhhhhhhhhhhhhhhhhhhhhsyhddhhhyyo-
+./hyhyhhhhhhhyhhyyyyhhhhhhhhhhhhhhhhhhhhhhdhyyyho-
+.-:::::::--:::::::::::::::-:---------:::::::::::--
+
+
+    Use your HTML and CSS swagger to mix and match elements to make a webpage featuring a meme to conquer all internet memes. Let your inner serious cat or Ryan Gosling “Hey girl,” shine.
+-->
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Internet Famous</title>
+    <style>
+      body {
+        background-color: #000;
+        margin: 0px;
+      }
+      #content {
+        margin: 0px auto;
+        width: 1024px;
+      }
+      #meme {
+        margin: 0px auto;
+        width: 720px;
+      }
+      #grass {
+        background-color: #CC0033;
+        height: 650px;
+        position: absolute;
+        width: 1024px;
+      }
+      .rainbow {
+        float: right;
+        height: 80px;
+        padding-right: 30px;
+        width: 150px;
+      }
+      .tower {
+        float: left;
+        height: 185px;
+        position: relative;
+        top: -100px;
+        width: 100px;
+      }
+      h1, h2 {
+        color: white;
+        filter: dropshadow(color=#000000, offx=5, offy=5);
+        font-family: Impact;
+        font-size: 68px;
+        left: 30%;
+        margin: 0 auto;
+        position: absolute;
+        text-shadow: 5px 5px 0px #000000;
+        top: 30px;
+        z-index: 100;
+      }
+      h1 {
+        left: 33%;    
+      }
+      h2 {
+        top: 420px;
+      }
+      img {
+        border: 10px solid #000;
+        left: 5%;
+        margin: 20px auto;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="grass">
+        <div id="meme">
+          <!--
+              Write in your captions, juxtapose images, create a concept that
+              will spread like wildfire.
+          -->
+          <h1>Top Caption</h1>
+          <img src="{{ HTTP_STATIC }}meme/serious_cat.jpg"> 
+          <h2>Bottom Caption</h2>
+          
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

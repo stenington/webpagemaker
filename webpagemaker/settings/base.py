@@ -9,12 +9,24 @@ ROOT_URLCONF = 'webpagemaker.urls'
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.staticfiles',
     
     # Application base, containing global templates.
     'webpagemaker.base',
     'webpagemaker.api',
     'webpagemaker.website',
+    'webpagemaker.learning_projects',
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS) + [
+    'django.core.context_processors.static',
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+STATIC_URL = "/s/"
 
 # Because Jinja2 is the default template loader, add any non-Jinja templated
 # apps here:

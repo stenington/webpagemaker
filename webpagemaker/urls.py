@@ -12,10 +12,12 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', 'webpagemaker.website.views.home'),
-    (r'^projects', 'webpagemaker.website.views.projects'),
-    (r'^gallery', 'webpagemaker.website.views.gallery'),
-    (r'^about', 'webpagemaker.website.views.about'),
-    (r'^editor', 'webpagemaker.website.views.editor'),
+    (r'^projects$', 'webpagemaker.website.views.projects'),
+    (r'^gallery$', 'webpagemaker.website.views.gallery'),
+    (r'^about$', 'webpagemaker.website.views.about'),
+    (r'^editor$', 'webpagemaker.website.views.editor'),
+    (r'^projects/(?P<name>[A-Za-z0-9\-_]+)$',
+      'webpagemaker.learning_projects.views.render'),
     (r'', include(urls)),
 
     # Uncomment the admin/doc line below to enable admin documentation:
