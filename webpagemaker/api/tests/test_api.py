@@ -1,7 +1,8 @@
 from django.conf import settings
+from django.utils import simplejson as json
 
 import test_utils
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 class PublishTests(test_utils.TestCase):
     def _publish_and_verify(self, html, expected_html=None):
@@ -25,6 +26,14 @@ class PublishTests(test_utils.TestCase):
         eq_(response['Content-Type'], 'text/html; charset=utf-8')
         eq_(type(response.content), str)
         eq_(response.content, expected_html)
+
+    def test_get_sanitizer_config(self):
+        response = self.client.get('/api/config')
+        eq_(response.status_code, 200)
+        cfg = json.loads(response.content)
+        ok_('a' in cfg['allowed_tags'])
+        ok_('href' in cfg['allowed_attributes']['a'])
+        eq_(response['Access-Control-Allow-Origin'], '*')
 
     def test_massive_content_is_rejected(self):
         massive_content = "*" * (settings.MAX_PUBLISHED_PAGE_SIZE + 1)

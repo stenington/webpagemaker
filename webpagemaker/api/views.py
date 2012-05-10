@@ -4,6 +4,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
+from django.utils import simplejson as json
 from django.http import HttpResponse, HttpResponseBadRequest
 
 from . import models
@@ -26,6 +27,15 @@ def publish_page(request):
                        original_url=original_url)
     page.save()
     response = HttpResponse('/p/%d' % page.id, content_type="text/plain")
+    response['Access-Control-Allow-Origin'] = '*'
+    return response
+
+def get_sanitizer_config(request):
+    cfg = {
+        'allowed_tags': sanitize.ALLOWED_TAGS,
+        'allowed_attributes': sanitize.ALLOWED_ATTRS
+    }
+    response = HttpResponse(json.dumps(cfg), content_type="application/json")
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
