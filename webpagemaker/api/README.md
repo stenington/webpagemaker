@@ -9,6 +9,7 @@ All API calls are currently anonymous--no auth is needed.
 Publishes an HTML page to the server.
 
 **Endpoint:** `/api/page`
+
 **HTTP Method:** `POST`
 
 ### Parameters
@@ -28,6 +29,7 @@ An absolute path to read the published page, e.g. `/p/1`.
 Returns the sanitized HTML of a previously published page.
 
 **Endpoint:** `/p/{id}`
+
 **HTTP Method:** `GET`
 
 ### Return Value
@@ -46,6 +48,7 @@ feedback to the end-user regarding whether some of their HTML will be
 stripped.
 
 **Endpoint:** `/api/config`
+
 **HTTP Method:** `GET`
 
 ### Return Value
