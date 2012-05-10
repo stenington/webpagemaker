@@ -1,6 +1,7 @@
 #wrapper {
   background-color: #F3EFE6;
   background-image: url("/media/img/gradientbackground.png");
+  padding-bottom: 0;
 }
 
 #masthead .row {
@@ -64,6 +65,10 @@ b {
 #page-bottom {
   background-color: #fff;
   border-top: 1px solid #ccc;
+}
+
+#colophon {
+  padding: 30px;
 }
 
 #colophon h2 {
