@@ -10,18 +10,18 @@ from . import views
 def test_make_context_works_with_non_absolute_uri():
     req = RequestFactory().get('/')
     ctx = views._make_context(req, '/blarg/')
-    eq_(ctx['HTTP_STATIC'], 'http://testserver/blarg/')
+    eq_(ctx['HTTP_STATIC_URL'], 'http://testserver/blarg/')
 
 def test_make_context_works_with_absolute_uri():
     req = RequestFactory().get('/')
     ctx = views._make_context(req, 'http://u/blarg/')
-    eq_(ctx['HTTP_STATIC'], 'http://u/blarg/')
+    eq_(ctx['HTTP_STATIC_URL'], 'http://u/blarg/')
 
 class RenderTests(test_utils.TestCase):
     def test_http_static_includes_protocol(self):
         response = self.client.get('/en-US/projects/tests')
         info = eval(response.content)
-        ok_(re.match(r'^https?:\/\/.+', info['HTTP_STATIC']))
+        ok_(re.match(r'^https?:\/\/.+', info['HTTP_STATIC_URL']))
 
     def test_404_returned_for_nonexistent_tests(self):
         response = self.client.get('/en-US/projects/nonexistent')

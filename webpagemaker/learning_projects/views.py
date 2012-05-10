@@ -6,9 +6,9 @@ import jingo
 def _make_context(request, static_url):
     ctx = {}
     if static_url.startswith('/'):
-        ctx['HTTP_STATIC'] = request.build_absolute_uri(static_url)
+        ctx['HTTP_STATIC_URL'] = request.build_absolute_uri(static_url)
     else:
-        ctx['HTTP_STATIC'] = static_url
+        ctx['HTTP_STATIC_URL'] = static_url
     return ctx
     
 def render(request, name):

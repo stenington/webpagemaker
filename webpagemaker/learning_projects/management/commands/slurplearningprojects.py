@@ -18,7 +18,7 @@ def slurp(fromdir, stdout):
         filename = '%s.html' % project
         dirname = os.path.join(fromdir, project)
         html = open(os.path.join(dirname, filename)).read()
-        html = html.replace('static/', '{{ HTTP_STATIC }}%s/' % project)
+        html = html.replace('static/', '{{ HTTP_STATIC_URL }}%s/' % project)
         f = open(os.path.join(templatedir, filename), 'w')
         f.write(html)
         f.close()
