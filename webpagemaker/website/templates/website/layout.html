@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+<head>
+  <meta charset="utf-8">
+  <title>Webpage Maker</title>
+  <link rel="stylesheet" href="/media/css/opensans/stylesheet.css">
+  <link rel="stylesheet" href="/media/css/sandstone.css">
+  <link rel="stylesheet" href="/media/css/wpm.css">
+  <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet">
+  {% block head %} {% endblock %}
+</head>
+<body>
+  <div id="outer-wrapper">
+  <div id="wrapper">
+
+    <header id="masthead">
+      <a href="http://www.mozilla.org/" id="tabzilla">Mozilla</a>
+
+      <hgroup class="row">
+        <div class="span4">
+          <div class="logo">
+            <a href=".">
+              <img src="/media/img/mozilla-logo.png">
+              Webpage Maker
+            </a>
+          </div>
+        </div>
+
+        <div class="span6">
+          <nav id="nav-main" role="navigation">
+            <ol>
+              <li><a href="">Editor</a></li>
+              <li><a href="">Projects</a></li>
+              <li><a href="">Gallery</a></li>
+              <li><a href="">About</a></li>
+            </ol>
+          </nav>
+        </div>
+      </hgroup>
+    </header>
+
+    {% block body %} {% endblock %}
+
+    <footer id="colophon">
+      <div class="row">
+        <div class="span3">
+          <h2>make.mozilla</h2>
+        </div>
+
+        <nav class="span2">
+          <h3>About</h3>
+          <ul>
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Privacy Policy</a></li>
+            <li><a href="">Legal Notices</a></li>
+          </ul>
+        </nav>
+        <nav class="span2">
+          <h3>Connect with us</h3>
+          <ul>
+            <li><a href="">Twitter</a></li>
+            <li><a href="">Facebook</a></li>
+          </ul>
+        </nav>
+
+        <nav class="span2">
+          <h3>Make something!</h3>
+          <ul>
+            <li><a href="">Projects</a></li>
+            <li><a href="">Tools</a></li>
+            <li><a href="">Events</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+  </div>
+  </div>
+
+  <script src="//www.mozilla.org/tabzilla/media/js/tabzilla.js"></script> 
+</body>
+</html>

@@ -1,0 +1,85 @@
+#wrapper {
+  background-color: #F3EFE6;
+  background-image: url("/media/img/gradientbackground.png");
+}
+
+#masthead .row {
+  clear: both;
+}
+
+#masthead nav {
+  float: none;
+  margin-top: 22px;
+  position: relative;
+  top: 0.2em;
+}
+
+#masthead nav ul li,
+#masthead nav ol li {
+  border-left: 1px solid gray;
+  height: 36px;
+  line-height: 36px;
+  position: relative;
+}
+
+#masthead nav ul li a,
+#masthead nav ol li a {
+  padding: 0 10px;
+}
+
+#masthead nav ul li:first-child,
+#masthead nav ol li:first-child {
+  border-left: none;
+}
+
+.logo {
+  font-family: OpenSansLight, sans-serif;
+  font-size: 2.2em;
+  font-weight: 200;
+  line-height: normal;
+}
+
+.logo a,
+.logo a:link,
+.logo a:visited,
+.logo a:hover,
+.logo a:active
+{
+  color: #4d4d4d;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.logo img {
+  display: block;
+  position: relative;
+  left: -5px;
+  top: 0.2em;
+}
+
+b {
+  font-family: OpenSansRegular, sans-serif;
+}
+
+#colophon h2 {
+  color: #999; 
+  font-size: 2em;
+}
+
+#colophon h3 {
+  color: #999;
+  font-family: OpenSansSemibold;
+  font-size: 1em;
+  margin-top: 1em;
+}
+
+#colophon a,
+#colophon a:link,
+#colophon a:visited {
+  color: #40B2E5;
+}
+
+#colophon a:hover,
+#colophon a:active {
+  color: #3993BF;
+}
