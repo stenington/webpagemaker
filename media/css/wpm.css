@@ -61,6 +61,11 @@ b {
   font-family: OpenSansRegular, sans-serif;
 }
 
+#page-bottom {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
 #colophon h2 {
   color: #999; 
   font-size: 2em;
