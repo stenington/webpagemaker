@@ -12,7 +12,7 @@ def render_dropbox_static(request, name, path):
     This view is for development and debugging purposes ONLY.
     """
     
-    url = '%s%s/static/%s' % (settings.LEARNING_PROJECTS_URL,
+    url = '%s%s/static/%s' % (settings.LEARNING_PROJECTS_DROPBOX_URL,
                               name, path)
     try:
         f = urllib2.urlopen(url)
@@ -38,8 +38,8 @@ def render_dropbox_project(request, name):
     This view is for development and debugging purposes ONLY.
     """
     
-    url = '%s%s/%s.html' % (settings.LEARNING_PROJECTS_URL,
-                             name, name)
+    url = '%s%s/%s.html' % (settings.LEARNING_PROJECTS_DROPBOX_URL,
+                            name, name)
     try:
         f = urllib2.urlopen(url)
     except urllib2.HTTPError, e:

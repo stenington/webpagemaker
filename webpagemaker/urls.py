@@ -35,6 +35,15 @@ if settings.DEBUG:
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
+
+    # Remove leading and trailing slashes so the regex matches.
+    learning_static_url = settings.LEARNING_PROJECTS_STATIC_URL
+    learning_static_url = learning_static_url.lstrip('/').rstrip('/')
+    urlpatterns += patterns('',
+        (r'^%s/(?P<path>.*)$' % learning_static_url,
+         'django.views.static.serve',
+         {'document_root': settings.LEARNING_PROJECTS_STATIC_ROOT}),
+    )
     
     from . import debugging
     

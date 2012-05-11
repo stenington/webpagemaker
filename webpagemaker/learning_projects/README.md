@@ -34,13 +34,11 @@ import them into the playdoh project using the following command:
 This will take all the learning project folders contained in the
 directory specified by `settings.LEARNING_PROJECTS_PATH` and copy
 them into the `learning_projects` app. All static files will be
-copied into the app's `static` folder, to be processed by Django's
-[staticfiles][] app, while each project's HTML file will be
+copied into the app's `static` folder, while each project's HTML file will be
 converted into a template and placed in the app's `templates` folder.
 
 All relative references to the `static` subdirectory in each
 project's HTML file will be replaced with absolute URLs, ensuring that
 the resulting HTML can be easily relocated without breaking links.
 
-  [staticfiles]: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/
   [learning projects]: http://jessicaklein.blogspot.com/2012/04/curate-your-learning-through-webmaker.html

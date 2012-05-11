@@ -13,7 +13,7 @@ def _make_context(request, static_url):
     
 def render(request, name):
     template = "learning_projects/%s.html" % name
-    ctx = _make_context(request, settings.STATIC_URL)
+    ctx = _make_context(request, settings.LEARNING_PROJECTS_STATIC_URL)
     try:
         response = jingo.render(request, template, ctx)
     except TemplateNotFound:

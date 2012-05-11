@@ -2,6 +2,7 @@
 # repo. If you need to override a setting locally, use settings_local.py
 
 from funfactory.settings_base import *
+from funfactory.manage import path
 
 # Defines the views served for root URLs.
 ROOT_URLCONF = 'webpagemaker.urls'
@@ -9,7 +10,6 @@ ROOT_URLCONF = 'webpagemaker.urls'
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     'django.contrib.messages',
     'django.contrib.admin',
-    'django.contrib.staticfiles',
     
     # Application base, containing global templates.
     'webpagemaker.base',
@@ -17,16 +17,6 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'webpagemaker.website',
     'webpagemaker.learning_projects',
 ]
-
-TEMPLATE_CONTEXT_PROCESSORS = list(TEMPLATE_CONTEXT_PROCESSORS) + [
-    'django.core.context_processors.static',
-]
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
-
-STATIC_URL = "/s/"
 
 # Because Jinja2 is the default template loader, add any non-Jinja templated
 # apps here:
@@ -60,6 +50,8 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
     'api',
     # Published pages
     'p',
+    # Static resources for learning projects
+    's',
     # Mission development API (debug only)
     'mission-slurp'
 ]
@@ -71,6 +63,16 @@ MAX_PUBLISHED_PAGE_SIZE = 10000
 
 # Where to retrieve in-development learning projects from. Only
 # consulted if settings.DEV is True.
-LEARNING_PROJECTS_URL = 'http://wpm-dropbox.toolness.org/'
+LEARNING_PROJECTS_DROPBOX_URL = 'http://wpm-dropbox.toolness.org/'
 
+# Where to serve static resources for learning projects from, relative to
+# server root. Note that this also needs to be present in
+# SUPPORTED_NONLOCALES.
+LEARNING_PROJECTS_STATIC_URL = '/s/'
+
+# Root directory to serve learning project static resources from when
+# in debug mode.
+LEARNING_PROJECTS_STATIC_ROOT = path('webpagemaker/learning_projects/static')
+
+# Use our symlink for the admin media.
 ADMIN_MEDIA_PREFIX = '/media/admin/'
