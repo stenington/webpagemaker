@@ -52,6 +52,8 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
     'p',
     # Static resources for learning projects
     's',
+    # static resources for in-development learning projects
+    'sd',
     # Mission development API (debug only)
     'mission-slurp'
 ]

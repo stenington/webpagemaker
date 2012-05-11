@@ -45,14 +45,14 @@ def render_dropbox_project(request, name):
     except urllib2.HTTPError, e:
         return HttpResponse(content="alas, %d." % e.code, status=e.code)
     html = f.read()
-    static_base = request.build_absolute_uri('/dropbox/%s/' % name)
+    static_base = request.build_absolute_uri('/sd/%s/' % name)
     html = html.replace('static/', static_base)
     response = HttpResponse(html)
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
 urlpatterns = patterns('',
-    (r'^dropbox/(?P<name>[A-Za-z0-9\-_]+)/(?P<path>.*)$',
+    (r'^sd/(?P<name>[A-Za-z0-9\-_]+)/(?P<path>.*)$',
       render_dropbox_static),
     (r'^projects/dropbox/(?P<name>[A-Za-z0-9\-_]+)$',
       render_dropbox_project)
