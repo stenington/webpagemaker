@@ -36,6 +36,10 @@ if settings.DEBUG:
          {'document_root': settings.MEDIA_ROOT}),
     )
 
+    from .learning_projects import dropbox
+    
+    urlpatterns += dropbox.urlpatterns
+    
     from . import debugging
     
     urlpatterns += debugging.urlpatterns
