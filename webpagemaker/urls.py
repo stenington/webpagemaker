@@ -35,11 +35,12 @@ if settings.DEBUG:
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )
-
-    from .learning_projects import dropbox
-    
-    urlpatterns += dropbox.urlpatterns
     
     from . import debugging
     
     urlpatterns += debugging.urlpatterns
+
+if settings.DEV:
+    from .learning_projects import dropbox
+    
+    urlpatterns += dropbox.urlpatterns

@@ -68,3 +68,7 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
 # from its default, you may need to modify your database, since this
 # setting's value is used in schema generation.
 MAX_PUBLISHED_PAGE_SIZE = 10000
+
+# Where to retrieve in-development learning projects from. Only
+# consulted if settings.DEV is True.
+LEARNING_PROJECTS_URL = 'http://wpm-dropbox.toolness.org/'
