@@ -4,3 +4,6 @@
 [submodule "vendor-local/src/bleach"]
 	path = vendor-local/src/bleach
 	url = git://github.com/simonwex/bleach.git
+[submodule "webpagemaker/editor/friendlycode"]
+	path = webpagemaker/editor/friendlycode
+	url = git://github.com/toolness/friendlycode.git

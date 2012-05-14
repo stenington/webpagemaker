@@ -15,6 +15,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'webpagemaker.base',
     'webpagemaker.api',
     'webpagemaker.website',
+    'webpagemaker.editor',
     'webpagemaker.learning_projects',
 ]
 

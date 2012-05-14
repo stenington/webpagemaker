@@ -1,4 +1,3 @@
-from django.http import HttpResponse, HttpResponseRedirect
 import jingo
 
 def home(request):
@@ -12,6 +11,3 @@ def gallery(request):
 
 def about(request):
     return jingo.render(request, "website/about.html")
-
-def editor(request):
-    return HttpResponseRedirect('http://toolness.github.com/friendlycode/')
