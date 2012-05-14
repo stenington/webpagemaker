@@ -16,122 +16,70 @@
 
   <div class="container">
     <ul class="thumbnails">
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Internet Famous</h5>
-            <p>By Barack Obama</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
+	{{ thumb(
+		 href    = "#",
+		 img     = "http://placehold.it/252x175",
+		 img_alt = "",
+		 author  = "Barack Obama",
+		 title   = "Internet Famous"
+	   )	
+	}}
+	{{ thumb(
+		 href    = "#",
+		 img     = "http://placehold.it/252x175",
+		 img_alt = "",
+		 author  = "Michelle Levesque",
+		 title   = "Bronies"
+	   )	
+	}}
+	{{ thumb(
+		 href    = "#",
+		 img     = "http://placehold.it/252x175",
+		 img_alt = "",
+		 author  = "Chloe Varelidi",
+		 title   = "Minecraft Thingy"
+	   )	
+	}}
+	
+	{{ thumb(
+		 href    = "#",
+		 img     = "http://placehold.it/252x175",
+		 img_alt = "",
+		 author  = "Barack Obama",
+		 title   = "Internet Famous"
+	   )	
+	}}
+	{{ thumb(
+		 href    = "#",
+		 img     = "http://placehold.it/252x175",
+		 img_alt = "",
+		 author  = "Michelle Levesque",
+		 title   = "Bronies"
+	   )	
+	}}
+	{{ thumb(
+		 href    = "#",
+		 img     = "http://placehold.it/252x175",
+		 img_alt = "",
+		 author  = "Chloe Varelidi",
+		 title   = "Minecraft Thingy"
+	   )	
+	}}
       
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Bronies</h5>
-            <p>By Michelle Levesque</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
-
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Minecraft Thingy</h5>
-            <p>By Chloe Varelidi</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
-      
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Internet Famous</h5>
-            <p>By Barack Obama</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
-      
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Bronies</h5>
-            <p>By Michelle Levesque</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
-
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Minecraft Thingy</h5>
-            <p>By Chloe Varelidi</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
-      
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Internet Famous</h5>
-            <p>By Barack Obama</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
-      
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Bronies</h5>
-            <p>By Michelle Levesque</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
-
-      <li class="span3 threeColumn">
-        <div class="thumbnail">
-          <a href="#">
-            <img src="http://placehold.it/252x175" alt="">
-          </a>
-          <div class="caption">
-            <h5>Minecraft Thingy</h5>
-            <p>By Chloe Varelidi</p>
-            <a href="#" class="button button-orange">Remix</a>
-          </div>
-        </div>
-      </li>
     </ul>
   </div>
 {% endblock %}
+{% macro thumb(href, img, img_alt, author, title) -%}
+<li class="span3 threeColumn">
+  <div class="thumbnail">
+    <a href="{{ href }}">
+      <img src="{{ img }}" alt="">
+    </a>
+    <div class="caption">
+      <h5>{{ title }}</h5>
+      <p>By {{ author }}</p>
+      <a href="#" class="button button-orange">Remix</a>
+    </div>
+  </div>
+</li>
+{%- endmacro %}
