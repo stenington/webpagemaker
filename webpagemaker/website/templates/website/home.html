@@ -1,86 +1,59 @@
-<!DOCTYPE html>
-<html lang="{{ LANG }}" dir="{{ DIR }}">
-  <head>
-    <meta charset="utf-8">
-    <title>Webpage Maker</title>
-    <link rel="stylesheet" href="/media/css/bootstrap.min.css">
-    <style>
-    body {
-      /* 60px to make the container go all the way to the bottom
-       * of the topbar */
-      padding-top: 60px;
-    }
-    </style>
-  </head>
-  <body>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar"></a>
-          <a class="brand" href="/">Webpage Maker</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/editor">Editor</a></li>
-              <li><a href="/projects">Projects</a></li>
-              <li><a href="/gallery">Gallery</a></li>
-              <li><a href="/about">About</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
+{% extends "website/layout.html" %}
+{% block head %}
+{% endblock %}
+{% block body %}
+  <div class="container divider">
+    <div class="row">
+      <div class="hero-unit span6">
+        <hgroup class="large">
+          <h2>What is</h2>
+          <h1>Webpage Maker?</h1>
+        </hgroup>
+        <p>Learn HTML, webify video or level up on game development today. The Webpage Maker is a two pane editor that allows you to design, edit and publish webpages in real-time on the Web. The Web is your canvas. What are you going to do with it?</p>
+        <p><a class="button-blue">Go to the editor</a></p>
       </div>
     </div>
+  </div>
 
-    <div class="container">
-      <div class="hero-unit">
-        <h1>What is Webpage Maker?</h1>
-        <p>Learn HTML, webify video or level up on game development today. The Webpage Maker is a two pane editor that allows you to design, edit and publish webpages in real-time on the Web. The Web is your canvas. What are you going to do with it?</p>
-        <p><a class="btn btn-primary btn-large">Go to the editor  &raquo;</a></p>
-      </div>
+  <div class="container">
+    <h2>Featured Projects</h2>
+    
+    <ul class="thumbnails">
+      <li class="span3 threeColumn">
+        <div class="thumbnail">
+          <a href="#">
+            <img src="http://placehold.it/252x175" alt="">
+          </a>
+          <div class="caption">
+            <h5>Internet Famous</h5>
+            <p>Make a meme.</p>
+          </div>
+        </div>
+      </li>
       
-      <div class="page-header">
-        <h1>Featured Projects</h1>
-      </div>
+      <li class="span3 threeColumn">
+        <div class="thumbnail">
+          <a href="#">
+            <img src="http://placehold.it/252x175" alt="">
+          </a>
+          <div class="caption">
+            <h5>How To Make A Tumblr Theme</h5>
+            <p>Hack a HTML theme.</p>
+          </div>
+        </div>
+      </li>
       
-      <ul class="thumbnails">
-        <li class="span4">
-          <div class="thumbnail">
-            <a href="#">
-              <img src="http://placehold.it/360x250" alt="">
-            </a>
-            <div class="caption">
-              <h5>Internet Famous</h5>
-              <p>Make a meme.</p>
-              <p><a href="#" class="btn btn-primary">Make Project</a>
-            </div>
+      <li class="span3 threeColumn">
+        <div class="thumbnail">
+          <a href="#">
+            <img src="http://placehold.it/252x175" alt="">
+          </a>
+          <div class="caption">
+            <h5>Web Arcade</h5>
+            <p>Level up your HTML skills.</p>
           </div>
-        </li>
-        
-        <li class="span4">
-          <div class="thumbnail">
-            <a href="#">
-              <img src="http://placehold.it/360x250" alt="">
-            </a>
-            <div class="caption">
-              <h5>How To Make A Tumblr Theme</h5>
-              <p>Hack a HTML theme.</p>
-              <p><a href="#" class="btn btn-primary">Make Project</a>
-            </div>
-          </div>
-        </li>
-        
-        <li class="span4">
-          <div class="thumbnail">
-            <a href="#">
-              <img src="http://placehold.it/360x250" alt="">
-            </a>
-            <div class="caption">
-              <h5>Web Arcade</h5>
-              <p>Level up your HTML skills.</p>
-              <p><a href="#" class="btn btn-primary">Make Project</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div> <!-- /container -->
-  </body>
-</html>
+        </div>
+      </li>
+    </ul>
+  </div> 
+{% endblock %}
