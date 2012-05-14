@@ -260,15 +260,6 @@ Projects styles
     box-shadow: 0px 2px 2px 3px rgba(0, 0, 0, 0.1);
     margin-bottom: 50px;
   }
-
-  .projects.show-list .project {
-    width: 896px; /* span10 */
-  }
-
-  .projects.show-thumbs .project {
-    width: 252px; /* span3 */
-  }
-
   .project .thumb,
   .project .info {
     display: inline-block;
@@ -279,13 +270,43 @@ Projects styles
   .project .thumb {
     width: 252px; /* span3 */
   }
+  .project .thumb img {
+    width: 100%;
+  }
 
-  .project .info {
+  /*-- List view --*/
+
+  .projects.show-list .project {
+    width: 896px; /* span10 */
+  }
+
+  .projects.show-list .project .info {
     width: 620px; /* span7 */
   }
 
-  .project .thumb img {
-    width: 212px;
+  /*-- Thumb view --*/
+
+  .projects.show-thumbs .project {
+    width: 252px; /* span3 */
+    float: left;
+    margin-left: 47px;
+  }
+  
+  .projects.show-thumbs .project .thumb {
+    padding-bottom: 0;
+  }
+
+  .projects.show-thumbs .project .info {
+    width: 252px; /* span3 */
+    padding-top: 0;
+  }
+
+  .projects.show-thumbs .project .title {
+    font-size: 1em;
+  }
+
+  .projects.show-thumbs .project .description {
+    display: none;
   }
 
 /* 
