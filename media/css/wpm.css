@@ -192,6 +192,26 @@ Layout styles
 /* 
 Layout styles
 ================================
+Home styles
+*/
+
+  .pat {
+    background: url(/media/img/pat-body.png) no-repeat scroll 50px bottom;
+    height: 380px;
+  }
+
+  .pat-hands {
+    background: url(/media/img/pathand-wpm.png) no-repeat scroll right bottom;
+    width: 289px;
+    height: 203px;
+    position: relative;
+    top: 99px;
+    left: 35px;
+  }
+
+/*
+Home styles
+================================
 Gallery styles
 */
 
