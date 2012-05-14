@@ -35,4 +35,4 @@ def sanitize(html):
     html = bleach.clean(html, strip=True, strip_comments=False,
                         tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS,
                         parse_as_fragment=False)
-    return bleach.protect_search_score(html, parse_as_fragment=False)
+    return html
