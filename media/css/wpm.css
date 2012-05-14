@@ -261,12 +261,31 @@ Projects styles
     margin-bottom: 50px;
   }
 
-  .projects.list .project {
+  .projects.show-list .project {
     width: 896px; /* span10 */
   }
 
-  .projects.thumbs .project {
+  .projects.show-thumbs .project {
     width: 252px; /* span3 */
+  }
+
+  .project .thumb,
+  .project .info {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+
+  .project .thumb {
+    width: 252px; /* span3 */
+  }
+
+  .project .info {
+    width: 620px; /* span7 */
+  }
+
+  .project .thumb img {
+    width: 212px;
   }
 
 /* 

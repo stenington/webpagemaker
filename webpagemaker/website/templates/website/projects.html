@@ -16,7 +16,7 @@
   </div>
 
   <div class="container">
-    <ul class="projects list">
+    <ul class="projects show-list">
       {{ project(
            href        = "http://toolness.github.com/friendlycode/?p=/mission-slurp%3Furl%3Dhttp%253A//jessicaklein.com/betatest/internetfamous.html",
            img         = "https://wiki.mozilla.org/images/7/70/Internetfamous.jpg",
@@ -86,7 +86,7 @@
 {% endblock %}
 {% macro project(href, img, img_alt, author, title, description) -%}
   <li class="project">
-    <div>
+    <div class="thumb">
         <a href="{{ href }}">
           <img src="{{ img }}" alt="{{ img_alt }}">
         </a>
@@ -94,7 +94,7 @@
           By {{ author }}
         </div>
     </div>
-    <div>
+    <div class="info">
       <h3>{{ title }}</h3>
       <p>{{ description|safe }}</p>
       <p><a href="{{ href }}" class="button">Make Project</a>
