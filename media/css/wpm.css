@@ -266,6 +266,12 @@ Gallery styles
 Projects styles
 */
 
+  .projectpeoples {
+    background: url(/media/img/projectpeoples.png) no-repeat scroll top right;
+    min-height: 263px;
+    padding-right: 364px;
+  }
+
   .view-style {
     color: #999;
     text-transform: uppercase;
