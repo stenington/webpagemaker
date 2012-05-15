@@ -7,3 +7,6 @@
 [submodule "webpagemaker/editor/friendlycode"]
 	path = webpagemaker/editor/friendlycode
 	url = git://github.com/toolness/friendlycode.git
+[submodule "vendor-local/src/django-south"]
+	path = vendor-local/src/django-south
+	url = git://github.com/toolness/django-south.git
