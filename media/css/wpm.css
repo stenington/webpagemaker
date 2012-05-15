@@ -209,6 +209,10 @@ Home styles
     left: 35px;
   }
 
+  #home .caption p {
+    margin-bottom: 0;
+  }
+
 /*
 Home styles
 ================================
@@ -224,13 +228,9 @@ Gallery styles
     margin-bottom: 30px;
   }
 
-  .caption h5 {
+  .title,
+  .title {
     color: #5eb5eb;
-    font-family: OpenSansRegular;
-    display: inline-block;
-  }
-  .caption h5:after {
-    content: ", ";
   }
 
   .caption p {
@@ -240,6 +240,14 @@ Gallery styles
     font-family: OpenSansSemibold;
     font-size: 0.75em;
     margin-bottom: 12px;
+  }
+
+  #gallery .caption h5 {
+    font-family: OpenSansRegular;
+    display: inline-block;
+  }
+  #gallery .caption h5:after {
+    content: ", ";
   }
 
 /* 
@@ -263,6 +271,8 @@ Projects styles
   .project .thumb,
   .project .info {
     display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 20px;
   }
@@ -292,7 +302,9 @@ Projects styles
     margin-left: 47px;
   }
   
-  .projects.show-thumbs .project .thumb {
+  .projects.show-thumbs .thumb,
+  .projects.show-thumbs .thumb .caption p {
+    margin-bottom: 0;
     padding-bottom: 0;
   }
 

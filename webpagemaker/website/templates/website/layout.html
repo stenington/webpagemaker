@@ -39,7 +39,9 @@
       </hgroup>
     </header>
 
-    {% block body %} {% endblock %}
+    <section id="{% block content_id %}{% endblock %}">
+      {% block body %} {% endblock %}
+    </section>
 
     <section id="page-bottom">
       <footer id="colophon">
