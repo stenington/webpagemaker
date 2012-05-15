@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from tower import ugettext_lazy as _lazy
 
-NUMERALS = "Zv0w2x4y6z8AaBcCeDgEiFkGmHoIqJsKuL3M7NbOfPjQnRrS1T9UhVpW5XlYdt"
+NUMERALS = "3fldc4mzjyqr7bkug5vh0a68xpon9stew12i"
 
 def rebase(num, numerals=NUMERALS):
     base = len(numerals)
