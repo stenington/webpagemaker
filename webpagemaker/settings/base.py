@@ -10,6 +10,7 @@ ROOT_URLCONF = 'webpagemaker.urls'
 INSTALLED_APPS = list(INSTALLED_APPS) + [
     'django.contrib.messages',
     'django.contrib.admin',
+    'south',
     
     # Application base, containing global templates.
     'webpagemaker.base',
