@@ -1,0 +1,380 @@
+/* 
+Webpage Maker Styles
+================================
+Global styles and classes
+*/
+
+  .threeColumn {
+    margin-left: 47px;
+  }
+
+  .button,
+  .button:link,
+  .button:visited {
+    font-family: OpenSansLightItalic;
+    line-height: 2.5em;
+    height: 2.5em;
+  }
+
+  .button-orange,
+  .button-orange:link,
+  .button-orange:visited {
+    background-color: #ec8c30;
+    background-color: #d57214;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#ec8c30), to(#d57214));
+    /* Konqueror */
+
+    background-image: -moz-linear-gradient(#ec8c30, #d57214);
+    /* FF 3.6+ */
+
+    background-image: -ms-linear-gradient(#ec8c30, #d57214);
+    /* IE10 */
+
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ec8c30), color-stop(100%, #d57214));
+    /* Safari 4+, Chrome 2+ */
+
+    background-image: -webkit-linear-gradient(#ec8c30, #d57214);
+    /* Safari 5.1+, Chrome 10+ */
+
+    background-image: -o-linear-gradient(#ec8c30, #d57214);
+    /* Opera 11.10 */
+
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ec8c30', endColorstr='#d57214', GradientType=0);
+    /* IE6 & IE7 */
+
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ec8c30', endColorstr='#d57214', GradientType=0)";
+    /* IE8+ */
+
+    background-image: linear-gradient(#ec8c30, #d57214);
+    /* the standard */
+  }
+
+  .button-orange:hover,
+  .button-orange:link:hover,
+  .button-orange:visited:hover {
+    -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #f78c25;
+    -moz-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #f78c25;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #f78c25;
+  }
+
+  .button:active,
+  .button:link:active,
+  .button:visited:active {
+    -webkit-box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0px 2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 6px rgba(0, 0, 0, 0.2), inset 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .button:after,
+  .button-blue:after {
+    content: " ❯";
+  }
+  
+  h2 {
+    font-family: OpenSansLightItalic;
+    color: #676767;
+  }
+
+  .hero-unit {
+    font-family: OpenSansLight, sans-serif;
+  }
+
+  .hero-unit h2 {
+    text-transform: lowercase;
+  }
+
+  .hero-unit h1 {
+    font-family: OpenSansBold;
+    color: #676767;
+    text-transform: uppercase;
+  }
+
+/*
+Global styles and classes
+================================
+Layout styles
+*/
+
+  #wrapper {
+    background-color: #F3EFE6;
+    background-image: url("/media/img/gradientbackground.png");
+    padding-bottom: 0;
+  }
+
+  #masthead {
+    margin-bottom: 30px;
+  }
+
+  #masthead .row {
+    clear: both;
+  }
+
+  #masthead nav {
+    float: none;
+    margin-top: 22px;
+    position: relative;
+    top: 0.2em;
+  }
+
+  #masthead nav ul li,
+  #masthead nav ol li {
+    border-left: 1px solid gray;
+    height: 36px;
+    line-height: 36px;
+    position: relative;
+  }
+
+  #masthead nav ul li a,
+  #masthead nav ol li a {
+    padding: 0 10px;
+  }
+
+  #masthead nav ul li:first-child,
+  #masthead nav ol li:first-child {
+    border-left: none;
+  }
+
+  #projects #nav-main .projects a {
+    font-weight: bold;
+  }
+  #gallery #nav-main .gallery a {
+    font-weight: bold;
+  }
+  #about #nav-main .about a {
+    font-weight: bold;
+  }
+
+  .logo {
+    font-family: OpenSansLight, sans-serif;
+    font-size: 2.2em;
+    font-weight: 200;
+    line-height: normal;
+  }
+
+  .logo a,
+  .logo a:link,
+  .logo a:visited,
+  .logo a:hover,
+  .logo a:active
+  {
+    color: #4d4d4d;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .logo img {
+    display: block;
+    position: relative;
+    left: -5px;
+    top: 0.2em;
+  }
+
+  #page-bottom {
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    margin-top: 50px;
+  }
+
+  #colophon {
+    padding: 30px;
+  }
+
+  #colophon h2 {
+    font-family: OpenSansLight;
+    color: #999; 
+    font-size: 2em;
+  }
+
+  #colophon h3 {
+    color: #999;
+    font-family: OpenSansSemibold;
+    font-size: 1em;
+    margin-top: 1em;
+  }
+
+  #colophon a,
+  #colophon a:link,
+  #colophon a:visited {
+    color: #5eb5eb;
+  }
+
+  #colophon a:hover,
+  #colophon a:active {
+    color: #5594CA;
+  }
+
+/* 
+Layout styles
+================================
+Home styles
+*/
+
+  .pat {
+    background: url(/media/img/pat-body.png) no-repeat scroll 50px bottom;
+    height: 380px;
+  }
+
+  .pat-hands {
+    background: url(/media/img/pathand-wpm.png) no-repeat scroll right bottom;
+    width: 289px;
+    height: 203px;
+    position: relative;
+    top: 99px;
+    left: 35px;
+  }
+
+  #home .caption p {
+    margin-bottom: 0;
+  }
+
+/*
+Home styles
+================================
+Gallery styles
+*/
+
+  .gallerycat {
+    background: url(/media/img/gallerycat.png) no-repeat scroll top right;
+    min-height: 236px;
+    padding-right: 298px;
+  }
+
+  .thumbnails {
+    margin-left: -24px;
+    list-style: none;
+  }
+
+  .thumbnail {
+    margin-bottom: 30px;
+  }
+
+  .title,
+  .title {
+    color: #5eb5eb;
+  }
+
+  .caption p {
+    display: inline-block;
+    color: #999;
+    text-transform: uppercase;
+    font-family: OpenSansSemibold;
+    font-size: 0.75em;
+    margin-bottom: 12px;
+  }
+
+  #gallery .caption h5 {
+    font-family: OpenSansRegular;
+    display: inline-block;
+  }
+  #gallery .caption h5:after {
+    content: ", ";
+  }
+
+/* 
+Gallery styles
+================================
+Projects styles
+*/
+
+  .projectpeoples {
+    background: url(/media/img/projectpeoples.png) no-repeat scroll top right;
+    min-height: 263px;
+    padding-right: 364px;
+  }
+
+  .view-style {
+    color: #999;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: OpenSansSemibold;
+    font-size: 0.75em;
+  }
+  .view-style ul {
+    list-style: none;
+    display: inline-block;
+  }
+  .view-style ul li {
+    display: inline-block;
+  }
+  .view-style ul li a {
+    display: inline-block;
+    padding-left: 35px;
+    height: 30px;
+    line-height: 30px;
+  }
+  .view-style a.list {
+    background: url(/media/img/list_sprite.png) no-repeat scroll left top;
+  }
+  .view-style a.thumbs {
+    background: url(/media/img/thumb_sprite.png) no-repeat scroll left top;
+  }
+
+  .projects {
+    margin-left: -24px;
+    list-style: none;
+  }
+
+  .project {
+    background-color: #fff;
+    -webkit-box-shadow: 0px 2px 2px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 2px 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 2px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+  }
+  .project .thumb,
+  .project .info {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+
+  .project .thumb {
+    width: 252px; /* span3 */
+  }
+  .project .thumb img {
+    width: 100%;
+  }
+
+  /*-- List view --*/
+
+  .projects.show-list .project {
+    width: 896px; /* span10 */
+  }
+
+  .projects.show-list .project .info {
+    width: 620px; /* span7 */
+  }
+
+  /*-- Thumb view --*/
+
+  .projects.show-thumbs .project {
+    width: 252px; /* span3 */
+    float: left;
+    margin-left: 47px;
+  }
+  
+  .projects.show-thumbs .thumb,
+  .projects.show-thumbs .thumb .caption p {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .projects.show-thumbs .project .info {
+    width: 252px; /* span3 */
+    padding-top: 0;
+  }
+
+  .projects.show-thumbs .project .title {
+    font-size: 1em;
+  }
+
+  .projects.show-thumbs .project .description {
+    display: none;
+  }
+
+/* 
+Projects styles
+================================
+*/
