@@ -26,7 +26,14 @@ def publish_page(request):
     page = models.Page(html=request.POST['html'],
                        original_url=original_url)
     page.save()
-    response = HttpResponse('/p/%d' % page.id, content_type="text/plain")
+
+    # After saving, we now have an ID, which we can use to generate a
+    # unique short URL ID and then re-save.
+    page.short_url_id = models.rebase(page.id)
+    page.save()
+
+    response = HttpResponse('/p/%s' % page.short_url_id,
+                            content_type="text/plain")
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
@@ -40,7 +47,7 @@ def get_sanitizer_config(request):
     return response
 
 def get_page(request, page_id):
-    page = get_object_or_404(models.Page, pk=page_id)
+    page = get_object_or_404(models.Page, short_url_id=page_id)
     response = HttpResponse(sanitize.sanitize(page.html))
     if page.original_url:
         response['X-Original-URL'] = page.original_url

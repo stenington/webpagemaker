@@ -5,5 +5,5 @@ from . import views
 urlpatterns = patterns('',
     (r'^api/config', views.get_sanitizer_config),
     (r'^api/page', views.publish_page),
-    (r'p/(?P<page_id>[0-9]+)', views.get_page)
+    (r'p/(?P<page_id>[A-Za-z0-9]+)', views.get_page)
 )

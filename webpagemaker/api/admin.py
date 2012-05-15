@@ -3,7 +3,7 @@ from django.contrib import admin
 from . import models
 
 def view_link(obj):
-    href = "/p/%d" % obj.id
+    href = "/p/%s" % obj.short_url_id
     return '<a href="%s">view page at %s</a>' % (href, href)
 
 view_link.short_description = "View link"
@@ -15,6 +15,6 @@ def page_size(obj):
 page_size.short_description = 'Number of characters'
 
 class PageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'original_url', page_size, view_link)
+    list_display = ('short_url_id', 'original_url', page_size, view_link)
 
 admin.site.register(models.Page, PageAdmin)
