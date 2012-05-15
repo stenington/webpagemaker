@@ -229,6 +229,12 @@ Home styles
 Gallery styles
 */
 
+  .gallerycat {
+    background: url(/media/img/gallerycat.png) no-repeat scroll top right;
+    min-height: 236px;
+    padding-right: 298px;
+  }
+
   .thumbnails {
     margin-left: -24px;
     list-style: none;
