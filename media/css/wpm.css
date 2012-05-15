@@ -101,6 +101,10 @@ Layout styles
     padding-bottom: 0;
   }
 
+  #masthead {
+    margin-bottom: 30px;
+  }
+
   #masthead .row {
     clear: both;
   }
