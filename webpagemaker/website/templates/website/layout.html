@@ -9,7 +9,7 @@
   <link href="//www.mozilla.org/tabzilla/media/css/tabzilla.css" rel="stylesheet">
   {% block head %} {% endblock %}
 </head>
-<body>
+<body id="{% block page_id %}{% endblock %}">
   <div id="outer-wrapper">
   <div id="wrapper">
 
@@ -29,17 +29,17 @@
         <div class="span6">
           <nav id="nav-main" role="navigation">
             <ol>
-              <li><a href="/editor">Editor</a></li>
-              <li><a href="{{ url('webpagemaker.website.views.projects') }}">Projects</a></li>
-              <li><a href="{{ url('webpagemaker.website.views.gallery') }}">Gallery</a></li>
-              <li><a href="{{ url('webpagemaker.website.views.about') }}">About</a></li>
+              <li class="editor"><a href="/editor">Editor</a></li>
+              <li class="projects"><a href="{{ url('webpagemaker.website.views.projects') }}">Projects</a></li>
+              <li class="gallery"><a href="{{ url('webpagemaker.website.views.gallery') }}">Gallery</a></li>
+              <li class="about"><a href="{{ url('webpagemaker.website.views.about') }}">About</a></li>
             </ol>
           </nav>
         </div>
       </hgroup>
     </header>
 
-    <section id="{% block content_id %}{% endblock %}">
+    <section>
       {% block body %} {% endblock %}
     </section>
 
