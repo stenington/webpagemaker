@@ -256,6 +256,33 @@ Gallery styles
 Projects styles
 */
 
+  .view-style {
+    color: #999;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: OpenSansSemibold;
+    font-size: 0.75em;
+  }
+  .view-style ul {
+    list-style: none;
+    display: inline-block;
+  }
+  .view-style ul li {
+    display: inline-block;
+  }
+  .view-style ul li a {
+    display: inline-block;
+    padding-left: 35px;
+    height: 30px;
+    line-height: 30px;
+  }
+  .view-style a.list {
+    background: url(/media/img/list_sprite.png) no-repeat scroll left top;
+  }
+  .view-style a.thumbs {
+    background: url(/media/img/thumb_sprite.png) no-repeat scroll left top;
+  }
+
   .projects {
     margin-left: -24px;
     list-style: none;

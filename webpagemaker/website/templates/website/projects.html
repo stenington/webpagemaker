@@ -16,6 +16,21 @@
   </div>
 
   <div class="container">
+
+    <div class="row">
+      <div class="span10 view-style">
+        View as: 
+        <ul>
+          <li>
+            <a id="js-list" class="list">List</a>
+          </li>
+          <li>
+            <a id="js-thumbs" class="thumbs">Thumbnails</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <ul class="projects show-list">
       {{ project(
            href        = "http://toolness.github.com/friendlycode/?p=/mission-slurp%3Furl%3Dhttp%253A//jessicaklein.com/betatest/internetfamous.html",
@@ -83,6 +98,9 @@
     </ul>
   </div>
       
+{% endblock %}
+{% block scripts %}
+<script src="/media/js/projects.js"></script>
 {% endblock %}
 {% macro project(href, img, img_alt, author, title, description) -%}
   <li class="project">
