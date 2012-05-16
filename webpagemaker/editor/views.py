@@ -3,6 +3,7 @@ import re
 
 from django.http import HttpResponse
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 def _sub_base_href(html, base_url):
     return re.sub(r'<base href=".*">', '<base href="%s">' % base_url, html)
@@ -37,5 +38,5 @@ def editor(request):
     return HttpResponse(_frontend_html(
         base_url='%sfriendlycode/' % settings.MEDIA_URL,
         publish_url=request.build_absolute_uri("/")[:-1],
-        blank_url=request.build_absolute_uri("/editor/blank")
+        blank_url=request.build_absolute_uri(reverse(blank_page))
         ))
