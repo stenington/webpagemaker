@@ -69,8 +69,13 @@ Then, synchronize the tables and initial data:
 
     python manage.py syncdb
 
-Note that you might get prompted to create a superuser. If you do, don't worry
-about it, since the app doesn't currently support logins at all.
+Note that you might get prompted to create a superuser. If you do, go
+ahead and make one, since you can use the admin interface to manage
+your pages.
+
+Then, bust up the initial migrations:
+
+    python manage.py migrate
 
 Finally, start the development server:
 
@@ -87,6 +92,16 @@ Whenever you create a new terminal session, you'll need to re-run
 ## Troubleshooting
 
 ### Mac OS X
+
+#### Developer Tools
+
+If you get errors claiming that `install_name_tool` or `gcc` can't be
+found, make sure you have either XCode or the
+[Apple command-line tools][osxcli].
+
+  [osxcli]: https://developer.apple.com/downloads/index.action?=command%20line%20tools
+
+#### MySQL
 
 If you get the following error:
 
