@@ -6,10 +6,20 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from nose.tools import eq_, ok_
 
 from . import views
 
 class SimpleTest(TestCase):
+    def test_blank_page(self):
+        response = self.client.get('/en-US/editor/blank')
+        eq_(response.status_code, 200)
+        ok_('x-frame-options' not in response) 
+        
+    def test_editor(self):
+        response = self.client.get('/en-US/editor')
+        eq_(response.status_code, 200)
+        
     def test__frontend_html(self):
         html = views._frontend_html(base_url="BASE243", publish_url="PUB324",
                                     blank_url="BLANK591")
