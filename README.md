@@ -125,6 +125,13 @@ like so:
 export PATH=$PATH:/usr/local/mysql/bin
 ```
 
+## Other READMEs
+
+Some of the Django apps in this project have their own README:
+
+  * [webpagemaker/learning_projects/README.md](tree/development/webpagemaker/learning_projects#readme)
+  * [webpagemaker/api/README.md](tree/development/webpagemaker/api#readme)
+
 ## Other Resources
 
   * [Official Project Status Page](https://wiki.mozilla.org/Webpagemakerapi)
