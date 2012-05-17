@@ -41,6 +41,10 @@ The [bleach][]-sanitized HTML for the page corresponding to `{id}`.
 Note that the response contains an `X-Robots-Tag: noindex, nofollow` header
 to mitigate the risk of the server being used as a link farm.
 
+The response may also contain an `X-Original-URL` header. Its value will
+be the absolute URL which the HTML is a remix of. Its protocol will be http
+or https.
+
   [bleach]: http://pypi.python.org/pypi/bleach
 
 ## Read Configuration
