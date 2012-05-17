@@ -38,6 +38,9 @@ Returns the sanitized HTML of a previously published page.
 
 The [bleach][]-sanitized HTML for the page corresponding to `{id}`.
 
+Note that the response contains an `X-Robots-Tag: noindex, nofollow` header
+to mitigate the risk of the server being used as a link farm.
+
   [bleach]: http://pypi.python.org/pypi/bleach
 
 ## Read Configuration

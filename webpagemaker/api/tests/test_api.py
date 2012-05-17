@@ -4,6 +4,9 @@ from django.utils import simplejson as json
 import test_utils
 from nose.tools import eq_, ok_
 
+SIMPLE_HTML = "<!DOCTYPE html><html><head><title>hi</title></head>" + \
+              "<body>hello.</body></html>"
+
 class PublishTests(test_utils.TestCase):
     def _publish_and_verify(self, html, expected_html=None):
         """
@@ -26,6 +29,7 @@ class PublishTests(test_utils.TestCase):
         eq_(response['Content-Type'], 'text/html; charset=utf-8')
         eq_(type(response.content), str)
         eq_(response.content, expected_html)
+        return response
 
     def test_get_sanitizer_config(self):
         response = self.client.get('/api/config')
@@ -83,10 +87,12 @@ class PublishTests(test_utils.TestCase):
         eq_(response.status_code, 400)
         eq_(response.content, "HTML body expected.")
 
+    def test_retrieving_page_delivers_x_robots_tag(self):
+    	response = self._publish_and_verify(SIMPLE_HTML)
+    	eq_(response['X-Robots-Tag'], "noindex, nofollow")
+		
     def test_publishing_ascii_works(self):
-        HTML = "<!DOCTYPE html><html><head><title>hi</title></head>" + \
-               "<body>hello.</body></html>"
-        self._publish_and_verify(HTML)
+        self._publish_and_verify(SIMPLE_HTML)
 
     def test_publishing_utf8_works(self):
         HTML = u"<!DOCTYPE html><html><head><meta charset=\"utf-8\">" + \

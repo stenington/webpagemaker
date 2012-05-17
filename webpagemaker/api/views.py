@@ -52,4 +52,5 @@ def get_page(request, page_id):
     if page.original_url:
         response['X-Original-URL'] = page.original_url
     response['Access-Control-Allow-Origin'] = '*'
+    response['X-Robots-Tag'] = 'noindex, nofollow'
     return response

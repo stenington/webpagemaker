@@ -33,15 +33,15 @@ class SecurityTests(test_utils.TestCase):
 
     def test_nofollow_links_inserted_in_anchors(self):
         # To mitigate the risk "Documents hosted via the API could be used
-        # as link farms", we require that all links have nofollow attributes
-        # inserted in them.
+        # as link farms", we require that published pages be delivered
+        # with an "X-Robots-Tag: noindex, nofollow" header.
 
         # This objective is satisfied by the following tests, which we're
         # merely verifying the existence of here. Obviously these aren't
         # exhaustive, but they're really just integration tests to make
         # sure that we're properly configuring and talking to bleach.
-        from . import test_sanitize
-        ok_(test_sanitize.test_http_href)
+        from . import test_api
+        ok_(test_api.PublishTests.test_retrieving_page_delivers_x_robots_tag)
     
     def test_javascript_is_stripped(self):
         # To mitigate the risk "Javascript could be used in a multitude of
