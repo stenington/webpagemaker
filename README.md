@@ -1,14 +1,10 @@
 This is the Mozilla Webpage Maker project.
 
-Currently our [prototype stub API][] is hosted at [webpagemakerapi.vcap.mozillalabs.com][].
-
 We will be using [slowparse][] to assist users in editing their HTML.
 
 This repository was originally forked from [playdoh][]. See its full [documentation][docs] for more help.
 
   [slowparse]: https://github.com/toolness/slowparse#readme
-  [prototype stub API]: https://github.com/mozilla/webpagemaker/tree/development/prototype/api#readme
-  [webpagemakerapi.vcap.mozillalabs.com]: http://webpagemakerapi.vcap.mozillalabs.com/
   [docs]: http://playdoh.rtfd.org/
   [playdoh]: https://github.com/mozilla/playdoh
 
