@@ -129,8 +129,8 @@ export PATH=$PATH:/usr/local/mysql/bin
 
 Some of the Django apps in this project have their own README:
 
-  * [webpagemaker/learning_projects/README.md](tree/development/webpagemaker/learning_projects#readme)
-  * [webpagemaker/api/README.md](tree/development/webpagemaker/api#readme)
+  * [webpagemaker/learning_projects/README.md](webpagemaker/tree/development/webpagemaker/learning_projects#readme)
+  * [webpagemaker/api/README.md](webpagemaker/tree/development/webpagemaker/api#readme)
 
 ## Other Resources
 
