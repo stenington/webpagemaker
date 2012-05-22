@@ -4,6 +4,10 @@ Webpage Maker Styles
 Global styles and classes
 */
 
+  p {
+    color: #555;
+  }
+
   .threeColumn {
     margin-left: 47px;
   }
@@ -73,10 +77,6 @@ Global styles and classes
   h2 {
     font-family: OpenSansLightItalic;
     color: #676767;
-  }
-
-  .hero-unit {
-    font-family: OpenSansLight, sans-serif;
   }
 
   .hero-unit h2 {
