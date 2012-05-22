@@ -1,4 +1,4 @@
-This is the Mozilla Webpage Maker project.
+This is the Mozilla ~~Webpage Maker~~ Thimble App project.
 
 We will be using [slowparse][] to assist users in editing their HTML.
 
