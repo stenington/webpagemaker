@@ -95,53 +95,39 @@ Global styles and classes
 Layout styles
 */
 
+  #outer-wrapper {
+    border-top: 1px;
+  }
+
   #wrapper {
     background-color: #F3EFE6;
-    background-image: url("/media/img/gradientbackground.png");
+    background-image: url("/media/img/mozorg-gradient.png");
     padding-bottom: 0;
   }
 
+  #tabzilla-panel {
+    z-index: 2;
+  }
+
+  #header {
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,.5);
+    -ms-box-shadow: 0 0 5px rgba(0,0,0,.5);
+    -o-box-shadow: 0 0 5px rgba(0,0,0,.5);
+    box-shadow: 0 0 5px 
+    rgba(0, 0, 0, .5);
+    background: #FFF;
+    background: rgba(255, 255, 255, 0.8);
+    position: relative;
+    z-index: 1;
+  }
+
   #masthead {
-    margin-bottom: 30px;
+    margin-bottom: 90px;
   }
 
   #masthead .row {
     clear: both;
-  }
-
-  #masthead nav {
-    float: none;
-    margin-top: 22px;
-    position: relative;
-    top: 0.2em;
-  }
-
-  #masthead nav ul li,
-  #masthead nav ol li {
-    border-left: 1px solid gray;
-    height: 36px;
-    line-height: 36px;
-    position: relative;
-  }
-
-  #masthead nav ul li a,
-  #masthead nav ol li a {
-    padding: 0 10px;
-  }
-
-  #masthead nav ul li:first-child,
-  #masthead nav ol li:first-child {
-    border-left: none;
-  }
-
-  #projects #nav-main .projects a {
-    font-weight: bold;
-  }
-  #gallery #nav-main .gallery a {
-    font-weight: bold;
-  }
-  #about #nav-main .about a {
-    font-weight: bold;
   }
 
   .logo {
@@ -160,13 +146,79 @@ Layout styles
     color: #4d4d4d;
     text-decoration: none;
     text-transform: uppercase;
+    margin-right: 20px;
+    float: left;
   }
 
   .logo img {
     display: block;
     position: relative;
-    left: -5px;
-    top: 0.2em;
+  }
+
+  #masthead nav {
+    float: none;
+  }
+
+  #masthead nav ul li {
+    display: inline;
+  }
+
+  #nav-main a:hover,
+  #nav-main a:active {
+    text-decoration: none;
+  }
+
+  #nav-main ul {
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-weight: bold;
+  }
+
+  #masthead #nav-main li a {
+    -webkit-transition: all .25s linear 0s;
+    -moz-transition: all .25s linear 0s;
+    -ms-transition: all .25s linear 0s;
+    -o-transition: all .25s linear 0s;
+    transition: all .25s linear 0s;
+    display: block;
+    min-width: 70px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0 0 0 -1px;
+    padding: 0 15px;
+    float: left;
+    text-align: center;
+    border: solid #E1E2E3;
+    border-width: 0 1px;
+    position: relative;
+  }
+
+  #nav-main li a:hover {
+    background: rgba(28,144,193,0.1);
+  }
+
+  #projects #nav-main .projects a,
+  #gallery #nav-main .gallery a,
+  #about #nav-main .about a {
+    background: #4199D6;
+    color: #FFF;
+    border: none;
+    margin-right: 1px;
+    text-shadow: -1px -1px #347DB0;
+  }
+
+  #projects #nav-main .projects a:after,
+  #gallery #nav-main .gallery a:after,
+  #about #nav-main .about a:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: solid transparent;
+    border-width: 25px 50px 0 50px;
+    border-top-color: #4199D6;
   }
 
   #page-bottom {
