@@ -2,4 +2,5 @@ language: python
 python:
   - "2.7"
 before_script: make testdb
-script: make travis
+install: make install
+script: make test
