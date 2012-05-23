@@ -13,31 +13,29 @@
   <div id="outer-wrapper">
   <div id="wrapper">
 
-    <header id="masthead">
-      <a href="http://www.mozilla.org/" id="tabzilla">Mozilla</a>
+    <section id="header">
+      <header id="masthead">
 
-      <hgroup class="row">
-        <div class="span4">
-          <div class="logo">
-            <a href=".">
-              <img src="/media/img/mozilla-logo.png">
-              Thimble App 
-            </a>
+        <div class="row">
+          <div class="span10">
+            <div class="logo">
+              <a href=".">
+                <img src="/media/img/header_logo.png">
+              </a>
+            </div>
+            <a href="http://www.mozilla.org/" id="tabzilla">Mozilla</a>
+            <nav id="nav-main" role="navigation">
+              <ul>
+                <li class="editor"><a href="/editor">Editor</a></li>
+                <li class="projects"><a href="{{ url('webpagemaker.website.views.projects') }}">Projects</a></li>
+                <li class="gallery"><a href="{{ url('webpagemaker.website.views.gallery') }}">Gallery</a></li>
+                <li class="about"><a href="{{ url('webpagemaker.website.views.about') }}">About</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
-
-        <div class="span6">
-          <nav id="nav-main" role="navigation">
-            <ol>
-              <li class="editor"><a href="/editor">Editor</a></li>
-              <li class="projects"><a href="{{ url('webpagemaker.website.views.projects') }}">Projects</a></li>
-              <li class="gallery"><a href="{{ url('webpagemaker.website.views.gallery') }}">Gallery</a></li>
-              <li class="about"><a href="{{ url('webpagemaker.website.views.about') }}">About</a></li>
-            </ol>
-          </nav>
-        </div>
-      </hgroup>
-    </header>
+      </header>
+    </section>
 
     <section>
       {% block body %} {% endblock %}
