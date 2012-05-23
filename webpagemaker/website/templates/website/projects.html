@@ -39,7 +39,8 @@
            img_alt     = "",
            author      = "Mozilla",
            title       = "Make Your Own Meme",
-           description = "Do you have what it takes to go viral and become internet famous? Prove it. This project let's you use your HTML and CSS swagger to create your own web page -- featuring a meme to conquer all internet memes. Let your inner serious cat or Ryan Gosling hey girl shine."
+           description = "Do you have what it takes to go viral and become internet famous? Prove it. This project let's you use your HTML and CSS swagger to create your own web page -- featuring a meme to conquer all internet memes. Let your inner serious cat or Ryan Gosling hey girl shine.",
+           webarcade   = true
          ) 
       }}
 	    {{ project(
@@ -48,7 +49,8 @@
            img_alt     = "",
            author      = "Mozilla",
            title       = "Hack The Web Arcade",
-           description = "HTML is a funny looking language; it is written inside brackets like <code>&lt;this&gt;</code> and <code>&lt;/this&gt;</code> and sometimes uses <code>\"quotes like this.\"</code> In this project you will begin your journey in the world of HTML by exploring the syntax behind it.Use the comments to navigate your way. Your goal: fix a broken map of the web arcade to unlock new missions and explore brave new webby worlds."
+           description = "HTML is a funny looking language; it is written inside brackets like <code>&lt;this&gt;</code> and <code>&lt;/this&gt;</code> and sometimes uses <code>\"quotes like this.\"</code> In this project you will begin your journey in the world of HTML by exploring the syntax behind it.Use the comments to navigate your way. Your goal: fix a broken map of the web arcade to unlock new missions and explore brave new webby worlds.",
+           webarcade   = true
          ) 
       }}
 	    {{ project(
@@ -57,7 +59,8 @@
            img_alt     = "",
            author      = "Mozilla",
            title       = "Make ugly '90s webpages pretty",
-           description = "Everyone has an embarrassing moment. For the web it was the '90s. Back then, websites were boxy and ugly -- kind of like this page! Wrangle your HTML and CSS style powers to change the content, colors and layout to drag these webpage out of the grungey '90s."
+           description = "Everyone has an embarrassing moment. For the web it was the '90s. Back then, websites were boxy and ugly -- kind of like this page! Wrangle your HTML and CSS style powers to change the content, colors and layout to drag these webpage out of the grungey '90s.",
+           webarcade   = true
          ) 
       }}
  	    {{ project(
@@ -66,7 +69,8 @@
            img_alt     = "",
            author      = "Mozilla",
            title       = "Make your own \"webstructable\" how-to",
-           description = "This project lets you create your own web page tutorial. Use your new-found HTML, CSS and Popcorn wisdom to create the world's greatest how-to. What do you want to make today?"
+           description = "This project lets you create your own web page tutorial. Use your new-found HTML, CSS and Popcorn wisdom to create the world's greatest how-to. What do you want to make today?",
+           webarcade   = true
          ) 
       }}
       {{ project(
@@ -85,7 +89,7 @@
 {% block scripts %}
 <script src="/media/js/projects.js"></script>
 {% endblock %}
-{% macro project(href, img, img_alt, author, title, description) -%}
+{% macro project(href, img, img_alt, author, title, description, webarcade=false) -%}
   <li class="project">
     <div class="thumb">
         <a href="{{ href }}">
@@ -94,6 +98,9 @@
         <div class="caption">
           <p>By {{ author }}</p>
         </div>
+        {% if webarcade %}
+          <p class="webarcade">A <a href="#">Web Arcade</a> project</p> 
+        {% endif %}
     </div>
     <div class="info">
       <h3 class="title">{{ title }}</h3>

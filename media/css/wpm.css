@@ -344,6 +344,30 @@ Projects styles
     padding-right: 364px;
   }
 
+  .webarcade {
+    background: yellow;
+    color: darkBlue;
+    display: block;
+    padding: 0 2px;
+    font-family: "PressStart2PRegular", "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    font-size: 10px;
+    letter-spacing: -0.12em;
+    word-spacing: -0.2em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .webarcade a,
+  .webarcade a:link,
+  .webarcade a:visited,
+  .webarcade a:hover,
+  .webarcade a:active {
+    text-decoration: underline;
+    color: darkblue;
+  }
+    
+
   .view-style {
     color: #999;
     text-transform: uppercase;
