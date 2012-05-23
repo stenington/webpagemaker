@@ -67,7 +67,16 @@ MAX_PUBLISHED_PAGE_SIZE = 10000
 
 # Where to retrieve in-development learning projects from. Only
 # consulted if settings.DEV is True.
-LEARNING_PROJECTS_DROPBOX_URL = 'http://wpm-dropbox.toolness.org/'
+LEARNING_PROJECTS_DROPBOXES = {
+    'dropbox': {
+        'static': 'sd',
+        'url': 'http://wpm-dropbox.toolness.org/'
+    },
+    'nesta': {
+        'static': 'sn',
+        'url': 'http://labs.toolness.com/temp/nesta/'
+    }
+}
 
 # Where to serve static resources for learning projects from, relative to
 # server root. Note that this also needs to be present in

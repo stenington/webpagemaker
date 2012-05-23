@@ -1,4 +1,5 @@
 import bleach
+import re
 
 ALLOWED_TAGS = [
     "!doctype", "html", "body", "a", "abbr", "address", "area", "article",
@@ -24,7 +25,8 @@ ALLOWED_ATTRS = {
     "img": ["src"],
     "a": ["href"],
     "base": ["href"],
-    "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"]
+    "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"],
+    "link": ["href", "rel", "type"]
 }
 
 if bleach.VERSION < (1, 1, 1):
@@ -35,4 +37,10 @@ def sanitize(html):
     html = bleach.clean(html, strip=True, strip_comments=False,
                         tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS,
                         parse_as_fragment=False)
+    
+    # We specifically want to check for an html5 doctype and start with one
+    # if it's either missing or any other doctype.
+    if not re.match(r'^\s*<!DOCTYPE html>', html, re.IGNORECASE):
+        html = '<!DOCTYPE html>' + html
+    
     return html
