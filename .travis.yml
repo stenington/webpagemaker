@@ -1,6 +1,12 @@
 language: python
 python:
   - "2.7"
-before_script: make testdb
-install: make install
+before_script:
+  - mysql -u root -e 'create database playdoh_app;'
+install:
+  - pwd
+  - ls
+  - pip install -r requirements/compiled.txt
+  - cp webpagemaker/settings/local.py-dist webpagemaker/settings/local.py
+  - python manage.py syncdb --noinput
 script: make test
