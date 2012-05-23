@@ -1,5 +1,5 @@
 .open-sans {
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
 }
 .open-sans-light {
   font-family: 'OpenSansLight', sans-serif;
@@ -168,7 +168,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -253,7 +253,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -380,7 +380,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -518,7 +518,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -631,7 +631,7 @@ li.os_android,
   display: block;
 }
 .download-button small.download-other {
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
   display: block;
   font-size: 11px;
   text-align: right;
@@ -852,7 +852,7 @@ input[type=text]:focus {
 }
 .errorlist {
   margin: 0;
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
   color: #c00;
 }
 .errorlist li {
@@ -1026,7 +1026,7 @@ px      68    160    252    344    436    528    620    712    804    896    */
   margin-right: 16px;
   text-transform: uppercase;
   font-size: 13px;
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
 }
 #masthead nav ol li,
 #masthead nav ul li {
@@ -1272,7 +1272,7 @@ nav.menu-bar ul li:first-child a {
   color: #20679e;
 }
 #colophon nav {
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'OpenSansRegular', sans-serif;
 }
 #colophon nav ol li,
 #colophon nav ul li {
