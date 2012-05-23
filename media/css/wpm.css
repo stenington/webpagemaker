@@ -277,6 +277,18 @@ Home styles
     -webkit-animation-duration: 30s;
     -webkit-animation-name: tired; 
     -webkit-animation-iteration-count: infinite;
+    -moz-transform-origin: 5px 0px;
+    -moz-animation-duration: 30s;
+    -moz-animation-name: tired; 
+    -moz-animation-iteration-count: infinite;
+    -ms-transform-origin: 5px 0px;
+    -ms-animation-duration: 30s;
+    -ms-animation-name: tired; 
+    -ms-animation-iteration-count: infinite;
+    transform-origin: 5px 0px;
+    animation-duration: 30s;
+    animation-name: tired; 
+    animation-iteration-count: infinite;
   }
 
   @-webkit-keyframes tired {
@@ -285,6 +297,30 @@ Home styles
     99% { -webkit-transform: rotate(2deg); }
     99.8% { -webkit-transform: rotate(-0.5deg); }
     100% { -webkit-transform: rotate(0deg); }
+  }
+
+  @-moz-keyframes tired {
+    0% { -moz-transform: rotate(0deg); }
+    83% { -moz-transform: rotate(0deg); }
+    99% { -moz-transform: rotate(2deg); }
+    99.8% { -moz-transform: rotate(-0.5deg); }
+    100% { -moz-transform: rotate(0deg); }
+  }
+
+  @-ms-keyframes tired {
+    0% { -ms-transform: rotate(0deg); }
+    83% { -ms-transform: rotate(0deg); }
+    99% { -ms-transform: rotate(2deg); }
+    99.8% { -ms-transform: rotate(-0.5deg); }
+    100% { -ms-transform: rotate(0deg); }
+  }
+
+  @keyframes tired {
+    0% { transform: rotate(0deg); }
+    83% { transform: rotate(0deg); }
+    99% { transform: rotate(2deg); }
+    99.8% { transform: rotate(-0.5deg); }
+    100% { transform: rotate(0deg); }
   }
 
   #home .caption p {
