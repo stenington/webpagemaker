@@ -273,6 +273,18 @@ Home styles
     position: relative;
     top: 99px;
     left: 35px;
+    -webkit-transform-origin: 5px 0px;
+    -webkit-animation-duration: 30s;
+    -webkit-animation-name: tired; 
+    -webkit-animation-iteration-count: infinite;
+  }
+
+  @-webkit-keyframes tired {
+    0% { -webkit-transform: rotate(0deg); }
+    83% { -webkit-transform: rotate(0deg); }
+    99% { -webkit-transform: rotate(2deg); }
+    99.8% { -webkit-transform: rotate(-0.5deg); }
+    100% { -webkit-transform: rotate(0deg); }
   }
 
   #home .caption p {
