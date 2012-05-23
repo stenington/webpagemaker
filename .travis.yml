@@ -4,8 +4,7 @@ python:
 before_script:
   - mysql -u root -e 'create database playdoh_app;'
 install:
-  - pwd
-  - ls
+  - (cd vendor && git submodule update --init --recursive)
   - pip install -r requirements/compiled.txt
   - cp webpagemaker/settings/local.py-dist webpagemaker/settings/local.py
   - python manage.py syncdb --noinput
