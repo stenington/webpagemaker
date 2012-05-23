@@ -11,3 +11,6 @@ def gallery(request):
 
 def about(request):
     return jingo.render(request, "website/about.html")
+
+def webarcade(request):
+    return jingo.render(request, "website/webarcade.html")
