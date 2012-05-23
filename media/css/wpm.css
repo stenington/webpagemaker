@@ -223,12 +223,12 @@ Layout styles
 
   #page-bottom {
     background-color: #fff;
-    border-top: 1px solid #ccc;
+    border-top: solid 1px #E1E2E3;
     margin-top: 50px;
   }
 
   #colophon {
-    padding: 30px;
+    line-height: 25px;
   }
 
   #colophon h2 {
@@ -246,13 +246,11 @@ Layout styles
 
   #colophon a,
   #colophon a:link,
-  #colophon a:visited {
-    color: #5eb5eb;
-  }
-
+  #colophon a:visited, 
   #colophon a:hover,
   #colophon a:active {
-    color: #5594CA;
+    color: #27AAE1;
+    text-decoration: none;
   }
 
 /* 
