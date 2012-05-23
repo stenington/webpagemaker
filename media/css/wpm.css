@@ -200,6 +200,7 @@ Layout styles
   }
 
   #projects #nav-main .projects a,
+  #webarcade #nav-main .projects a,
   #gallery #nav-main .gallery a,
   #about #nav-main .about a {
     background: #4199D6;
@@ -210,6 +211,7 @@ Layout styles
   }
 
   #projects #nav-main .projects a:after,
+  #webarcade #nav-main .projects a:after,
   #gallery #nav-main .gallery a:after,
   #about #nav-main .about a:after {
     content: "";
@@ -380,7 +382,7 @@ Projects styles
     padding-right: 364px;
   }
 
-  .webarcade {
+  .arcade-banner {
     background: yellow;
     color: darkBlue;
     display: block;
@@ -499,4 +501,30 @@ Projects styles
 /* 
 Projects styles
 ================================
+Web Arcade styles
 */
+
+.arcade {
+  background: url(/media/img/arcade.png) no-repeat scroll top right;
+  min-height: 270px;
+  padding-right: 233px;
+}
+
+#webarcade .hero-unit h1 {
+  background-color: yellow;
+  color: #4098D5;
+  display: block;
+  width: 620px;
+  padding-top: 10px;
+  padding-left: 4px;
+  font-family: "PressStart2PRegular";
+  font-size: 64px;
+  text-align: center;
+}
+
+/* 
+Web Arcade styles
+================================
+*/
+
+

@@ -1,38 +1,27 @@
 {% extends "website/layout.html" %}
 {% block head %}
 {% endblock %}
-{% block page_id %}projects{% endblock %}
+{% block page_id %}webarcade{% endblock %}
 {% block body %}
   <div class="container divider">
-    <div class="row projectpeoples">
-      <div class="hero-unit span6">
+    <div class="row arcade">
+      <div class="hero-unit span7">
         <hgroup class="large">
-          <h2>Thimble App</h2>
-          <h1>Projects</h1>
+          <h2>Welcome to the</h2>
+          <h1>Web Arcade</h1>
         </hgroup>
-        <p>Steamed, blue mountain ristretto java, trifecta cup eu at and mug shop. Cultivar, crema, medium shop variety iced to go arabica instant mazagran black. Crema at arabica, extraction bar affogato cappuccino brewed. Crema latte extra mocha to go, roast aftertaste percolator siphon so roast.</p>
-        <a class="button"<a href="https://docs.google.com/spreadsheet/viewform?formkey=dERCYVFSQVhyWkxDUC1haFJpRjRrc0E6MA#gid=0">Submit Feedback</a>
+        <p>
+          Enter the Web Arcade to explore the world of the Open Web&mdash;a place made out of memes, planking
+          videos and Minecraft empires! The Web Arcade offers a collection of mini games that help you level up
+          your (HTML & CSS) skills and create your own webpages.
+        </p>
       </div>
     </div>
   </div>
 
   <div class="container">
 
-    <div class="row">
-      <div class="span10 view-style">
-        View as: 
-        <ul>
-          <li>
-            <a id="js-list" class="list">List</a>
-          </li>
-          <li>
-            <a id="js-thumbs" class="thumbs">Thumbnails</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <ul class="projects show-list">
+    <ul class="projects show-thumbs">
       {{ project(
            href        = "editor?p=/en-US/projects/dropbox/meme",
            img         = "https://wiki.mozilla.org/images/7/70/Internetfamous.jpg",
@@ -40,7 +29,6 @@
            author      = "Mozilla",
            title       = "Make Your Own Meme",
            description = "Do you have what it takes to go viral and become internet famous? Prove it. This project let's you use your HTML and CSS swagger to create your own web page -- featuring a meme to conquer all internet memes. Let your inner serious cat or Ryan Gosling hey girl shine.",
-           webarcade   = true
          ) 
       }}
 	    {{ project(
@@ -50,7 +38,6 @@
            author      = "Mozilla",
            title       = "Hack The Web Arcade",
            description = "HTML is a funny looking language; it is written inside brackets like <code>&lt;this&gt;</code> and <code>&lt;/this&gt;</code> and sometimes uses <code>\"quotes like this.\"</code> In this project you will begin your journey in the world of HTML by exploring the syntax behind it.Use the comments to navigate your way. Your goal: fix a broken map of the web arcade to unlock new missions and explore brave new webby worlds.",
-           webarcade   = true
          ) 
       }}
 	    {{ project(
@@ -60,7 +47,6 @@
            author      = "Mozilla",
            title       = "Make ugly '90s webpages pretty",
            description = "Everyone has an embarrassing moment. For the web it was the '90s. Back then, websites were boxy and ugly -- kind of like this page! Wrangle your HTML and CSS style powers to change the content, colors and layout to drag these webpage out of the grungey '90s.",
-           webarcade   = true
          ) 
       }}
  	    {{ project(
@@ -70,17 +56,7 @@
            author      = "Mozilla",
            title       = "Make your own \"webstructable\" how-to",
            description = "This project lets you create your own web page tutorial. Use your new-found HTML, CSS and Popcorn wisdom to create the world's greatest how-to. What do you want to make today?",
-           webarcade   = true
          ) 
-      }}
-      {{ project(
-           href        = "editor?p=/en-US/projects/dropbox/soapbox",
-           img         = "https://wiki.mozilla.org/images/b/be/Soapthumb.png", 
-           img_alt     = "",
-           author      = "Hive NYC",
-           title       = "Speak your mind",
-           description = "<i>Got something to shout about?</i> A rant, cause, passion project or block party you want the world to know about? Shout it from the rooftops by making your own web page in minutes, using this handy remixable template. Then share it via email, Twitter, Facebook or URL. Easy!"
-         )
       }}
     </ul>
   </div>
@@ -89,7 +65,7 @@
 {% block scripts %}
 <script src="/media/js/projects.js"></script>
 {% endblock %}
-{% macro project(href, img, img_alt, author, title, description, webarcade=false) -%}
+{% macro project(href, img, img_alt, author, title, description) -%}
   <li class="project">
     <div class="thumb">
         <a href="{{ href }}">
@@ -98,9 +74,6 @@
         <div class="caption">
           <p>By {{ author }}</p>
         </div>
-        {% if webarcade %}
-          <p class="arcade-banner">A <a href="/webarcade">Web Arcade</a> project</p> 
-        {% endif %}
     </div>
     <div class="info">
       <h3 class="title">{{ title }}</h3>
