@@ -14,3 +14,6 @@ def about(request):
 
 def webarcade(request):
     return jingo.render(request, "website/webarcade.html")
+
+def guidelines(request):
+    return jingo.render(request, "website/content-guidelines.html")
