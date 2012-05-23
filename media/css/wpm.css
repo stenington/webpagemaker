@@ -360,15 +360,14 @@ Projects styles
     text-align: center;
   }
 
-  .webarcade a,
-  .webarcade a:link,
-  .webarcade a:visited,
-  .webarcade a:hover,
-  .webarcade a:active {
+  .arcade-banner a,
+  .arcade-banner a:link,
+  .arcade-banner a:visited,
+  .arcade-banner a:hover,
+  .arcade-banner a:active {
     text-decoration: underline;
     color: darkblue;
   }
-    
 
   .view-style {
     color: #999;
