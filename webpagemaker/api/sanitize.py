@@ -24,7 +24,8 @@ ALLOWED_ATTRS = {
     "img": ["src"],
     "a": ["href"],
     "base": ["href"],
-    "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"]
+    "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"],
+    "link": ["href", "rel", "type"]
 }
 
 if bleach.VERSION < (1, 1, 1):
