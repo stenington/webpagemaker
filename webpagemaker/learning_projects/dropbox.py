@@ -55,5 +55,7 @@ urlpatterns = patterns('',
     (r'^sd/(?P<name>[A-Za-z0-9\-_]+)/(?P<path>.*)$',
       render_dropbox_static),
     (r'^projects/dropbox/(?P<name>[A-Za-z0-9\-_]+)$',
-      render_dropbox_project)
+      render_dropbox_project),
+    (r'^projects/dropbox/(?P<name>[A-Za-z0-9\-_]+)/edit$',
+     'webpagemaker.editor.views.editor', {'remix': render_dropbox_project}),
 )
