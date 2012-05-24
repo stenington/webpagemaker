@@ -11,14 +11,19 @@ from nose.tools import eq_, ok_
 from . import views
 
 class SimpleTest(TestCase):
-    def test_blank_page(self):
+    def test_blank_page_allows_use_in_iframe(self):
         response = self.client.get('/en-US/editor/blank')
         eq_(response.status_code, 200)
         ok_('x-frame-options' not in response) 
         
-    def test_editor(self):
+    def test_editor_returns_200(self):
         response = self.client.get('/en-US/editor')
         eq_(response.status_code, 200)
+        
+    def test_editor_has_absolute_base_href(self):
+        # It needs to be absolute for IE9, which ignores relative base hrefs.
+        response = self.client.get('/en-US/editor')
+        ok_('<base href="http' in response.content)
         
     def test__frontend_html(self):
         html = views._frontend_html(base_url="BASE243", publish_url="PUB324",

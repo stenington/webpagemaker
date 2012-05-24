@@ -27,8 +27,9 @@ def _frontend_html(base_url, publish_url, blank_url, remix_url):
     return _sub_base_href(_sub_publish_url(html, publish_url), base_url)
 
 def _editor(request, remix_url):
+    rel_base_url = '%sfriendlycode/' % settings.MEDIA_URL
     return HttpResponse(_frontend_html(
-        base_url='%sfriendlycode/' % settings.MEDIA_URL,
+        base_url=request.build_absolute_uri(rel_base_url),
         publish_url=request.build_absolute_uri("/")[:-1],
         blank_url=request.build_absolute_uri(reverse(blank_page)),
         remix_url=remix_url
