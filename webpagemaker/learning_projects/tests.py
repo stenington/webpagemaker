@@ -23,14 +23,18 @@ class RenderTests(test_utils.TestCase):
         info = eval(response.content)
         ok_(re.match(r'^https?:\/\/.+', info['HTTP_STATIC_URL']))
 
-    def test_404_returned_for_nonexistent_tests(self):
+    def test_404_returned_for_nonexistent_projects(self):
         response = self.client.get('/en-US/projects/nonexistent')
         eq_(response.status_code, 404)
 
-    def test_200_returned_for_existing_tests(self):
+    def test_200_returned_for_existing_projects(self):
         response = self.client.get('/en-US/projects/meme')
         eq_(response.status_code, 200)
 
+    def test_200_returned_for_editing_existing_projects(self):
+        response = self.client.get('/en-US/projects/meme/edit')
+        eq_(response.status_code, 200)
+        
     def test_cors_is_supported(self):
         response = self.client.get('/en-US/projects/meme')
         eq_(response['Access-Control-Allow-Origin'], '*')

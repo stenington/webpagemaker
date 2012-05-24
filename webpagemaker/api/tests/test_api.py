@@ -99,3 +99,8 @@ class PublishTests(test_utils.TestCase):
                u"<title>hi</title></head>" + \
                u"<body>hello\u2026</body></html>"
         self._publish_and_verify(HTML.encode("utf-8"))
+
+    def test_edit_url_returns_200(self):
+        url = self.client.post('/api/page', {'html': 'hi'}).content
+        response = self.client.get('%s/edit' % url)
+        eq_(response.status_code, 200)
