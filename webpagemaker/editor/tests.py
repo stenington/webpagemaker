@@ -11,11 +11,6 @@ from nose.tools import eq_, ok_
 from . import views
 
 class SimpleTest(TestCase):
-    def test_blank_page_allows_use_in_iframe(self):
-        response = self.client.get('/en-US/editor/blank')
-        eq_(response.status_code, 200)
-        ok_('x-frame-options' not in response) 
-        
     def test_editor_returns_200(self):
         response = self.client.get('/en-US/editor')
         eq_(response.status_code, 200)
@@ -27,10 +22,9 @@ class SimpleTest(TestCase):
         
     def test__frontend_html(self):
         html = views._frontend_html(base_url="BASE243", publish_url="PUB324",
-                                    blank_url="BLANK591", remix_url="BLE24")
+                                    remix_url="BLE24")
         self.assertTrue("PUB324" in html)
         self.assertTrue("BASE243" in html)
-        self.assertTrue("BLANK591" in html)
         self.assertTrue("BLE24" in html)
         
     def test__sub_base_href(self):
