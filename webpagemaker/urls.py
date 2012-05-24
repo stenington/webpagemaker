@@ -21,7 +21,8 @@ urlpatterns = patterns('',
     (r'^projects/(?P<name>[A-Za-z0-9\-_]+)$',
       'webpagemaker.learning_projects.views.render', {}, 'view_project'),
     (r'^projects/(?P<name>[A-Za-z0-9\-_]+)/edit$',
-     'webpagemaker.editor.views.editor', {'remix': 'view_project'}),
+     'webpagemaker.editor.views.editor', {'remix': 'view_project'},
+     'edit_project'),
     (r'', include(urls)),
 
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -58,7 +58,8 @@ def make_dropbox_patterns(dropbox_name, cfg):
           render_dropbox_project),
         (r'^projects/' + dropbox_name + r'/(?P<name>[A-Za-z0-9\-_]+)/edit$',
          'webpagemaker.editor.views.editor',
-         {'remix': render_dropbox_project}),
+         {'remix': render_dropbox_project},
+         'edit_dev_%s_project' % dropbox_name),
     ]
 
 _patterns = []
