@@ -199,6 +199,7 @@ Layout styles
     background: rgba(28,144,193,0.1);
   }
 
+  #home #nav-main .home a,
   #projects #nav-main .projects a,
   #webarcade #nav-main .projects a,
   #gallery #nav-main .gallery a,
@@ -210,6 +211,7 @@ Layout styles
     text-shadow: -1px -1px #347DB0;
   }
 
+  #home #nav-main .home a:after,
   #projects #nav-main .projects a:after,
   #webarcade #nav-main .projects a:after,
   #gallery #nav-main .gallery a:after,
