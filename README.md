@@ -1,4 +1,5 @@
 This is the Mozilla ~~Webpage Maker~~ Thimble App project.
+[![Build Status](https://secure.travis-ci.org/mozilla/webpagemaker.png?branch=development)](http://travis-ci.org/mozilla/webpagemaker)
 
 We will be using [slowparse][] to assist users in editing their HTML.
 
