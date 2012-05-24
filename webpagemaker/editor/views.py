@@ -5,18 +5,19 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
+def _subvar(html, template, replacement):
+    regexp = "(%s)(.*)(%s)" % tuple(template.split(".*"))
+    return re.sub(regexp, r'\1' + replacement + r'\3', html)
+
 def _sub_base_href(html, base_url):
-    return re.sub(r'<base href=".*">', '<base href="%s">' % base_url, html)
+    return _subvar(html, r'<base href=".*">', base_url)
 
 def _sub_publish_url(html, publish_url):
-    return re.sub(r'<meta name="publish-url" content=".*">',
-                  '<meta name="publish-url" content="%s">' % publish_url,
-                  html)
+    return _subvar(html, r'<meta name="publish-url" content=".*">',
+                   publish_url)
 
 def _sub_remix_url(html, remix_url):
-    return re.sub(r'<meta name="remix-url" content=".*">',
-                  '<meta name="remix-url" content="%s">' % remix_url,
-                  html)
+    return _subvar(html, r'<meta name="remix-url" content=".*">', remix_url)
 
 def _frontend_html(base_url, publish_url, blank_url, remix_url):
     mydir = os.path.dirname(__file__)
