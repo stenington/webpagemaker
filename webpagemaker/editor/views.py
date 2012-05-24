@@ -44,7 +44,8 @@ BLANK_HTML = """<!doctype html>
 </html>"""
 
 def default_editor(request):
-    return _editor(request, 'use-querystring')
+    return _editor(request,
+                   '%sfriendlycode/default-content.html' % settings.MEDIA_URL)
 
 def blank_page(request):
     response = HttpResponse(BLANK_HTML)
