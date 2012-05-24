@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.core.urlresolvers import reverse
 
 from . import models
 from . import sanitize
@@ -32,8 +33,8 @@ def publish_page(request):
     page.short_url_id = models.rebase(page.id)
     page.save()
 
-    response = HttpResponse('/p/%s' % page.short_url_id,
-                            content_type="text/plain")
+    short_url = reverse(get_page, kwargs={'page_id': page.short_url_id})
+    response = HttpResponse(short_url, content_type="text/plain")
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
