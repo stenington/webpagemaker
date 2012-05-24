@@ -9,5 +9,6 @@ install:
   - cp webpagemaker/settings/local.py-dist webpagemaker/settings/local.py
   - mysql -e 'create database playdoh_app;'
   - python manage.py syncdb --noinput
+  - python manage.py migrate --noinput
 
 script: make test
