@@ -27,9 +27,9 @@
             <a href="http://www.mozilla.org/" id="tabzilla">Mozilla</a>
             <nav id="nav-main" role="navigation">
               <ul>
-                <li class="editor"><a href="/editor">Editor</a></li>
+                <li class="home"><a href="{{ url('webpagemaker.website.views.home') }}">Home</a></li>
                 <li class="projects"><a href="{{ url('webpagemaker.website.views.projects') }}">Projects</a></li>
-                <li class="gallery"><a href="{{ url('webpagemaker.website.views.gallery') }}">Gallery</a></li>
+                {#<li class="gallery"><a href="{{ url('webpagemaker.website.views.gallery') }}">Gallery</a></li>#}
                 <li class="about"><a href="{{ url('webpagemaker.website.views.about') }}">About</a></li>
               </ul>
             </nav>
