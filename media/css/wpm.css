@@ -89,6 +89,21 @@ Global styles and classes
     text-transform: uppercase;
   }
 
+  a.top,
+  a.top:link,
+  a.top:visited,
+  a.top:hover,
+  a.top:active {
+    color: #666;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+  }
+
+  a.top:before {
+    content: "⇧ ";
+  }
+
 /*
 Global styles and classes
 ================================
