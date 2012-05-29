@@ -1,5 +1,7 @@
-import bleach
 import re
+
+import bleach
+import html5lib
 
 ALLOWED_TAGS = [
     "!doctype", "html", "body", "a", "abbr", "address", "area", "article",
@@ -33,10 +35,28 @@ if bleach.VERSION < (1, 1, 1):
     raise Exception("Please use simon wex's bleach fork for now: " +
                     "https://github.com/simonwex/bleach.git")
 
+def _comment_sanitizing_stream(stream):
+    for item in stream:
+        if item['type'] == "Comment":
+            item['data'] = item['data'].replace('[', '{').replace(']', '}')
+        yield item
+
+def sanitize_comments(html):
+    treebuilder = html5lib.treebuilders.getTreeBuilder("dom")
+    parser = html5lib.HTMLParser(tree=treebuilder)
+    walker = html5lib.treewalkers.getTreeWalker("dom")
+    dom_tree = parser.parse(html)
+    stream = walker(dom_tree)
+    HTMLSerializer = html5lib.serializer.htmlserializer.HTMLSerializer
+    s = HTMLSerializer(omit_optional_tags=False, quote_attr_values=True)
+    return s.render(_comment_sanitizing_stream(stream))
+
 def sanitize(html):
     html = bleach.clean(html, strip=True, strip_comments=False,
                         tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRS,
                         parse_as_fragment=False)
+    
+    html = sanitize_comments(html)
     
     # We specifically want to check for an html5 doctype and start with one
     # if it's either missing or any other doctype.
