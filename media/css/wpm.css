@@ -103,6 +103,8 @@ Layout styles
     background-color: #F3EFE6;
     background-image: url("/media/img/mozorg-gradient.png");
     padding-bottom: 0;
+    display: table;
+    width: 100%;
   }
 
   #tabzilla-panel {
