@@ -22,7 +22,7 @@ ALLOWED_ATTRS = {
     # be abused for SEO purposes?
     "meta": ["charset", "name", "content"],
     "*": ["class", "id"],
-    "img": ["src"],
+    "img": ["src", "width", "height"],
     "a": ["href"],
     "base": ["href"],
     "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"],

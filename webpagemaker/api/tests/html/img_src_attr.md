@@ -3,6 +3,6 @@ should be allowed:
 
 ```html
 <!DOCTYPE html><html><head></head><body>
-<img src="http://test.com/test.jpg">
+<img height="128" src="http://test.com/test.jpg" width="128">
 </body></html>
 ```
