@@ -35,7 +35,27 @@
     </div>
 
     <ul class="projects show-list">
+      {# Copy 'n paste to add a new project
       {{ project(
+           title       = "",
+           description = "", 
+           author      = "",
+           url         = url('edit_dev_dropbox_project', ''),
+           img         = "",
+           img_alt     = "",
+         ) 
+      }}
+      #}
+	    {{ project(
+           title       = "Web Arcade",
+           description = "Enter the Web Arcade to explore the world of the Open Web; a place made out of serious cats, planking videos and minecraft empires! The Web Arcade offers a collection of mini games that help you level up your (HTML & CSS) skills and create your own webpages.", 
+           author      = "Mozilla",
+           url         = url('webpagemaker.website.views.webarcade'),
+           img         = "https://wiki.mozilla.org/images/e/e3/Webarcade.jpg",
+           img_alt     = "Web Arcade",
+         ) 
+      }}
+	    {{ project(
            title       = "Wrangle the HTML",
            description = "HTML is not complicated or difficult to wrangle. In this project you will get a hold of the basics and you might even realize that you know a bit of HTML already.",
            author      = "Mozilla",
