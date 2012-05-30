@@ -36,16 +36,27 @@
 
     <ul class="projects show-list">
       {# Copy 'n paste to add a new project
+
       {{ project(
            title       = "",
            description = "", 
            author      = "",
-           url         = url('edit_dev_dropbox_project', ''),
+           url         = url(),
            img         = "",
          ) 
       }}
+
       #}
 	    {{ project(
+           title       = "Awesome Animal Builder",
+           description = "Learn about different species and then mix and match animal body parts to create your own&mdash;think: Elephwhal or a Bunnel! ", 
+           author      = "The London Zoo",
+           url         = "projects/nesta/zoo",
+           img         = "https://wiki.mozilla.org/images/7/7b/Animalbuilder.jpg",
+         ) 
+      }}
+
+      {{ project(
            title       = "Web Arcade",
            description = "Enter the Web Arcade to explore the world of the Open Web; a place made out of serious cats, planking videos and minecraft empires! The Web Arcade offers a collection of mini games that help you level up your (HTML & CSS) skills and create your own webpages.", 
            author      = "Mozilla",
@@ -53,7 +64,18 @@
            img         = "https://wiki.mozilla.org/images/e/e3/Webarcade.jpg",
          ) 
       }}
-	    {{ project(
+
+      {{ project(
+           title       = "Make your own rant page",
+           description = "<i>Got something to shout about?</i> A rant, cause, passion project, block party or victory you want the world to know about? Shout it from the rooftops by making your own web page in minutes with this handy remixable template. Then share it via email, Twitter, Facebook or URL. Easy! </rant>",
+           author      = "Hive NYC",
+           url         = url('edit_dev_dropbox_project', 'soapbox'),
+           img         = "https://wiki.mozilla.org/images/b/be/Soapthumb.png", 
+           webarcade   = false
+         )
+       }}
+
+       {{ project(
            title       = "Wrangle the HTML",
            description = "HTML is not complicated or difficult to wrangle. In this project you will get a hold of the basics and you might even realize that you know a bit of HTML already.",
            author      = "Mozilla",
@@ -62,6 +84,16 @@
            webarcade   = true
          ) 
       }}
+
+      {{ project(
+           title       = "Wickedpedia",
+           description = "Build your own celebrity bio pages, including all the scandals and gossip that no one knows about! ", 
+           author      = "Steve Bunce and Oliver Quinlan (Plymouth University)",
+           url         = 'projects/nesta/wickedpedia',
+           img         = "https://wiki.mozilla.org/images/d/d9/Coverimage_wickedpedia.png",
+         ) 
+      }}
+
 	    {{ project(
            title       = "Hack a Map",
            description = "HTML is a funny looking language; it is written inside brackets like <code>&lt;this&gt;</code> and <code>&lt;/this&gt;</code>. In this project you will begin your journey in the world of HTML by exploring the syntax behind it to activate and customize a broken map and explore brave new webby worlds.",
@@ -71,6 +103,16 @@
            webarcade   = true
          ) 
       }}
+
+      {{ project(
+           title       = "Supporter 2 Reporter",
+           description = "Build your own news media page, including your own reporting video, about at topic you care about, such as the Olympics. ", 
+           author      = "Radio Waves",
+           url         = url('edit_dev_nesta_project', 's2r'),
+           img         = "https://wiki.mozilla.org/images/5/58/S2r.png",
+         ) 
+      }}
+
       {{ project(
            title       = "Bakery Bash",
            description = "If you are a fan of the web you have already met the loaf cat. A proud owner of a Bakery, the loaf cat is throwing a party&mdash;a Bakery Bash if you will. Unfortunately the guests are all undercover Serious Cats. Bummer! Your goal in this game is to fix the links and clickable images so that they no longer point to the serious cat. Once you are done bring a few more guests and add some music to get this party started!",
@@ -80,6 +122,16 @@
            webarcade   = true
          ) 
       }}
+
+      {{ project(
+           title       = "Get off my Lawn",
+           description = "Clear the zombies away from your garden lawn. Build your own zombies! ", 
+           author      = "The Guardian and Goldsmiths",
+           url         = url('edit_dev_nesta_project', 'zombies'),
+           img         = "https://wiki.mozilla.org/images/4/44/Zombies.png"
+         ) 
+      }}
+
 	    {{ project(
            title       = "Avatar-O-Matic",
            description = "There are people who are on the web, and then there are people who MAKE the web. Who do YOU want to be? Your goal in this project is to MAKE your very own webmaker avatar. In this unique blend of HTML agility, CSS and firepower you are going to mix and match the images on this page to create your very own webmaker page and share what you are passionate about making. ",
@@ -89,6 +141,16 @@
            webarcade   = true
          ) 
       }}
+
+      {{ project(
+           title       = "Bunnies",
+           description = "Save the bunny from danger or else he will be squashed! ", 
+           author      = "Ben O'Steen",
+           url         = url('edit_dev_nesta_project', 'bunnies'),
+           img         = "https://wiki.mozilla.org/images/8/82/Bunny.png",
+         ) 
+      }}
+
 	    {{ project(
            title       = "Make Your Own Meme",
            description = "Do you have what it takes to go viral and become internet famous? Prove it. This project let's you use your HTML and CSS swagger to create your own web page&mdash;featuring a meme to conquer all internet memes. You might wonder what is a meme? Well a meme refers to an internet phenomena: think viral videos, web celebs, fuzzy animals… So let your inner squirrel, serious cat, Brony or Ryan Gosling “Hey girl,” shine. ",
@@ -98,6 +160,16 @@
            webarcade   = true
          ) 
       }}
+
+      {{ project(
+           title       = "Cube",
+           description = "3D is all the rage these days&mdash;learn how its done in CSS3! Build your own 3D cube from scratch. ", 
+           author      = "Laurian Gridinoc",
+           url         = url('edit_dev_nesta_project', 'cube'),
+           img         = "https://wiki.mozilla.org/images/4/4f/Cube.jpg",
+         ) 
+      }}
+
 	    {{ project(
            title       = "Make ugly '90s pages pretty",
            description = "Everyone has an embarrassing moment. For the web it was the '90s. Back then, websites were boxy and ugly&mdash;kind of like this page! Wrangle your HTML and CSS style powers to change the content, colors and layout to drag these webpage out of the grungey '90s.",
@@ -107,6 +179,16 @@
            webarcade   = true
          ) 
       }}
+
+      {{ project(
+           title       = "Readability",
+           description = "Maybe it's bad website design or maybe you are just getting old, but some webpages are impossible to read. Edit the HTML and CSS in this webpage to make it legible. ", 
+           author      = "Doug Belshaw",
+           url         = url('edit_dev_nesta_project', 'readability'),
+           img         = "https://wiki.mozilla.org/images/b/bd/Readability.jpg",
+         ) 
+      }}
+
  	    {{ project(
            title       = "Make your own “webstructable how-to”",
            description = "This project lets you create your own web page tutorial. Use your new-found HTML, CSS and Popcorn wisdom to create the world's greatest how-to. What do you want to make today?",
@@ -116,15 +198,7 @@
            webarcade   = true
          ) 
       }}
-      {{ project(
-           title       = "Make your own rant page",
-           description = "<i>Got something to shout about?</i> A rant, cause, passion project, block party or victory you want the world to know about? Shout it from the rooftops by making your own web page in minutes with this handy remixable template. Then share it via email, Twitter, Facebook or URL. Easy! </rant>",
-           author      = "Hive NYC",
-           url         = url('edit_dev_dropbox_project', 'soapbox'),
-           img         = "https://wiki.mozilla.org/images/b/be/Soapthumb.png", 
-           webarcade   = false
-         )
-      }}
+
     </ul>
   </div>
       
