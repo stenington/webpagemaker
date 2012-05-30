@@ -531,13 +531,15 @@ Web Arcade styles
 #webarcade .hero-unit h1 {
   background-color: yellow;
   color: #4098D5;
-  display: block;
-  width: 620px;
-  padding-top: 10px;
-  padding-left: 4px;
+  display: inline-block;
+  padding: 10px 8px 0 8px;
   font-family: "PressStart2PRegular";
   font-size: 64px;
-  text-align: center;
+  word-spacing: -0.25em;
+}
+
+#webarcade .divider {
+  border-bottom: 4px dashed #4098D5;
 }
 
 /* 
