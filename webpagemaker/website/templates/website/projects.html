@@ -42,7 +42,6 @@
            author      = "",
            url         = url('edit_dev_dropbox_project', ''),
            img         = "",
-           img_alt     = "",
          ) 
       }}
       #}
@@ -52,7 +51,6 @@
            author      = "Mozilla",
            url         = url('webpagemaker.website.views.webarcade'),
            img         = "https://wiki.mozilla.org/images/e/e3/Webarcade.jpg",
-           img_alt     = "Web Arcade",
          ) 
       }}
 	    {{ project(
@@ -61,7 +59,6 @@
            author      = "Mozilla",
            url         = url('edit_dev_dropbox_project', 'wrangler'),
            img         = "https://wiki.mozilla.org/images/1/1a/HTML_BASIC_coverimage-01.png",
-           img_alt     = "",
            webarcade   = true
          ) 
       }}
@@ -71,7 +68,6 @@
            author      = "Mozilla",
            url         = url('edit_dev_dropbox_project', 'map'),
            img         = "https://wiki.mozilla.org/images/8/88/Arcademap.jpg",
-           img_alt     = "",
            webarcade   = true
          ) 
       }}
@@ -81,7 +77,6 @@
            author      = "Mozilla",
            url         = url('edit_dev_dropbox_project', 'bakery'),
            img         = "https://wiki.mozilla.org/images/e/ee/Bakerybash_cover-01.png",
-           img_alt     = "",
            webarcade   = true
          ) 
       }}
@@ -91,7 +86,6 @@
            author      = "Mozilla",
            url         = url('edit_dev_dropbox_project', 'avataromatic'),
            img         = "https://wiki.mozilla.org/images/7/78/Avataromatic.png",
-           img_alt     = "",
            webarcade   = true
          ) 
       }}
@@ -101,7 +95,6 @@
            author      = "Mozilla",
            url         = url('edit_dev_dropbox_project', 'meme'),
            img         = "https://wiki.mozilla.org/images/d/d3/Coverimages_squirrel-01.png",
-           img_alt     = "",
            webarcade   = true
          ) 
       }}
@@ -111,7 +104,6 @@
            author      = "Mozilla",
            url         = url('edit_dev_dropbox_project', 'stuck'),
            img         = "https://wiki.mozilla.org/images/8/89/Stuck90s.png",
-           img_alt     = "",
            webarcade   = true
          ) 
       }}
@@ -121,7 +113,6 @@
            author      = "Mozilla",
            url         = url('edit_dev_dropbox_project', 'webstructable'),
            img         = "https://wiki.mozilla.org/images/5/59/Webstructables.jpg",
-           img_alt     = "",
            webarcade   = true
          ) 
       }}
@@ -131,7 +122,6 @@
            author      = "Hive NYC",
            url         = url('edit_dev_dropbox_project', 'soapbox'),
            img         = "https://wiki.mozilla.org/images/b/be/Soapthumb.png", 
-           img_alt     = "",
            webarcade   = false
          )
       }}
@@ -142,11 +132,11 @@
 {% block scripts %}
 <script src="/media/js/projects.js"></script>
 {% endblock %}
-{% macro project(title, description, author, url, img, img_alt, webarcade=false) -%}
+{% macro project(title, description, author, url, img, webarcade=false) -%}
   <li class="project">
     <div class="thumb">
         <a href="{{ url }}">
-          <img src="{{ img }}" alt="{{ img_alt }}">
+          <img src="{{ img }}" alt="{{ title }}">
         </a>
         <div class="caption">
           <p>By {{ author }}</p>
