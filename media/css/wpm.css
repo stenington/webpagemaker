@@ -502,6 +502,8 @@ Projects styles
 
   .projects.show-thumbs .project {
     width: 252px; /* span3 */
+    height: 356px; 
+    overflow: hidden;
     float: left;
     margin-left: 47px;
   }
