@@ -26,40 +26,40 @@
     
     <ul class="thumbnails">
       {{ project(
-           blurb        = "Concoct a crazy creature",
-           title_phrase = "with the Awesome Animal Builder",
-           url          = "projects/nesta/zoo",
-           img          = "/media/img/projects/Animalbuilder.jpg",
+           blurb    = "Build your own Creature",
+           author   = "London Zoological Society",
+           url      = "projects/nesta/zoo",
+           img      = "https://wiki.mozilla.org/images/7/7b/Animalbuilder.jpg",
          ) 
       }}
 
       {{ project(
-           blurb        = "Shout it out",
-           title_phrase = "with Make your own rant page",
-           url          = url('edit_dev_dropbox_project', 'soapbox'),
-           img          = "/media/img/projects/soapbox.png", 
+           blurb    = "Make Your Own Rant Page",
+           author   = "Hive NYC",
+           url      = url('edit_dev_dropbox_project', 'soapbox'),
+           img      = "https://wiki.mozilla.org/images/b/be/Soapthumb.png", 
          ) 
       }}
 
       {{ project(
-           blurb        = "Level up your HTML skills",
-           title_phrase = "at the Web Arcade",
-           url          = url('webpagemaker.website.views.webarcade'),
-           img          = "/media/img/projects/Webarcade.png",
+           blurb    = "Level up your Web Skills",
+           author   = "Mozilla",
+           url      = url('webpagemaker.website.views.webarcade'),
+           img      = "https://wiki.mozilla.org/images/e/e3/Webarcade.jpg",
          ) 
       }}
     </ul>
   </div> 
 {% endblock %}
-{% macro project(blurb, title_phrase, url, img) -%}
+{% macro project(blurb, author, url, img) -%}
   <li class="span3 threeColumn">
     <div class="thumbnail">
       <a href="{{ url }}">
         <img src="{{ img }}" alt="{{ title }}">
       </a>
       <div class="caption">
-        <p>{{ blurb }}</p>
-        <h5 class="title"><a href="{{ url }}">{{ title_phrase }}</a></h5>
+        <p>{{ author }}</p>
+        <h5 class="title"><a href="{{ url }}">{{ blurb }}</a></h5>
       </div>
     </div>
   </li>
