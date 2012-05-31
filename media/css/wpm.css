@@ -71,7 +71,7 @@ Global styles and classes
 
   .button:after,
   .button-blue:after {
-    content: " ❯";
+    content: " ▸";
   }
 
   .button.start,
