@@ -7,12 +7,14 @@ from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.urlresolvers import reverse
+from cors import development_cors
 
 from . import models
 from . import sanitize
 
 @csrf_exempt
 @require_POST
+@development_cors
 def publish_page(request):
     if not request.POST.get('html', ''):
         return HttpResponseBadRequest("HTML body expected.")
@@ -35,23 +37,23 @@ def publish_page(request):
 
     short_url = reverse(get_page, kwargs={'page_id': page.short_url_id})
     response = HttpResponse(short_url, content_type="text/plain")
-    response['Access-Control-Allow-Origin'] = '*'
     return response
 
+
+@development_cors
 def get_sanitizer_config(request):
     cfg = {
         'allowed_tags': sanitize.ALLOWED_TAGS,
         'allowed_attributes': sanitize.ALLOWED_ATTRS
     }
     response = HttpResponse(json.dumps(cfg), content_type="application/json")
-    response['Access-Control-Allow-Origin'] = '*'
     return response
 
+@development_cors
 def get_page(request, page_id):
     page = get_object_or_404(models.Page, short_url_id=page_id)
     response = HttpResponse(sanitize.sanitize(page.html))
     if page.original_url:
         response['X-Original-URL'] = page.original_url
-    response['Access-Control-Allow-Origin'] = '*'
     response['X-Robots-Tag'] = 'noindex, nofollow'
     return response
