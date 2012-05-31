@@ -13,6 +13,9 @@
 <body id="{% block page_id %}{% endblock %}">
   <div id="outer-wrapper">
   <div id="wrapper">
+  {% if settings.DEV %}
+    <img id="test-ribbon" src="/media/img/testribbon.png" alt="Test Site">
+  {% endif %}
 
     <section id="header">
       <header id="masthead">
