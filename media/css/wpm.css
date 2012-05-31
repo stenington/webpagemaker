@@ -104,6 +104,11 @@ Global styles and classes
     content: "⇧ ";
   }
 
+  .large, 
+  .large h1 {
+    font-size: 65px;
+  }
+
 /*
 Global styles and classes
 ================================
