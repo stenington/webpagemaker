@@ -73,6 +73,12 @@ Global styles and classes
   .button-blue:after {
     content: " ❯";
   }
+
+  .button.start,
+  .button-blue.start {
+    font-size: 1.4em;
+    font-family: OpenSansLightItalic; 
+  }
   
   h2 {
     font-family: OpenSansLightItalic;
