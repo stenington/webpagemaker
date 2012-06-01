@@ -62,6 +62,7 @@
            author      = "Mozilla",
            url         = url('webpagemaker.website.views.webarcade'),
            img         = "/media/img/projects/Webarcade.png",
+           buttonText  = "Find Projects"
          ) 
       }}
 
@@ -208,7 +209,7 @@
 {% block scripts %}
 <script src="/media/js/projects.js"></script>
 {% endblock %}
-{% macro project(title, description, author, url, img, webarcade=false) -%}
+{% macro project(title, description, author, url, img, buttonText='Make Project', webarcade=false) -%}
   <li class="project">
     <div class="thumb">
         <a href="{{ url }}">
@@ -224,7 +225,7 @@
     <div class="info">
       <h3 class="title">{{ title }}</h3>
       <p class="description">{{ description|safe }}</p>
-      <p><a href="{{ url }}" class="button-blue">Make Project</a>
+      <p><a href="{{ url }}" class="button-blue">{{ buttonText }}</a>
     </div>
   </li>
 {%- endmacro %}
