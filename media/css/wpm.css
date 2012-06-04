@@ -23,42 +23,42 @@ Global styles and classes
   .button-orange,
   .button-orange:link,
   .button-orange:visited {
-    background-color: #ec8c30;
-    background-color: #d57214;
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#ec8c30), to(#d57214));
+    background-color: #ea9407;
+
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#f9ab2b), to(#ea9407));
     /* Konqueror */
 
-    background-image: -moz-linear-gradient(#ec8c30, #d57214);
+    background-image: -moz-linear-gradient(#f9ab2b, #ea9407);
     /* FF 3.6+ */
 
-    background-image: -ms-linear-gradient(#ec8c30, #d57214);
+    background-image: -ms-linear-gradient(#f9ab2b, #ea9407);
     /* IE10 */
 
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ec8c30), color-stop(100%, #d57214));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f9ab2b), color-stop(100%, #ea9407));
     /* Safari 4+, Chrome 2+ */
 
-    background-image: -webkit-linear-gradient(#ec8c30, #d57214);
+    background-image: -webkit-linear-gradient(#f9ab2b, #ea9407);
     /* Safari 5.1+, Chrome 10+ */
 
-    background-image: -o-linear-gradient(#ec8c30, #d57214);
+    background-image: -o-linear-gradient(#f9ab2b, #ea9407);
     /* Opera 11.10 */
 
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ec8c30', endColorstr='#d57214', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9ab2b', endColorstr='#ea9407', GradientType=0);
     /* IE6 & IE7 */
 
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ec8c30', endColorstr='#d57214', GradientType=0)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9ab2b', endColorstr='#ea9407', GradientType=0)";
     /* IE8+ */
 
-    background-image: linear-gradient(#ec8c30, #d57214);
+    background-image: linear-gradient(#f9ab2b, #ea9407);
     /* the standard */
   }
 
   .button-orange:hover,
   .button-orange:link:hover,
   .button-orange:visited:hover {
-    -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #f78c25;
-    -moz-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #f78c25;
-    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #f78c25;
+    -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #ffb63f;
+    -moz-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #ffb63f;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1), inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2), inset 0px 12px 24px 2px #ffb63f;
   }
 
   .button:active,
@@ -496,6 +496,7 @@ Projects styles
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 20px;
+    vertical-align: top;
   }
 
   .project .thumb {
