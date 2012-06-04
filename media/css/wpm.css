@@ -496,6 +496,7 @@ Projects styles
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 20px;
+    vertical-align: top;
   }
 
   .project .thumb {
