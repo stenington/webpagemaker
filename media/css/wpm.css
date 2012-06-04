@@ -71,7 +71,13 @@ Global styles and classes
 
   .button:after,
   .button-blue:after {
-    content: " ❯";
+    content: " ▸";
+  }
+
+  .button.start,
+  .button-blue.start {
+    font-size: 1.4em;
+    font-family: OpenSansLightItalic; 
   }
   
   h2 {
@@ -104,6 +110,11 @@ Global styles and classes
     content: "⇧ ";
   }
 
+  .large, 
+  .large h1 {
+    font-size: 65px;
+  }
+
 /*
 Global styles and classes
 ================================
@@ -115,8 +126,7 @@ Layout styles
   }
 
   #wrapper {
-    background-color: #F3EFE6;
-    background-image: url("/media/img/mozorg-gradient.png");
+    background: #FCF7ED url("/media/img/mozorg-gradient.png") repeat-x 0 0;
     padding-bottom: 0;
     display: table;
     width: 100%;
