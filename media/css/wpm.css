@@ -574,6 +574,36 @@ Web Arcade styles
 /* 
 Web Arcade styles
 ================================
+About page styles
 */
 
+#write div,
+#amazing div {
+  margin-left: 208px; 
+}
 
+#write {
+  background: url(/media/img/about-write.png) no-repeat 24px 50%;
+}
+
+#amazing {
+  background: url(/media/img/about-amazing.png) no-repeat 24px 50%;
+}
+
+#click div,
+#involved div {
+  margin-right: 208px; 
+}
+
+#click {
+  background: url(/media/img/about-click.png) no-repeat 668px 50%;
+}
+
+#involved {
+  background: url(/media/img/about-calltoaction.png) no-repeat 668px 50%;
+}
+
+/* 
+About page styles
+================================
+*/
