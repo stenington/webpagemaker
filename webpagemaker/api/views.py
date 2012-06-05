@@ -54,8 +54,9 @@ def get_sanitizer_config(request):
 def get_page(request, page_id):
     if re.search(r'MSIE [1-7]\.', request.META['HTTP_USER_AGENT']):
       response = HttpResponse(
-        "<h1>Browser not supported</h1>" +
-        "<p>Thimble does not support Internet Explorer versions 1-7.</p>"
+        """<h1>Your browser is not supported.</h1>
+        <p>To view a page created with Thimble, we recommend using 
+        the latest version of Internet Explorer, Firefox or Chrome.</p>"""
       )
     else:
       page = get_object_or_404(models.Page, short_url_id=page_id)
