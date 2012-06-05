@@ -1,4 +1,5 @@
 from urlparse import urlparse
+import re
 
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -51,9 +52,15 @@ def get_sanitizer_config(request):
 
 @development_cors
 def get_page(request, page_id):
-    page = get_object_or_404(models.Page, short_url_id=page_id)
-    response = HttpResponse(sanitize.sanitize(page.html))
-    if page.original_url:
-        response['X-Original-URL'] = page.original_url
-    response['X-Robots-Tag'] = 'noindex, nofollow'
+    if re.search(r'MSIE [1-7]\.', request.META['HTTP_USER_AGENT']):
+      response = HttpResponse(
+        "<h1>Browser not supported</h1>" +
+        "<p>Thimble does not support Internet Explorer versions 1-7.</p>"
+      )
+    else:
+      page = get_object_or_404(models.Page, short_url_id=page_id)
+      response = HttpResponse(sanitize.sanitize(page.html))
+      if page.original_url:
+          response['X-Original-URL'] = page.original_url
+      response['X-Robots-Tag'] = 'noindex, nofollow'
     return response
