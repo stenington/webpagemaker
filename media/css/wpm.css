@@ -405,6 +405,7 @@ Gallery styles
     font-family: OpenSansSemibold;
     font-size: 0.75em;
     margin-bottom: 12px;
+    line-height: 18px;
   }
 
   #gallery .caption h5 {
@@ -420,6 +421,9 @@ Gallery styles
 ================================
 Projects styles
 */
+  a.thumbs, a.list {
+    cursor: pointer;
+  }
 
   .projectpeoples {
     background: url(/media/img/projectpeoples.png) no-repeat scroll top right;
@@ -504,6 +508,10 @@ Projects styles
   }
   .project .thumb img {
     width: 100%;
+  }
+  
+  .project .info  p:last-child {
+    margin-bottom: 0;
   }
 
   /*-- List view --*/
