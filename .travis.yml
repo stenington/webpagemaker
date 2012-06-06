@@ -18,4 +18,4 @@ notifications:
     - "irc.mozilla.org#webpagemaker"
   email:
     recipients:
-      - mofodev+wpm-ci@mozilla.com
+      - "mofodev+wpm-ci@mozilla.com"
