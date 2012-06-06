@@ -7,13 +7,11 @@ SIMPLE_HTML = "<!DOCTYPE html><html><head><title>hi</title></head>" + \
               "<body>hello.</body></html>"
 
 class BrowserBlockingTests(test_utils.TestCase):
-
     def _request_published_page_as(self, user_agent):
         response = self.client.post('/api/page', {'html': SIMPLE_HTML})
         page_id = response.content
         response = self.client.get(page_id, HTTP_USER_AGENT=user_agent)
         return response
-
 
     def test_known_problem_browsers_cannot_see_published_pages(self):
         # TODO: Do we want a (semi-)comprehensive list of problem browsers?
