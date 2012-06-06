@@ -12,3 +12,10 @@ install:
   - python manage.py migrate --noinput
 
 script: make test
+
+notifications:
+  irc:
+    - "irc.mozilla.org#webpagemaker"
+  email:
+    recipients:
+      - mofodev+wpm-ci@mozilla.com
