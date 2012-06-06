@@ -3,6 +3,8 @@ from nose.tools import eq_
 
 from webpagemaker.api.views import BLOCKED_MSG
 
+from msie_user_agents import internet_explorers
+
 SIMPLE_HTML = "<!DOCTYPE html><html><head><title>hi</title></head>" + \
               "<body>hello.</body></html>"
 
@@ -15,8 +17,7 @@ class BrowserBlockingTests(test_utils.TestCase):
 
     def test_known_problem_browsers_cannot_see_published_pages(self):
         # TODO: Do we want a (semi-)comprehensive list of problem browsers?
-        for user_agent in ['MSIE 1', 'MSIE 1;', 'MSIE 2.0', 'MSIE 3.1', 
-            'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1;']:
+        for user_agent in internet_explorers:
             response = self._request_published_page_as(user_agent)
             eq_(response.status_code, 200)
             eq_(response.content, BLOCKED_MSG)
