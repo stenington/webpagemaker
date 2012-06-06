@@ -13,6 +13,12 @@ from cors import development_cors
 from . import models
 from . import sanitize
 
+BLOCKED_BROWSER_MSG = """
+    <h1>Your browser is not supported.</h1>
+    <p>To view a page created with Thimble, we recommend using 
+    the latest version of Internet Explorer, Firefox or Chrome.</p>"""
+     
+
 @csrf_exempt
 @require_POST
 @development_cors
@@ -52,12 +58,9 @@ def get_sanitizer_config(request):
 
 @development_cors
 def get_page(request, page_id):
-    if re.search(r'MSIE [1-7]\.', request.META['HTTP_USER_AGENT']):
-      response = HttpResponse(
-        """<h1>Your browser is not supported.</h1>
-        <p>To view a page created with Thimble, we recommend using 
-        the latest version of Internet Explorer, Firefox or Chrome.</p>"""
-      )
+    if ('HTTP_USER_AGENT' in request.META and 
+      re.search(r'MSIE [1-7]\.', request.META['HTTP_USER_AGENT'])):
+      response = HttpResponse(BLOCKED_BROWSER_MSG)
     else:
       page = get_object_or_404(models.Page, short_url_id=page_id)
       response = HttpResponse(sanitize.sanitize(page.html))
