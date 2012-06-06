@@ -5,6 +5,10 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
+def _sub_meta(html, meta_name, replacement):
+    return _subvar(html, r'<meta name="' + meta_name + r'" content=".*">',
+                   replacement)
+    
 def _subvar(html, template, replacement):
     regexp = "(%s)(.*)(%s)" % tuple(template.split(".*"))
     return re.sub(regexp, r'\1' + replacement + r'\3', html)
@@ -13,17 +17,24 @@ def _sub_base_href(html, base_url):
     return _subvar(html, r'<base href=".*">', base_url)
 
 def _sub_publish_url(html, publish_url):
-    return _subvar(html, r'<meta name="publish-url" content=".*">',
-                   publish_url)
+    return _sub_meta(html, 'publish-url', publish_url)
 
 def _sub_remix_url(html, remix_url):
-    return _subvar(html, r'<meta name="remix-url" content=".*">', remix_url)
+    return _sub_meta(html, 'remix-url', remix_url)
+
+def _sub_deployment_type(html):
+    if settings.DEV:
+        deployment_type = 'development'
+    else:
+        deployment_type = 'production'
+    return _sub_meta(html, 'deployment-type', deployment_type)
 
 def _frontend_html(base_url, publish_url, remix_url):
     mydir = os.path.dirname(__file__)
     html = open(os.path.join(mydir, 'friendlycode', 'index.html')).read()
     html = _sub_remix_url(html, remix_url)
-    return _sub_base_href(_sub_publish_url(html, publish_url), base_url)
+    html = _sub_base_href(_sub_publish_url(html, publish_url), base_url)
+    return _sub_deployment_type(html)
 
 def _editor(request, remix_url):
     rel_base_url = '%sfriendlycode/' % settings.MEDIA_URL

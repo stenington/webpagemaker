@@ -6,6 +6,7 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from django.conf import settings
 from nose.tools import eq_, ok_
 
 from . import views
@@ -20,6 +21,24 @@ class SimpleTest(TestCase):
         response = self.client.get('/en-US/editor')
         ok_('<base href="http' in response.content)
         
+    def test_deployment_type(self):
+        # TODO: Eventually, we should just use the @patch decorator
+        # from the 'mock' package for this.
+        orig = settings.DEV
+
+        try:
+            settings.DEV = True
+            response = self.client.get('/en-US/editor')
+            ok_('<meta name="deployment-type" content="development">' in \
+                response.content)
+
+            settings.DEV = False
+            response = self.client.get('/en-US/editor')
+            ok_('<meta name="deployment-type" content="production">' in \
+                response.content)
+        finally:
+            settings.DEV = orig
+
     def test__frontend_html(self):
         html = views._frontend_html(base_url="BASE243", publish_url="PUB324",
                                     remix_url="BLE24")
