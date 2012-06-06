@@ -61,7 +61,7 @@ def get_sanitizer_config(request):
 def get_page(request, page_id):
     if ('HTTP_USER_AGENT' in request.META and 
         BLOCKED_USER_AGENTS.search(request.META['HTTP_USER_AGENT'])):
-        response = HttpResponse(BLOCKED_MSG)
+        response = HttpResponse(BLOCKED_MSG, status=403)
     else:
         page = get_object_or_404(models.Page, short_url_id=page_id)
         response = HttpResponse(sanitize.sanitize(page.html))

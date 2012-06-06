@@ -19,7 +19,7 @@ class BrowserBlockingTests(test_utils.TestCase):
         # TODO: Do we want a (semi-)comprehensive list of problem browsers?
         for user_agent in internet_explorers:
             response = self._request_published_page_as(user_agent)
-            eq_(response.status_code, 200)
+            eq_(response.status_code, 403)
             eq_(response.content, BLOCKED_MSG)
 
     def test_good_browsers_should_see_published_page(self):
