@@ -13,10 +13,11 @@ from cors import development_cors
 from . import models
 from . import sanitize
 
-BLOCKED_BROWSER_MSG = """
-    <h1>Your browser is not supported.</h1>
-    <p>To view a page created with Thimble, we recommend using 
-    the latest version of Internet Explorer, Firefox or Chrome.</p>"""
+BLOCKED_USER_AGENTS = re.compile(r'MSIE [1-7]\b')
+BLOCKED_MSG = "<h1>Your browser is not supported.</h1>" + \
+              "<p>To view a page created with Thimble, we recommend " + \
+              "using the latest version of Internet Explorer, Firefox " + \
+              "or Chrome.</p>"
      
 
 @csrf_exempt
@@ -59,12 +60,12 @@ def get_sanitizer_config(request):
 @development_cors
 def get_page(request, page_id):
     if ('HTTP_USER_AGENT' in request.META and 
-      re.search(r'MSIE [1-7]\.', request.META['HTTP_USER_AGENT'])):
-      response = HttpResponse(BLOCKED_BROWSER_MSG)
+        BLOCKED_USER_AGENTS.search(request.META['HTTP_USER_AGENT'])):
+        response = HttpResponse(BLOCKED_MSG, status=403)
     else:
-      page = get_object_or_404(models.Page, short_url_id=page_id)
-      response = HttpResponse(sanitize.sanitize(page.html))
-      if page.original_url:
-          response['X-Original-URL'] = page.original_url
-      response['X-Robots-Tag'] = 'noindex, nofollow'
+        page = get_object_or_404(models.Page, short_url_id=page_id)
+        response = HttpResponse(sanitize.sanitize(page.html))
+        if page.original_url:
+            response['X-Original-URL'] = page.original_url
+        response['X-Robots-Tag'] = 'noindex, nofollow'
     return response
