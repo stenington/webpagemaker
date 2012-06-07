@@ -1,9 +1,11 @@
 from urlparse import urlparse
 import re
+import hashlib
 
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.views.decorators.cache import cache_page
 from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -19,6 +21,15 @@ BLOCKED_MSG = "<h1>Your browser is not supported.</h1>" + \
               "using the latest version of Internet Explorer, Firefox " + \
               "or Chrome.</p>"
      
+def generate_etag(content, algorithm=hashlib.sha1):
+    """
+    Generate an etag for a page by calculating a collision-resistant
+    hash of the contents. Defaults to using the sha1 algorithm from
+    hashlib.
+    """
+    m = algorithm()
+    m.update(content.encode('utf-8'))
+    return m.hexdigest()
 
 @csrf_exempt
 @require_POST
@@ -56,7 +67,9 @@ def get_sanitizer_config(request):
     }
     response = HttpResponse(json.dumps(cfg), content_type="application/json")
     return response
-
+ 
+# cache for one year
+@cache_page(31536000)
 @development_cors
 def get_page(request, page_id):
     if ('HTTP_USER_AGENT' in request.META and 
@@ -68,4 +81,11 @@ def get_page(request, page_id):
         if page.original_url:
             response['X-Original-URL'] = page.original_url
         response['X-Robots-Tag'] = 'noindex, nofollow'
+        
+        # generate an etag from the sha1 hash of the page contents
+        response['ETag'] = generate_etag(page.html)
+        
+        # allow public proxy caching. the @cache_page decorator will
+        # automatically add `max-age=31536000` and an `Expires` header
+        response['Cache-Control'] = 'public'
     return response

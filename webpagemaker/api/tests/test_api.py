@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.utils import simplejson as json
 
+from .. import views
+
 import test_utils
 from nose.tools import eq_, ok_
 
@@ -88,9 +90,15 @@ class PublishTests(test_utils.TestCase):
         eq_(response.content, "HTML body expected.")
 
     def test_retrieving_page_delivers_x_robots_tag(self):
-    	response = self._publish_and_verify(SIMPLE_HTML)
-    	eq_(response['X-Robots-Tag'], "noindex, nofollow")
+        response = self._publish_and_verify(SIMPLE_HTML)
+        eq_(response['X-Robots-Tag'], "noindex, nofollow")
 		
+    def test_retrieving_page_delivers_cache_headers(self):
+        response = self._publish_and_verify(SIMPLE_HTML)
+        eq_(response['Cache-Control'], "public, max-age=31536000")
+        eq_(response['ETag'], views.generate_etag(SIMPLE_HTML))
+    
+    
     def test_publishing_ascii_works(self):
         self._publish_and_verify(SIMPLE_HTML)
 
