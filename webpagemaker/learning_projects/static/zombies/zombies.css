@@ -3,7 +3,7 @@ html {
 	height: 600px;
 	padding: 0;
 	margin: 0;
-	overflow: scroll;
+	overflow: auto;
 	border: 10px solid #fff;
 }
 
