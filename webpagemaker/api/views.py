@@ -20,7 +20,7 @@ from . import sanitize
 # how to effectively invalidate when we update the sanitization
 # algorithm. Once we figure that out, we'll want to use the maximum
 # possible cache life.
-CACHE_LIFETIME = int(datetime.timedelta(days=1).total_seconds())
+CACHE_LIFETIME = 86400 # a.k.a. int(datetime.timedelta(days=1).total_seconds())
 
 BLOCKED_USER_AGENTS = re.compile(r'MSIE [1-7]\b')
 BLOCKED_MSG = "<h1>Your browser is not supported.</h1>" + \
