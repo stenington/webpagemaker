@@ -29,6 +29,7 @@ def generate_etag(content, algorithm=hashlib.sha1):
     """
     m = algorithm()
     m.update(content.encode('utf-8'))
+    m.update(str(sanitize.SECURITY_VERSION))
     return m.hexdigest()
 
 @csrf_exempt
@@ -68,8 +69,8 @@ def get_sanitizer_config(request):
     response = HttpResponse(json.dumps(cfg), content_type="application/json")
     return response
  
-# cache for one year
-@cache_page(31536000)
+# cache for one day
+@cache_page(86400)
 @development_cors
 def get_page(request, page_id):
     if ('HTTP_USER_AGENT' in request.META and 
@@ -86,6 +87,6 @@ def get_page(request, page_id):
         response['ETag'] = generate_etag(page.html)
         
         # allow public proxy caching. the @cache_page decorator will
-        # automatically add `max-age=31536000` and an `Expires` header
+        # automatically add `max-age=86400` and an `Expires` header
         response['Cache-Control'] = 'public'
     return response

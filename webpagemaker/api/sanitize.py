@@ -3,6 +3,11 @@ import re
 import bleach
 import html5lib
 
+# when you change something below that would affect the output of the
+# sanitize, bump this number. It's used in generating ETags when caching
+# the page.
+SECURITY_VERSION = 1
+
 ALLOWED_TAGS = [
     "!doctype", "html", "body", "a", "abbr", "address", "area", "article",
     "aside", "audio", "b", "base", "bdi", "bdo", "blockquote", "body", "br",
@@ -30,6 +35,7 @@ ALLOWED_ATTRS = {
     "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"],
     "link": ["href", "rel", "type"]
 }
+
 
 if bleach.VERSION < (1, 1, 1):
     raise Exception("Please use simon wex's bleach fork for now: " +
