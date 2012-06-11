@@ -36,7 +36,6 @@ ALLOWED_ATTRS = {
     "link": ["href", "rel", "type"]
 }
 
-
 if bleach.VERSION < (1, 1, 1):
     raise Exception("Please use simon wex's bleach fork for now: " +
                     "https://github.com/simonwex/bleach.git")
