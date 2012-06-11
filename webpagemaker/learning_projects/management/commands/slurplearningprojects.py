@@ -4,23 +4,23 @@ import shutil
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
-def slurp(fromdir, stdout, project_filter):
+def slurp(fromdir, stdout, project_names):
     projects = [
       dirname for dirname in os.listdir(fromdir)
       if os.path.isdir(os.path.join(fromdir, dirname))
       and not dirname.startswith('.')
       ]
     
-    if project_filter:
-        projects = filter(lambda n: n in project_filter, projects)
+    if project_names:
+        projects = filter(lambda n: n in project_names, projects)
     
         if len(projects) is 0:
             stdout.write('Could not find any projects that match the filters %s.\n'
-                         % str(project_filter))
+                         % str(project_names))
             exit(1)
 
-        if len(projects) != len(project_filter):
-            stdout.write('WARNING: did not match all filters, %s\n' % str(project_filter))
+        if len(projects) != len(project_names):
+            stdout.write('WARNING: did not match all filters, %s\n' % str(project_names))
     
     mydir = os.path.dirname(__file__)
     appdir = os.path.normpath(os.path.join(mydir, '..', '..'))
@@ -52,5 +52,5 @@ class Command(BaseCommand):
             raise CommandError("Please set the LEARNING_PROJECTS_PATH " \
                                "setting to point to the learning " \
                                "projects dropbox.")
-        slurp(fromdir=settings.LEARNING_PROJECTS_PATH, stdout=self.stdout, project_filter=args)
+        slurp(fromdir=settings.LEARNING_PROJECTS_PATH, stdout=self.stdout, project_names=args)
         self.stdout.write("You should probaby run 'git status' now.\n")
