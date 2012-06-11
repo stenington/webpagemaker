@@ -28,7 +28,7 @@ The following text uses an <h1> tag, where "h" stands for header and "1" means m
     <h2>Tagline here</h2>
 
 <!--
-Now let's change out this video with one that matches your message. First let's unpack the code below. The <iframe> tag builds a container into your page where you can pull content from another webpage. In this case, you are pulling in video content. To change the video, you need to replace the src value (a URL) with the URL pointing to your new video. You can find videos across the Web, but a good place to start is on the Creative Commons search page (http://search.creativecommons.org/) or on YouTube.
+Now let's change out this video with one that matches your message. First let's unpack the code below. The <iframe> tag builds a container into your page where you can pull content from another webpage. In this case, you are pulling in video content. To change the video, you need to replace the src value (a URL) with the URL pointing to your new video. You can find videos across the Web, but a good place to start is on the Creative Commons search page (http://search.creativecommons.org/) or on YouTube. When pulling video from YouTube, make sure to grab the embed url.
 
 Note: before you change the video, watch this one to learn a little more about copyright, copyleft, attributing and using existing work.
 -->
@@ -51,7 +51,7 @@ The <p> tag is used for paragraphs of text. Change the text below to add some na
 Everything contained within this <style> tag is called CSS and it is used to define the presentational components of the page, like fonts, colors, containers, positioning, etc. Remember that in CSS, comments are enclosed in '/*'. You can edit this CSS to change the look and feel of your page.
 */
       html {
-        color: #808080;
+        color: gray;
         background-image: url({{ HTTP_STATIC_URL }}soapbox/frenchstucco.png);
         padding-top: 50px;
         font-family: Georgia, serif;
@@ -86,12 +86,12 @@ Same with the paragraph style. You could try making it bold instead of italic.
       }
 
       iframe {
-        border: 20px solid #99CCFF;
+        border: 20px solid lightblue;
       }
     </style>
 
 <!--============================================================================
-Congrats on voicing your opinion! </rant>! Did you realize in all of this ranting, that you also learned some stuff about HTML and CSS? You now know how to work with text in HTML (<h1>, <h2>, <p>), how to pull videos into your page, as well as iframes to hold those videos, and how to manipulate the style of the text and page in the CSS. So climb up on your virtual soapbox and give yourself a pat on the back! Well done!
+Congrats on voicing your opinion! Did you realize in all of this ranting, that you also learned some stuff about HTML and CSS? You now know how to work with text in HTML (<h1>, <h2>, <p>), how to pull videos into your page, as well as iframes to hold those videos, and how to manipulate the style of the text and page in the CSS. So climb up on your virtual soapbox and give yourself a pat on the back! Well done!
 ============================================================================ -->
   </body>
 </html>
