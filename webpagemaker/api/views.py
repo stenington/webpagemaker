@@ -17,7 +17,7 @@ from . import models
 from . import sanitize
 
 # We want to use a relatively short cache for now until we figure out
-# how to do effectively invalidatate when we update the sanitization
+# how to effectively invalidate when we update the sanitization
 # algorithm. Once we figure that out, we'll want to use the maximum
 # possible cache life.
 CACHE_LIFETIME = int(datetime.timedelta(days=1).total_seconds())
