@@ -1,6 +1,7 @@
 from urlparse import urlparse
 import re
 import hashlib
+import datetime
 
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -14,6 +15,12 @@ from cors import development_cors
 
 from . import models
 from . import sanitize
+
+# We want to use a relatively short cache for now until we figure out
+# how to do effectively invalidatate when we update the sanitization
+# algorithm. Once we figure that out, we'll want to use the maximum
+# possible cache life.
+CACHE_LIFETIME = int(datetime.timedelta(days=1).total_seconds())
 
 BLOCKED_USER_AGENTS = re.compile(r'MSIE [1-7]\b')
 BLOCKED_MSG = "<h1>Your browser is not supported.</h1>" + \
@@ -69,8 +76,7 @@ def get_sanitizer_config(request):
     response = HttpResponse(json.dumps(cfg), content_type="application/json")
     return response
  
-# cache for one day
-@cache_page(86400)
+@cache_page(CACHE_LIFETIME)
 @development_cors
 def get_page(request, page_id):
     if ('HTTP_USER_AGENT' in request.META and 
@@ -87,6 +93,7 @@ def get_page(request, page_id):
         response['ETag'] = generate_etag(page.html)
         
         # allow public proxy caching. the @cache_page decorator will
-        # automatically add `max-age=86400` and an `Expires` header
+        # automatically add `Cache-Control: max-age` with whatever the
+        # input was (CACHE_LIFETIME) and an `Expires` header.
         response['Cache-Control'] = 'public'
     return response

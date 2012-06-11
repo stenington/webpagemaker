@@ -95,7 +95,7 @@ class PublishTests(test_utils.TestCase):
 		
     def test_retrieving_page_delivers_cache_headers(self):
         response = self._publish_and_verify(SIMPLE_HTML)
-        eq_(response['Cache-Control'], "public, max-age=86400")
+        eq_(response['Cache-Control'], "public, max-age=%s" % views.CACHE_LIFETIME)
         eq_(response['ETag'], views.generate_etag(SIMPLE_HTML))
     
     
