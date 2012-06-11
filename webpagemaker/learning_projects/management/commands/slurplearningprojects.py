@@ -3,6 +3,12 @@ import shutil
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
+from optparse import make_option
+
+try:
+    LEARNING_PROJECTS_PATH = settings.LEARNING_PROJECTS_PATH
+except AttributeError:
+    LEARNING_PROJECTS_PATH = None
 
 def slurp(fromdir, stdout, project_names):
     projects = [
@@ -15,12 +21,12 @@ def slurp(fromdir, stdout, project_names):
         projects = filter(lambda n: n in project_names, projects)
     
         if len(projects) is 0:
-            stdout.write('Could not find any projects that match the filters %s.\n'
-                         % str(project_names))
-            exit(1)
+            msg = 'Could not find any projects that match the filters %s.\n'
+            raise CommandError(msg % str(project_names))
 
         if len(projects) != len(project_names):
-            stdout.write('WARNING: did not match all filters, %s\n' % str(project_names))
+            stdout.write('WARNING: did not match all filters, %s\n'
+                         % str(project_names))
     
     mydir = os.path.dirname(__file__)
     appdir = os.path.normpath(os.path.join(mydir, '..', '..'))
@@ -44,13 +50,18 @@ def slurp(fromdir, stdout, project_names):
 
 class Command(BaseCommand):
     args = '[project_name, project_name, ...]'
+    option_list = BaseCommand.option_list + (
+        make_option('--path',
+            default=LEARNING_PROJECTS_PATH,
+            help='Override the learning projects path'),
+        )
     help = 'Copies files from the learning projects dropbox into ' \
            'the learning_projects django app'
-
+    
     def handle(self, *args, **options):
-        if not hasattr(settings, 'LEARNING_PROJECTS_PATH'):
+        if not options['path']:
             raise CommandError("Please set the LEARNING_PROJECTS_PATH " \
                                "setting to point to the learning " \
-                               "projects dropbox.")
-        slurp(fromdir=settings.LEARNING_PROJECTS_PATH, stdout=self.stdout, project_names=args)
+                               "projects dropbox or pass it in with --path")
+        slurp(fromdir=options['path'], stdout=self.stdout, project_names=args)
         self.stdout.write("You should probaby run 'git status' now.\n")
