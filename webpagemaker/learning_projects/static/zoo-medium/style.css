@@ -19,7 +19,7 @@ body * {
 figure {
     display: inline-block;
     height: 225px;
-    min-width: 300px;
+    min-width: 450px;
     max-width: 600px;
     overflow: hidden;
     margin: 0;
