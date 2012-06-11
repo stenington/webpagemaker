@@ -3,6 +3,11 @@ import re
 import bleach
 import html5lib
 
+# when you change something below that would affect the output of the
+# sanitize, bump this number. It's used in generating ETags when caching
+# the page.
+SECURITY_VERSION = 1
+
 ALLOWED_TAGS = [
     "!doctype", "html", "body", "a", "abbr", "address", "area", "article",
     "aside", "audio", "b", "base", "bdi", "bdo", "blockquote", "body", "br",
