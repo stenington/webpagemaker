@@ -76,8 +76,21 @@ Global styles and classes
 
   .button.start,
   .button-blue.start {
+    height: 48px;
+    line-height: 48px;
     font-size: 1.4em;
     font-family: OpenSansLightItalic; 
+  }
+  
+  .intro-bar em {
+    color: #939598;
+    margin: 0 15px;
+    font-family: OpenSansLight;
+    font-size: 1.5em;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255 0.5);
   }
   
   h2 {
