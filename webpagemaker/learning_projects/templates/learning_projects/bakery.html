@@ -44,9 +44,9 @@ Each of of your guests can bring another surprise guest, which they link to belo
 
       <div class="kitty">
         <h1>Guest #1</h1>
-        <img src="http://illogicopedia.org/images/thumb/7/76/Dancing_Cat.gif/230px-Dancing_Cat.gif" width="188px">
+        <img src="{{ HTTP_STATIC_URL }}bakery/dancing-cat.gif" width="188px">
         <p>
-          <a href="http://www.seriouscat.com/serious_cat_is_serious.jpg">Secret Guest</a>
+          <a href="{{ HTTP_STATIC_URL }}bakery/serious_cat_is_serious.jpg">Secret Guest</a>
         </p>
       </div>
 
@@ -57,9 +57,9 @@ Now that you know how <a> tags work, and how to change the secret guests, let's 
 -->
       <div class="kitty">
         <h1>Guest #2</h1>
-        <img src="http://illogicopedia.org/images/thumb/7/76/Dancing_Cat.gif/230px-Dancing_Cat.gif" width="188px">
+        <img src="{{ HTTP_STATIC_URL }}bakery/dancing-cat.gif" width="188px">
         <p>
-          <a href="http://www.seriouscat.com/serious_cat_is_serious.jpg">Secret Guest</a>
+          <a href="{{ HTTP_STATIC_URL }}bakery/serious_cat_is_serious.jpg">Secret Guest</a>
         </p>
       </div>
 <!--
@@ -67,27 +67,27 @@ Whoops, we forgot to remove the serious cat from the mix. Can you fix the above 
 -->
       <div class="kitty">
         <h1>Guest #3</h1>
-        <img src="http://illogicopedia.org/images/thumb/7/76/Dancing_Cat.gif/230px-Dancing_Cat.gif" width="188px">
-         <p>
-           <a href="http://www.seriouscat.com/serious_cat_is_serious.jpg">Secret Guest</a>
-         </p>
+        <img src="{{ HTTP_STATIC_URL }}bakery/dancing-cat.gif" width="188px">
+        <p>
+          <a href="{{ HTTP_STATIC_URL }}bakery/serious_cat_is_serious.jpg">Secret Guest</a>
+        </p>
       </div>
 <!--
 Now you can do the same for your other guests. You can cut and paste from above or find new images for each guest. It's gonna be a great party!
 -->
       <div class="kitty">
         <h1>Guest #4</h1>
-        <img src="http://illogicopedia.org/images/thumb/7/76/Dancing_Cat.gif/230px-Dancing_Cat.gif" width="188px">
+        <img src="{{ HTTP_STATIC_URL }}bakery/dancing-cat.gif" width="188px">
         <p>
-          <a href="http://www.seriouscat.com/serious_cat_is_serious.jpg">Secret Guest</a>
+          <a href="{{ HTTP_STATIC_URL }}bakery/serious_cat_is_serious.jpg">Secret Guest</a>
         </p>
       </div>
   
       <div class="kitty">
         <h1>Guest #5</h1>
-        <img src="http://illogicopedia.org/images/thumb/7/76/Dancing_Cat.gif/230px-Dancing_Cat.gif" width="188px">
+        <img src="{{ HTTP_STATIC_URL }}bakery/dancing-cat.gif" width="188px">
         <p>
-          <a href="http://www.seriouscat.com/serious_cat_is_serious.jpg">Secret Guest</a>
+          <a href="{{ HTTP_STATIC_URL }}bakery/serious_cat_is_serious.jpg">Secret Guest</a>
         </p>
       </div>
     </div>
@@ -99,7 +99,9 @@ Way to go, these guests look way more fun, how about adding some music? Time to 
   Vimeo has free CC-licensed tracks in addition to tracks that you can pay for:http://vimeo.com/musicstore.
 -->
 
-    <audio src="http://www.jamendo.com/en/track/759486/8-bit-morph#" autoplay></audio>
+    <audio autoplay>
+      <source src="{{ HTTP_STATIC_URL }}bakery/8-bit-morph.mp3" type='audio/mpeg; codecs="mp3"'>
+    </audio>
 
     <style>
 
@@ -178,5 +180,12 @@ Everything contained within this <style> tag is called CSS and it is used to def
 Congrats! You've successfully fixed Loaf Cat's party! Looks like its going to be a fun one. You might not have noticed, but you learned some HTML skills in the process. You now know how to work with paragraphs (<p> tag), images (<img> tag), hyperlinks (<a> tag) and audio files (<audio> tag) in HTML5. Way to go!
 ============================================================================ -->
 
-<!-- Credits: Firefox badge: http://thekruser.com/media/4sq/badges/sxsw2011_firefox.png-->
+<!--
+    Credits:
+      Firefox badge: http://thekruser.com/media/4sq/badges/sxsw2011_firefox.png
+      Audio: title: 8bit morph
+             artist: bilou le skankerfou
+             link: http://www.jamendo.com/en/track/759486/8-bit-morph#
+-->
+
 </html>
