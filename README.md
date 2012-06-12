@@ -134,6 +134,7 @@ Some of the Django apps in this project have their own README:
   * [Official Project Status Page](https://wiki.mozilla.org/Webpagemakerapi)
   * [Weekly Call Info](https://wiki.mozilla.org/WebPageMaker)
   * [Google Group](http://groups.google.com/group/mozwebpagemaker/topics?hl=en](http://groups.google.com/group/mozwebpagemaker/topics?hl=en)
+  * [Developer notes on working with development, staging, and production branches](https://github.com/mozilla/webpagemaker/wiki/Development,-Staging,-Production)
 
 ## Etherpads
 
