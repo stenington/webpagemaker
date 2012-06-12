@@ -29,7 +29,7 @@
       margin:0em;
     }
     
-    p#title {
+    #title {
       font-size: 14em;
       width: 100px;
     }
@@ -44,7 +44,7 @@
     }
     
     #wall  {
-      background: url("http://dl.dropbox.com/u/49868798/wall.png");
+      background: url("{{ HTTP_STATIC_URL }}bunnies/wall.png");
       height: 550px;
     }
     
@@ -97,7 +97,7 @@
     
     #floor {
       height:120px;
-      background:  url("http://dl.dropbox.com/u/49868798/floor.png");
+      background:  url("{{ HTTP_STATIC_URL }}bunnies/floor.png");
       background-repeat: repeat-x;
       background-position: bottom;
     }
@@ -124,19 +124,19 @@
     
       <div id="scene">  <!-- The bunny and masher images are here -->
         
-      <img id="worried_bunny" src="http://dl.dropbox.com/u/49868798/cute_worried_bunny.png">
+      <img id="worried_bunny" src="{{ HTTP_STATIC_URL }}bunnies/cute_worried_bunny.png">
       <!-- 
-            Happy bunny:   http://dl.dropbox.com/u/49868798/happy_bunny.png
+            Happy bunny:   {{ HTTP_STATIC_URL }}bunnies/happy_bunny.png
 
             Can you put the bunny in a spotlight?
-            http://dl.dropbox.com/u/49868798/lamp.png
+            {{ HTTP_STATIC_URL }}bunnies/lamp.png
       -->
       
-    <img id="crusher" src="http://dl.dropbox.com/u/49868798/masher.png">
+    <img id="crusher" src="{{ HTTP_STATIC_URL }}bunnies/masher.png">
       <!-- 
-            Carrots?: http://dl.dropbox.com/u/49868798/carrots.png
+            Carrots?: {{ HTTP_STATIC_URL }}bunnies/carrots.png
 
-            Whoops:  http://dl.dropbox.com/u/49868798/mashed.png
+            Whoops:  {{ HTTP_STATIC_URL }}bunnies/mashed.png
       -->
       
     </div>   <!-- end of "scene" -->
@@ -159,7 +159,7 @@
       
       
       <audio id="soundbox" controls="controls">
-        <source src="http://dl.dropbox.com/u/49868798/Drum%20Roll-SoundBible.com-1599301580.mp3"/>
+        <source src="{{ HTTP_STATIC_URL }}bunnies/drum-roll.mp3" type='audio/mpeg; codecs="mp3"'>
       </audio>
       
       
