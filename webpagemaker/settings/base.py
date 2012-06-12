@@ -63,7 +63,7 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
 # Maximum size, in bytes, of published pages. Note that if you change this
 # from its default, you may need to modify your database, since this
 # setting's value is used in schema generation.
-MAX_PUBLISHED_PAGE_SIZE = 10000
+MAX_PUBLISHED_PAGE_SIZE = 100000
 
 # Where to retrieve in-development learning projects from. Only
 # consulted if settings.DEV is True.
