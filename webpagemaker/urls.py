@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     (r'^projects/(?P<name>[A-Za-z0-9\-_]+)/edit$',
      'webpagemaker.editor.views.editor', {'remix': 'view_project'},
      'edit_project'),
+    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/media/img/favicon.ico'}),
     (r'', include(urls)),
 
     # Uncomment the admin/doc line below to enable admin documentation:
