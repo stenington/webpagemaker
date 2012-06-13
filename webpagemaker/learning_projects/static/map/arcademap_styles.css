@@ -6,7 +6,7 @@
 }
   
 #logo {
-  background-image: url('http://zythepsary.com/mozilla/projects/mapofthearcade/images/banner.png');
+  background-image: url('banner.png');
   background-repeat: no-repeat;
   height: 73px;
   width: 420px;
@@ -35,8 +35,8 @@
   color: red;
 }
 
-#island01{
-  background-image: url('http://zythepsary.com/mozilla/projects/mapofthearcade/images/island1.png');
+#island01 {
+  background-image: url('island1.png');
   background-repeat: no-repeat;
   width: 296px;
   height: 395px;
@@ -61,8 +61,8 @@
   top: 85px;
 }
 
-#island02{
-  background-image: url('http://zythepsary.com/mozilla/projects/mapofthearcade/images/island2.png');
+#island02 {
+  background-image: url('island2.png');
   background-repeat: no-repeat;
   width: 558px;
   height: 705px;
