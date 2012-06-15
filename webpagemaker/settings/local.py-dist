@@ -71,3 +71,11 @@ SECRET_KEY = ''
 # Common Event Format logging parameters
 #CEF_PRODUCT = 'Playdoh'
 #CEF_VENDOR = 'Mozilla'
+
+# Default filesystem cache for development
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/var/tmp/django_cache',
+    }
+}
