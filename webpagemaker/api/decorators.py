@@ -2,7 +2,7 @@ from django.core.cache import cache
 from django.http import HttpResponseBadRequest, HttpResponseForbidden
 import hashlib
 
-def throttle_view(func, methods=None, duration=15):
+def throttle_view(func, methods=None, duration=30):
     def inner(request, *args, **kwargs):
         throttled_methods = methods if methods else ['POST', 'GET']
         if request.method in throttled_methods:
