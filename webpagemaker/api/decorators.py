@@ -8,7 +8,6 @@ def throttle_view(func, methods=None, duration=15):
     TODO: make this thing actually take arguments
     """
     def inner(request, *args, **kwargs):
-        print "for the record, i got here"
         throttled_methods = methods if methods else ['POST', 'GET']
         if request.method in throttled_methods:
             remote_addr = request.META.get('HTTP_X_FORWARDED_FOR') or \
