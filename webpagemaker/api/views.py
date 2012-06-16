@@ -44,7 +44,6 @@ def generate_etag(content, algorithm=hashlib.sha1):
 @csrf_exempt
 @require_POST
 @development_cors
-# limits the call to publish to once ever 30 seconds
 @throttle_view
 def publish_page(request):
     if not request.POST.get('html', ''):
