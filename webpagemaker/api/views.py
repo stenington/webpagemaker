@@ -16,6 +16,8 @@ from cors import development_cors
 from . import models
 from . import sanitize
 
+from .decorators import throttle_view
+
 # We want to use a relatively short cache for now until we figure out
 # how to effectively invalidate when we update the sanitization
 # algorithm. Once we figure that out, we'll want to use the maximum
@@ -42,6 +44,7 @@ def generate_etag(content, algorithm=hashlib.sha1):
 @csrf_exempt
 @require_POST
 @development_cors
+@throttle_view
 def publish_page(request):
     if not request.POST.get('html', ''):
         return HttpResponseBadRequest("HTML body expected.")
