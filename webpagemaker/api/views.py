@@ -44,7 +44,6 @@ def generate_etag(content, algorithm=hashlib.sha1):
 @csrf_exempt
 @require_POST
 @development_cors
-@throttle_view(methods=['POST'], duration=15)
 def publish_page(request):
     if not request.POST.get('html', ''):
         return HttpResponseBadRequest("HTML body expected.")
