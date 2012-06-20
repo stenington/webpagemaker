@@ -126,11 +126,23 @@ export PATH=$PATH:/usr/local/mysql/bin
 
 If you want to contribute to webpagemaker: great!
 
-As webpagemaker is a github-hosted project, all you have to do is fork the repository to your own account, and start hacking on it. If you have any code you want to have merged into the main codebase, simply make sure it's in a branch of its own in your forked repository, and do a pull request onto our webpagemaker/development branch. We'll review the code, signal any potential problems there might be, and if there are no problems, merge it in!
+As webpagemaker is a github-hosted project, all you have to do is fork the
+repository to your own account, and start hacking on it. If you have any code
+you want to have merged into the main codebase, simply make sure it's in a
+branch of its own in your forked repository, and do a pull request onto our
+webpagemaker/development branch. We'll review the code, signal any potential
+problems there might be, and if there are no problems, merge it in!
 
-If you're interested in hacking on any of the submodules, such as friendlycode or slowparse, you will want to fork those as well, as you should not be modifying the code for a submodule in a project that uses the submodule. Instead, fork them to your account, work on them, and then do pull requests for each code contribution you'd like to have merged into them. Whenever these submodule projects are updated, we updated the webpagemaker submodule pointers to point to the latest stable version.
+If you're interested in hacking on any of the submodules, such as friendlycode
+or slowparse, you will want to fork those as well, as you should not be
+modifying the code for a submodule in a project that uses the submodule.
+Instead, fork them to your account, work on them, and then do pull requests
+for each code contribution you'd like to have merged into them. Whenever these
+submodule projects are updated, we update the webpagemaker submodule pointers
+to point to the latest stable version.
 
-Friendlycode is currently housed at https://github.com/toolness/friendlycode, and Slowparse can be found at https://github.com/toolness/slowparse.
+Friendlycode is currently housed at https://github.com/toolness/friendlycode,
+and Slowparse can be found at https://github.com/toolness/slowparse.
 
 ## Other READMEs
 
