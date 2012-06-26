@@ -31,6 +31,6 @@ is written as straight css. Nothing super exciting here.
 
 Bootstrap's grid is nicer than Less, imo. Twelve divides nicely by three.
 
-Everything should line up with the <a href="javascript:(function()%7Bwindow.javascriptgrid=%7Bcolumns:%7B'default':%7Bcolumns:10%7D,a:%7BminWidth:768,maxWidth:991,columns:8%7D,b:%7BminWidth:480,maxWidth:767,columns:5%7D,c:%7BminWidth:1,maxWidth:479,columns:3%7D%7D,columnWidth:68,gapWidth:24%7D;var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);%7D)();">Less Framework 4 grid</a> preset on [javascriptgrid.org][jsgrid]. Super handy!
+Everything should line up with the <a href="javascript:(function(){window.javascriptgrid={columns:{'default':{columns:10},a:{minWidth:768,maxWidth:991,columns:8},b:{minWidth:480,maxWidth:767,columns:5},c:{minWidth:1,maxWidth:479,columns:3}},columnWidth:68,gapWidth:24};var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);})();">Less Framework 4 grid</a> preset on [javascriptgrid.org][jsgrid]. Super handy!
 
 [jsgrid]: http://javascriptgrid.org/
