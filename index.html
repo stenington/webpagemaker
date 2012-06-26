@@ -43,6 +43,12 @@
     .showlayout code {
       color: #fff;
     }
+
+    .borked {
+      background: #eebcbe;
+      padding: 2px;
+      font-style: normal;
+    }
   </style>
 </head>
 <body>
@@ -136,7 +142,7 @@
   </section>
 
   <section class="container">
-    <h1>Layout elements</h1>
+    <h1>Structural elements</h1>
     <p> I'm not 100% sure what's going on with all of these, but here they are.
     </p>
     <section>
@@ -151,7 +157,7 @@
         </li>
       </ol>
       <p> We use two wrapper divs&mdash;<code>#outer-wrapper</code> and <code>#wrapper</code>&mdash;to satisfy the requirements.
-          Except currently the <code>#outer-wrapper</code> code is broken, so there's no top border. Oops!
+          Except currently the <code>#outer-wrapper</code> code is <em class="borked">broken</em>, so there's no top border. Oops!
       </p>
       <p> Attach background images to <code>#wrapper</code>. Notice that the background moves down as tabzilla opens. 
       </p>
@@ -164,6 +170,8 @@
       <h2>Containers and rows</h2>
       <p> <code>.container</code> divs are a non-responsive fixed width.
           <code>.row</code> divs provide a negative margin to properly align their <code>.span*</code> divs.
+          (You can plonk content straight in a <code>.container</code>, but not a <code>.row</code>
+          without alignment issues.)
       </p>
       <div class="showlayout decontain">
         <div class="container">
@@ -192,6 +200,18 @@
         </div>
       </div>
     </section>
+  </section>
+
+  <section class="container">
+    <h1>Site navigation</h1>
+    <p> Site nav is not particularly high tech. Each page sets its own <code>id</code> on the <code>body</code> tag,
+        and CSS selectors take over from there. We don't expect a lot of new pages, or something fancier and 
+        javascriptier could have been done.
+    </p>
+    <figure>
+      <iframe src="nav/nav-home.html" width="100%" height="300px"></iframe>
+      <figcaption><a href="nav/nav-home.html">Click here</a> to see the example by itself.</figcaption>
+    </figure>
   </section>
 
 <!--
