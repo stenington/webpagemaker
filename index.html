@@ -6,6 +6,14 @@
   <link rel="stylesheet" href="./media/css/sandstone.css">
   <link rel="stylesheet" href="./media/css/wpm.css">
   <style>
+    iframe {
+      border: 1px solid #333;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
     .showgrid .row {
       margin-bottom: 20px;
     }
@@ -13,7 +21,18 @@
       background: #ddd;
       text-align: center;
     }
+    .showgrid .span11,
+    .showgrid .span12 {
+      background: #eebcbe;
+    }
+    .showgrid .fade {
+      background: #eee;
+      color: #999;
+    }
 
+    .decontain {
+      margin-left: -48px;
+    }
     .showlayout .container,
     .showlayout .row,
     .showlayout [class*="span"] {
@@ -27,116 +46,170 @@
   </style>
 </head>
 <body>
-  <div class="container divider showgrid">
+  <section class="container divider showgrid">
     <h1>The grid</h1>
-    <h2>Columns</h2>
-    <p>The grid is a bit odd. Sandstone seems to use a Less 10-column grid with Bootstrap 12-column <code>.span*</code> helpers.</p>
-    <div class="row">
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-      <div class="span1">1</div>
-    </div>
-    <div class="row">
-      <div class="span2">2</div>
-      <div class="span2">2</div>
-      <div class="span2">2</div>
-      <div class="span2">2</div>
-      <div class="span2">2</div>
-    </div>
-    <div class="row">
-      <div class="span3">3</div>
-      <div class="span3">3</div>
-      <div class="span3">3</div>
-    </div>
-    <div class="row">
-      <div class="span4">4</div>
-      <div class="span4">4</div>
-    </div>
-    <div class="row">
-      <div class="span5">5</div>
-      <div class="span5">5</div>
-    </div>
-    <div class="row">
-      <div class="span6">6</div>
-    </div>
-    <div class="row">
-      <div class="span7">7</div>
-    </div>
-    <div class="row">
-      <div class="span8">8</div>
-    </div>
-    <div class="row">
-      <div class="span9">9</div>
-    </div>
-    <div class="row">
-      <div class="span10">10</div>
-    </div>
-    <h2>Centered thirds</h2>
-    <p>Adding <code>.threeColumn</code> to <code>.span3</code> columns adjusts the spacing to divide the layout width evenly.</p>
-    <div class="row">
-      <div class="span3 threeColumn">3</div>
-      <div class="span3 threeColumn">3</div>
-      <div class="span3 threeColumn">3</div>
-    </div>
-    <h2>Offsets</h2>
-    <p>Offsets work like in Bootstrap.</p>
-    <div class="row">
-      <div class="span1 offset1">offset 1</div>
-      <div class="span1 offset2">offset 2</div>
-      <div class="span1 offset3">offset 3</div>
-    </div>
-    <div class="row">
-      <div class="span1 offset9">offset 9</div>
-    </div>
-  </div>
-  <div class="container">
-    <h1>Layout elements</h1>
-    <p>
-      I'm not 100% sure what's going with these. But, here they are.
-    </p>
-  </div>
-  <section class="showlayout">
-    <div class="container">
-      <code>.container</code> 
+    <section>
+      <h2>Columns</h2>
+      <p>The grid is a bit odd. Sandstone seems to use a <a href="javascript:(function()%7Bwindow.javascriptgrid=%7Bcolumns:%7B'default':%7Bcolumns:10%7D,a:%7BminWidth:768,maxWidth:991,columns:8%7D,b:%7BminWidth:480,maxWidth:767,columns:5%7D,c:%7BminWidth:1,maxWidth:479,columns:3%7D%7D,columnWidth:68,gapWidth:24%7D;var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);%7D)();">Less 10-column grid</a> with <a href="javascript:/*_DRAG_ME_INTO_YOUR_BOOKMARK_BAR_*/(function()%7Bwindow.javascriptgrid=%7Bcolumns:%7B%22default%22:%7Bcolumns:12%7D%7D,columnWidth:60,gapWidth:20%7D;var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);%7D)();">Bootstrap 12-column</a> <code>.span*</code> helpers.</p>
       <div class="row">
-        <code>.row</code>
-        <div class="span10">
-          <code>.span10</code>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+        <div class="span1">1</div>
+      </div>
+      <div class="row">
+        <div class="span2">2</div>
+        <div class="span2">2</div>
+        <div class="span2">2</div>
+        <div class="span2">2</div>
+        <div class="span2">2</div>
+      </div>
+      <div class="row">
+        <div class="span3">3</div>
+        <div class="span3">3</div>
+        <div class="span3">3</div>
+      </div>
+      <div class="row">
+        <div class="span4">4</div>
+        <div class="span4">4</div>
+      </div>
+      <div class="row">
+        <div class="span5">5</div>
+        <div class="span5">5</div>
+      </div>
+      <div class="row">
+        <div class="span6">6</div>
+      </div>
+      <div class="row">
+        <div class="span7">7</div>
+      </div>
+      <div class="row">
+        <div class="span8">8</div>
+      </div>
+      <div class="row">
+        <div class="span9">9</div>
+      </div>
+      <div class="row">
+        <div class="span10">10</div>
+      </div>
+      <div class="row error"> 
+        <div class="span11">11<sup>*</sup></div>
+      </div>
+      <div class="row error"> 
+        <div class="span12">12<sup>*</sup></div>
+      </div>
+      <small>* wat?</small>
+    </section>
+    <section>
+      <h2>Centered thirds</h2>
+      <p>Adding <code>.threeColumn</code> to <code>.span3</code> columns adjusts the spacing to divide the layout width evenly.</p>
+      <div class="row">
+        <div class="span10 fade">10</div>
+      </div>
+      <div class="row">
+        <div class="span3 threeColumn">3</div>
+        <div class="span3 threeColumn">3</div>
+        <div class="span3 threeColumn">3</div>
+      </div>
+      <div class="row">
+        <div class="span10 fade">10</div>
+      </div>
+    </section>
+    <section>
+      <h2>Offsets</h2>
+      <p>Offsets work like in Bootstrap.</p>
+      <div class="row">
+        <div class="span1 offset1">offset 1</div>
+        <div class="span1 offset2">offset 2</div>
+        <div class="span1 offset3">offset 3</div>
+      </div>
+      <div class="row">
+        <div class="span1 offset9">offset 9</div>
+      </div>
+    </section>
+  </section>
+
+  <section class="container">
+    <h1>Layout elements</h1>
+    <p> I'm not 100% sure what's going on with all of these, but here they are.
+    </p>
+    <section>
+      <h2>Wrappers</h2>
+      <p> <a href="https://github.com/mozilla/tabzilla">Tabzilla</a> demands that:
+      </p>
+      <ol>
+        <li> Background images must not be attached to the <body> element. </li>
+        <li> Absolutely positioned elements must not be positioned relative to the <body> element. </li>
+        <li> An element other than the <body> should add a 2 pixel white border to the top of the page 
+             (<code>border-top: 2px solid #fff;</code>)
+        </li>
+      </ol>
+      <p> We use two wrapper divs&mdash;<code>#outer-wrapper</code> and <code>#wrapper</code>&mdash;to satisfy the requirements.
+          Except currently the <code>#outer-wrapper</code> code is broken, so there's no top border. Oops!
+      </p>
+      <p> Attach background images to <code>#wrapper</code>. Notice that the background moves down as tabzilla opens. 
+      </p>
+      <figure>
+        <iframe src="wrappers.html" width="100%" height="300px"></iframe>
+        <figcaption><a href="wrappers.html">Click here</a> to see the example by itself.</figcaption>
+      </figure>
+    </section>
+    <section>
+      <h2>Containers and rows</h2>
+      <p> <code>.container</code> divs are a non-responsive fixed width.
+          <code>.row</code> divs provide a negative margin to properly align their <code>.span*</code> divs.
+      </p>
+      <div class="showlayout decontain">
+        <div class="container">
+          <code>.container</code> 
+          <div class="row">
+            <code>.row</code>
+            <div class="span10">
+              <code>.span10</code>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <div class="container">
-    <p><code>.container</code> divs are a non-responsive fixed width.</p>
-    <p><code>.row</code> divs provide a negative margin to properly align their <code>.span*</code> divs inside.</p>
-    <h2>Dividers</h2>
-  </div>
-  <div class="container divider">
-    <p>This <code>.container</code> is also a <code>.divider</code>, which you can see below here...</p>
-  </div>
-  <div class="container">
-    <p>
-      ...and above here. I thought there was supposed to be only a single container per page though, so 
-      I'm a bit confused.
-    </p>
-  </div>
-  <div class="container">
-    <h1>Page styles</h1>
-    <div class="row">
-      <div class="hero-unit span10">
-        <hgroup class="large">
-          <h2>Style guides are awesome</h2>
-          <h1>Style guide</h1>
-        </hgroup>
-        <p>Above is a hero-unit div with a large class hgroup with h2 and h1 headers.</p>
+    </section>
+    <section>
+      <h2>Dividers</h2>
+      <div class="decontain">
+        <div class="container divider">
+          <p> This <code>.container</code> is also a <code>.divider</code>, which means there's spacing and 
+              a horizontal rule below here...
+          </p>
+        </div>
+        <div class="container">
+          <p> ...and above here. I thought there was supposed to be only a single container per page though, so 
+              I'm a bit confused.
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </section>
+
+<!--
+  <section class="container">
+    <h1>Page styles</h1>
+    <p>Let's get in to some page styles.</p>
+    <section>
+      <h2>Hero unit</h2>
+      <div class="row">
+        <div class="hero-unit span10">
+          <hgroup class="large">
+            <h2>Style guides are awesome</h2>
+            <h1>Style guide</h1>
+          </hgroup>
+          <p>Above is a hero-unit div with a large class hgroup with h2 and h1 headers.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+-->
 </body>
