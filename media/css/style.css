@@ -45,5 +45,17 @@ section {
 .backdrop {
   background: #e8fcf2;
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
+/* We have to redefine these here to change the url path, which seems dumb. */
+  .view-style a.list {
+    background: url(../img/list_sprite.png) no-repeat scroll left top;
+  }
+  .view-style a.thumbs {
+    background: url(../img/thumb_sprite.png) no-repeat scroll left top;
+  }
+
+.pt {
+  padding-top: 1em;
+}

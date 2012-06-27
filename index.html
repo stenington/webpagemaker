@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Stylish!</title>
+  <link rel="stylesheet" href="./media/css/opensans/stylesheet.css">
   <link rel="stylesheet" href="./media/css/sandstone.css">
   <link rel="stylesheet" href="./media/css/wpm.css">
   <link rel="stylesheet" href="./media/css/style.css">
@@ -12,7 +13,7 @@
     <h1>The grid</h1>
     <section>
       <h2>Columns</h2>
-      <p>The grid is a bit odd. Sandstone seems to use a <a href="javascript:(function()%7Bwindow.javascriptgrid=%7Bcolumns:%7B'default':%7Bcolumns:10%7D,a:%7BminWidth:768,maxWidth:991,columns:8%7D,b:%7BminWidth:480,maxWidth:767,columns:5%7D,c:%7BminWidth:1,maxWidth:479,columns:3%7D%7D,columnWidth:68,gapWidth:24%7D;var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);%7D)();">Less 10-column grid</a> with <a href="javascript:/*_DRAG_ME_INTO_YOUR_BOOKMARK_BAR_*/(function()%7Bwindow.javascriptgrid=%7Bcolumns:%7B%22default%22:%7Bcolumns:12%7D%7D,columnWidth:60,gapWidth:20%7D;var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);%7D)();">Bootstrap 12-column</a> <code>.span*</code> helpers.</p>
+      <p>The grid is a bit odd. Sandstone seems to use a <a href="javascript:(function()%7Bwindow.javascriptgrid=%7Bcolumns:%7B%22default%22:%7Bcolumns:10%7D%7D,columnWidth:68,gapWidth:24%7D;var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);%7D)();">Less 10-column grid</a> with <a href="javascript:/*_DRAG_ME_INTO_YOUR_BOOKMARK_BAR_*/(function()%7Bwindow.javascriptgrid=%7Bcolumns:%7B%22default%22:%7Bcolumns:12%7D%7D,columnWidth:60,gapWidth:20%7D;var%20script=document.createElement('script');script.src='http://jsg.javascriptgrid.org/jsg.js';document.getElementsByTagName('HEAD')%5B0%5D.appendChild(script);%7D)();">Bootstrap 12-column</a> <code>.span*</code> helpers.</p>
       <div class="row">
         <div class="span1">1</div>
         <div class="span1">1</div>
@@ -123,6 +124,52 @@
       </figure>
     </section>
     <section>
+      <h2>Header</h2>
+      <p>
+        The header is a bit verbosely defined, as seen on the left. The right-hand alternative 
+        <em class="todo">might be preferable</em>:
+      </p>
+      <figure>
+        <div class="row">
+          <div class="span5 backdrop">
+            <h3>Current</h3>
+            <code><pre>
+  &lt;section id="header"&gt;
+    &lt;header id="masthead"&gt;
+      &lt;div class="row"&gt;
+        &lt;div class="span10"&gt;
+          ...
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+  &lt;/section&gt;</pre></code> 
+          </div>
+          <div class="span5 backdrop">
+            <h3>Better?</h3>
+            <code><pre>
+  &lt;header&gt;
+    &lt;div id="masthead"&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/header&gt;</code></pre>
+          </div>
+        </div>
+      </figure>
+      <p class="pt">
+        I think the <em class="todo"><code>.row</code> and <code>.span10</code> can be dropped,</em> but I'm not sure. 
+        The <code>section</code> applies the page-width visual styles because <code>#masthead</code> acts like a
+        <code>.container</code> in Sandstone.
+      </p>
+      <p>
+        Also, the header <em class="todo">box-shadow interferes a little with Tabzilla</em> when a top border is 
+        actually in place. There shouldn't be a gray dividing line.
+      </p>
+      <figure>
+        <iframe src="header.html" width="100%" height="300px"></iframe>
+        <figcaption><a href="header.html">Click here</a> to see the example by itself.</figcaption>
+      </figure>
+    </section>
+    <section>
       <h2>Containers and rows</h2>
       <p> <code>.container</code> divs are a non-responsive fixed width.
           <code>.row</code> divs provide a negative margin to properly align their <code>.span*</code> divs.
@@ -156,6 +203,36 @@
         </div>
       </div>
     </section>
+    <section>
+      <h2>Footer</h2>
+      <p>
+        Like the header, the footer's <em class="todo">a bit noisy</em> though not quite as bad. (It actually 
+        uses the <code>.row</code> to contain several columns.)
+      </p>
+      <figure>
+        <div class="row">
+          <div class="span5 backdrop">
+            <h3>Current</h3>
+            <code><pre>
+  &lt;section id="page-bottom"&gt;
+    &lt;footer id="colophon"&gt;
+      ...
+    &lt;/footer&gt;
+  &lt;/section&gt;</pre></code> 
+          </div>
+          <div class="span5 backdrop">
+            <h3>Better?</h3>
+            <code><pre>
+  &lt;footer&gt;
+    &lt;div id="colophon"&gt;
+      ...
+    &lt;/div&gt;
+  &lt;/footer&gt;</code></pre>
+          </div>
+        </div>
+      </figure>
+      
+    </section>
   </section>
 
   <section class="container divider">
@@ -188,138 +265,147 @@
       </p>
       <script src="./media/js/jquery.js"></script>
       <script src="./media/js/projects.js"></script>
-      <div class="decontain">
-        <div class="container backdrop">
-          <figure>
-            <div class="row">
-              <div class="span10 view-style">                       
-                View as:                                            
-                <ul>
-                  <li><a id="js-list" class="list">List</a></li>                                             
-                  <li><a id="js-thumbs" class="thumbs">Thumbnails</a></li>                                             
-                </ul>                                               
-              </div>                                                
-            </div>
-            <ul class="projects show-list">
-              <li class="project">                                                              
-                <div class="thumb">                                                             
-                  <a href="#">                                                        
-                    <img src="http://placehold.it/212x130" alt="title">                                   
-                  </a>
-                  <div class="caption">
-                    <p>By author</p>                                                    
-                  </div>                                                                      
-                </div>
-                <div class="info">
-                  <h3 class="title">Coffee is great</h3>
-                  <p class="description">
-                    Blue mountain, that grounds skinny caramelization a that iced. Brewed crema 
-                    strong and organic, strong and whipped skinny turkish. Iced, shop spoon fair 
-                    trade robust lungo black americano percolator. Est strong siphon carajillo that dripper dark.
-                  </p>
-                  <p><a href="#" class="button-blue">Make project</a>
-                </div>
-              </li>
-              <li class="project">                                                              
-                <div class="thumb">                                                             
-                  <a href="#">                                                        
-                    <img src="http://placehold.it/212x130" alt="title">                                   
-                  </a>
-                  <div class="caption">
-                    <p>By author</p>                                                    
-                  </div>                                                                      
-                </div>
-                <div class="info">
-                  <h3 class="title">It's very tasty</h3>
-                  <p class="description">
-                    Bar single origin grounds java id sweet coffee ristretto. Cream, instant, pumpkin 
-                    spice viennese strong black sweet est decaffeinated mocha.
-                  </p>
-                  <p><a href="#" class="button-blue">Make project</a>
-                </div>
-              </li>
-            </ul>
-            <p style="clear:left;">
-              Note that this has to <code>clear:left</code> for the thumb view. 
-              Maybe we want to <em class="todo">add a clearfix</em>?
-            </p>
-          </figure>
-        </div>
+      <div class="decontain container backdrop">
+        <figure>
+          <div class="row">
+            <div class="span10 view-style">                       
+              View as:                                            
+              <ul>
+                <li><a id="js-list" class="list">List</a></li>                                             
+                <li><a id="js-thumbs" class="thumbs">Thumbnails</a></li>                                             
+              </ul>                                               
+            </div>                                                
+          </div>
+          <ul class="projects show-list">
+            <li class="project">                                                              
+              <div class="thumb">                                                             
+                <a href="#">                                                        
+                  <img src="http://placehold.it/212x130" alt="title">                                   
+                </a>
+                <div class="caption">
+                  <p>By author</p>                                                    
+                </div>                                                                      
+              </div>
+              <div class="info">
+                <h3 class="title">Coffee is great</h3>
+                <p class="description">
+                  Blue mountain, that grounds skinny caramelization a that iced. Brewed crema 
+                  strong and organic, strong and whipped skinny turkish. Iced, shop spoon fair 
+                  trade robust lungo black americano percolator. Est strong siphon carajillo that dripper dark.
+                </p>
+                <p><a href="#" class="button-blue">Make project</a>
+              </div>
+            </li>
+            <li class="project">                                                              
+              <div class="thumb">                                                             
+                <a href="#">                                                        
+                  <img src="http://placehold.it/212x130" alt="title">                                   
+                </a>
+                <div class="caption">
+                  <p>By author</p>                                                    
+                </div>                                                                      
+              </div>
+              <div class="info">
+                <h3 class="title">It's very tasty</h3>
+                <p class="description">
+                  Bar single origin grounds java id sweet coffee ristretto. Cream, instant, pumpkin 
+                  spice viennese strong black sweet est decaffeinated mocha.
+                </p>
+                <p><a href="#" class="button-blue">Make project</a>
+              </div>
+            </li>
+          </ul>
+          <p style="clear:left;">
+            Note that this has to <code>clear:left</code> for the thumb view. 
+            Maybe we want to <em class="todo">add a clearfix</em>?
+          </p>
+        </figure>
       </div>
     </section>
     <section>
       <h2>Gallery page</h2>
-      <p>The gallery page is a bit simpler.</p>
-      <div class="decontain">
-        <div class="container backdrop">
-          <figure>
-            <ul class="thumbnails">
-              <li class="span3 threeColumn">                        
-                <div class="thumbnail">                             
-                  <a href="#">                             
-                    <img src="http://placehold.it/252x175" alt="">                    
-                  </a>                                              
-                  <div class="caption">                             
-                    <h5 class="title">I made this!</h5>              
-                    <p>By Some Author</p>                          
-                  </div>                                            
-                  <a href="#" class="button button-orange">Remix</a>
-                </div>                                              
-              </li>                                                 
-              <li class="span3 threeColumn">                        
-                <div class="thumbnail">                             
-                  <a href="#">                             
-                    <img src="http://placehold.it/252x175" alt="">                    
-                  </a>                                              
-                  <div class="caption">                             
-                    <h5 class="title">I made this!</h5>              
-                    <p>By Some Author</p>                          
-                  </div>                                            
-                  <a href="#" class="button button-orange">Remix</a>
-                </div>                                              
-              </li>                                                 
-              <li class="span3 threeColumn">                        
-                <div class="thumbnail">                             
-                  <a href="#">                             
-                    <img src="http://placehold.it/252x175" alt="">                    
-                  </a>                                              
-                  <div class="caption">                             
-                    <h5 class="title">I made this!</h5>              
-                    <p>By Some Author</p>                          
-                  </div>                                            
-                  <a href="#" class="button button-orange">Remix</a>
-                </div>                                              
-              </li>                                                 
-              <li class="span3 threeColumn">                        
-                <div class="thumbnail">                             
-                  <a href="#">                             
-                    <img src="http://placehold.it/252x175" alt="">                    
-                  </a>                                              
-                  <div class="caption">                             
-                    <h5 class="title">I made this!</h5>              
-                    <p>By Some Author</p>                          
-                  </div>                                            
-                  <a href="#" class="button button-orange">Remix</a>
-                </div>                                              
-              </li>                                                 
-              <li class="span3 threeColumn">                        
-                <div class="thumbnail">                             
-                  <a href="#">                             
-                    <img src="http://placehold.it/252x175" alt="">                    
-                  </a>                                              
-                  <div class="caption">                             
-                    <h5 class="title">I made this!</h5>              
-                    <p>By Some Author</p>                          
-                  </div>                                            
-                  <a href="#" class="button button-orange">Remix</a>
-                </div>                                              
-              </li>                                                 
-            </ul>  
-          </figure>
-        </div>
+      <p>
+        The gallery page is a bit simpler. Some of the CSS <em class="todo">looks for a 
+        <code>#gallery</code> container</em> though, which is a bit lame.
+      </p>
+      <div class="decontain container backdrop">
+        <figure id="gallery">
+          <ul class="thumbnails">
+            <li class="span3 threeColumn">                        
+              <div class="thumbnail">                             
+                <a href="#">                             
+                  <img src="http://placehold.it/252x175" alt="">                    
+                </a>                                              
+                <div class="caption">                             
+                  <h5 class="title">I made this!</h5>              
+                  <p>By Some Author</p>                          
+                </div>                                            
+                <a href="#" class="button button-orange">Remix</a>
+              </div>                                              
+            </li>                                                 
+            <li class="span3 threeColumn">                        
+              <div class="thumbnail">                             
+                <a href="#">                             
+                  <img src="http://placehold.it/252x175" alt="">                    
+                </a>                                              
+                <div class="caption">                             
+                  <h5 class="title">I made this!</h5>              
+                  <p>By Some Author</p>                          
+                </div>                                            
+                <a href="#" class="button button-orange">Remix</a>
+              </div>                                              
+            </li>                                                 
+            <li class="span3 threeColumn">                        
+              <div class="thumbnail">                             
+                <a href="#">                             
+                  <img src="http://placehold.it/252x175" alt="">                    
+                </a>                                              
+                <div class="caption">                             
+                  <h5 class="title">I made this!</h5>              
+                  <p>By Some Author</p>                          
+                </div>                                            
+                <a href="#" class="button button-orange">Remix</a>
+              </div>                                              
+            </li>                                                 
+            <li class="span3 threeColumn">                        
+              <div class="thumbnail">                             
+                <a href="#">                             
+                  <img src="http://placehold.it/252x175" alt="">                    
+                </a>                                              
+                <div class="caption">                             
+                  <h5 class="title">I made this!</h5>              
+                  <p>By Some Author</p>                          
+                </div>                                            
+                <a href="#" class="button button-orange">Remix</a>
+              </div>                                              
+            </li>                                                 
+            <li class="span3 threeColumn">                        
+              <div class="thumbnail">                             
+                <a href="#">                             
+                  <img src="http://placehold.it/252x175" alt="">                    
+                </a>                                              
+                <div class="caption">                             
+                  <h5 class="title">I made this!</h5>              
+                  <p>By Some Author</p>                          
+                </div>                                            
+                <a href="#" class="button button-orange">Remix</a>
+              </div>                                              
+            </li>                                                 
+          </ul>  
+        </figure>
+        <p style="clear:left;">
+          The fact that this example is in <code>&lt;figure&gt;</code> tags 
+          <em class="todo">breaks the captions slightly</em>. That's silly and 
+          should be fixed. 
+        </p>
+        <p> 
+          And again, <em class="todo">clearfix</em> needed. 
+        </p>
+        </p>
       </div>
     </section>
   </section>
+
 <!--
   <section class="container">
     <h1>Page styles</h1>
@@ -338,4 +424,6 @@
     </section>
   </section>
 -->
+<!-- LiveReload -->
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
