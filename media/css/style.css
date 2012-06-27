@@ -42,7 +42,8 @@ section {
   font-style: normal;
 }
 
-.light-bg {
+.backdrop {
   background: #e8fcf2;
+  padding-top: 10px;
 }
 
