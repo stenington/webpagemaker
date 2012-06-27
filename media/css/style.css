@@ -1,0 +1,48 @@
+iframe {
+  border: 1px solid #333;
+}
+
+section {
+  margin-bottom: 48px;
+}
+
+.showgrid .row {
+  margin-bottom: 20px;
+}
+.showgrid [class*="span"] {
+  background: #ddd;
+  text-align: center;
+}
+.showgrid .span11,
+.showgrid .span12 {
+  background: #eebcbe;
+}
+.showgrid .fade {
+  background: #eee;
+  color: #999;
+}
+
+.decontain {
+  margin-left: -48px;
+}
+.showlayout .container,
+.showlayout .row,
+.showlayout [class*="span"] {
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.showlayout,
+.showlayout code {
+  color: #fff;
+}
+
+.todo {
+  background: #eebcbe;
+  padding: 2px;
+  font-style: normal;
+}
+
+.light-bg {
+  background: #e8fcf2;
+}
+

@@ -5,51 +5,7 @@
   <title>Stylish!</title>
   <link rel="stylesheet" href="./media/css/sandstone.css">
   <link rel="stylesheet" href="./media/css/wpm.css">
-  <style>
-    iframe {
-      border: 1px solid #333;
-    }
-
-    section {
-      margin-bottom: 48px;
-    }
-
-    .showgrid .row {
-      margin-bottom: 20px;
-    }
-    .showgrid [class*="span"] {
-      background: #ddd;
-      text-align: center;
-    }
-    .showgrid .span11,
-    .showgrid .span12 {
-      background: #eebcbe;
-    }
-    .showgrid .fade {
-      background: #eee;
-      color: #999;
-    }
-
-    .decontain {
-      margin-left: -48px;
-    }
-    .showlayout .container,
-    .showlayout .row,
-    .showlayout [class*="span"] {
-      margin-bottom: 20px;
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-    .showlayout,
-    .showlayout code {
-      color: #fff;
-    }
-
-    .borked {
-      background: #eebcbe;
-      padding: 2px;
-      font-style: normal;
-    }
-  </style>
+  <link rel="stylesheet" href="./media/css/style.css">
 </head>
 <body>
   <section class="container divider showgrid">
@@ -104,10 +60,10 @@
       <div class="row">
         <div class="span10">10</div>
       </div>
-      <div class="row error"> 
+      <div class="row"> 
         <div class="span11">11<sup>*</sup></div>
       </div>
-      <div class="row error"> 
+      <div class="row"> 
         <div class="span12">12<sup>*</sup></div>
       </div>
       <small>* wat?</small>
@@ -141,7 +97,7 @@
     </section>
   </section>
 
-  <section class="container">
+  <section class="container divider">
     <h1>Structural elements</h1>
     <p> I'm not 100% sure what's going on with all of these, but here they are.
     </p>
@@ -157,7 +113,7 @@
         </li>
       </ol>
       <p> We use two wrapper divs&mdash;<code>#outer-wrapper</code> and <code>#wrapper</code>&mdash;to satisfy the requirements.
-          Except currently the <code>#outer-wrapper</code> code is <em class="borked">broken</em>, so there's no top border. Oops!
+          Except currently the <code>#outer-wrapper</code> code is <em class="todo">broken</em>, so there's no top border. Oops!
       </p>
       <p> Attach background images to <code>#wrapper</code>. Notice that the background moves down as tabzilla opens. 
       </p>
@@ -202,7 +158,7 @@
     </section>
   </section>
 
-  <section class="container">
+  <section class="container divider">
     <h1>Site navigation</h1>
     <p> Site nav is not particularly high tech. Each page sets its own <code>id</code> on the <code>body</code> tag,
         and CSS selectors take over from there. We don't expect a lot of new pages, or something fancier and 
@@ -214,6 +170,87 @@
     </figure>
   </section>
 
+  <section class="container divider">
+    <h1>Gallery viewing</h1>
+    <p>
+      Thimble <s>has</s> will have two galleries&mdash;Projects and Gallery&mdash;for 
+      learning projects and user creations respectively. They each look a little different.
+      The markup for both is Bootstrap-inspired, though Bootstrap probably does extra cool
+      things I don't know about and didn't steal.
+    <section>
+      <h2>Projects page</h2>
+      <p>
+        The Projects gallery has both list and thumbnail views, togglable by setting
+        <code>.show-list</code> or <code>.show-thumbs</code> on the containing
+        <code>&lt;ul class="projects"&gt;</code>. <code>projects.js</code> will do that for you
+        in a very basic sort of way, if you have jQuery already included on the page. (Should
+        probably <em class="todo">remove the <code>console.log()</code> debug</em> though.)
+      </p>
+      <script src="./media/js/jquery.js"></script>
+      <script src="./media/js/projects.js"></script>
+      <div class="decontain">
+      <div class="container light-bg">
+      <figure>
+        <div class="row">
+          <div class="span10 view-style">                       
+            View as:                                            
+            <ul>
+              <li><a id="js-list" class="list">List</a></li>                                             
+              <li><a id="js-thumbs" class="thumbs">Thumbnails</a></li>                                             
+            </ul>                                               
+          </div>                                                
+        </div>
+        <ul class="projects show-list">
+          <li class="project">                                                              
+            <div class="thumb">                                                             
+              <a href="#">                                                        
+                <img src="http://placehold.it/212x130" alt="title">                                   
+              </a>
+              <div class="caption">
+                <p>By author</p>                                                    
+              </div>                                                                      
+            </div>
+            <div class="info">
+              <h3 class="title">Coffee is great</h3>
+              <p class="description">
+                Blue mountain, that grounds skinny caramelization a that iced. Brewed crema 
+                strong and organic, strong and whipped skinny turkish. Iced, shop spoon fair 
+                trade robust lungo black americano percolator. Est strong siphon carajillo that dripper dark.
+              </p>
+              <p><a href="#" class="button-blue">Make project</a>
+            </div>
+          </li>
+          <li class="project">                                                              
+            <div class="thumb">                                                             
+              <a href="#">                                                        
+                <img src="http://placehold.it/212x130" alt="title">                                   
+              </a>
+              <div class="caption">
+                <p>By author</p>                                                    
+              </div>                                                                      
+            </div>
+            <div class="info">
+              <h3 class="title">It's very tasty</h3>
+              <p class="description">
+                Bar single origin grounds java id sweet coffee ristretto. Cream, instant, pumpkin 
+                spice viennese strong black sweet est decaffeinated mocha.
+              </p>
+              <p><a href="#" class="button-blue">Make project</a>
+            </div>
+          </li>
+        </ul>
+        <p style="clear:left;">
+          Note that this has to <code>clear:left</code> for the thumb view. 
+          Maybe we want to <em class="todo">add a clearfix</em>?
+        </p>
+      </figure>
+      </div>
+      </div>
+    </section>
+    <section>
+      <h2>Gallery page</h2>
+    </section>
+  </section>
 <!--
   <section class="container">
     <h1>Page styles</h1>
