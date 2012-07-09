@@ -28,7 +28,7 @@ ALLOWED_ATTRS = {
     # TODO: We should probably add to this. What meta attributes can't
     # be abused for SEO purposes?
     "meta": ["charset", "name", "content"],
-    "*": ["class", "id"],
+    "*": ["class", "id", "style"],
     "img": ["src", "width", "height"],
     "a": ["href"],
     "base": ["href"],
@@ -39,6 +39,10 @@ ALLOWED_ATTRS = {
 if bleach.VERSION < (1, 1, 1):
     raise Exception("Please use simon wex's bleach fork for now: " +
                     "https://github.com/simonwex/bleach.git")
+
+# TODO: Eventually, we should upstream a patch to bleach that allows
+# CSS to go unsanitized, rather than monkeypatching the fix in like this.
+bleach.BleachSanitizer.sanitize_css = lambda self, style: style
 
 def _comment_sanitizing_stream(stream):
     for item in stream:
