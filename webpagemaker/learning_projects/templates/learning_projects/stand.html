@@ -2,7 +2,7 @@
 
 <!--
 ========================================================
-Is there something that you are passionate about and always quick to defend? Well with Thimble you can use your HTML and CSS swagger to mix and match elements to create a webpage that encourages people to TAKE A STAND FOR/AGAINST something that you believe in. Here are some suggestions of what your webpage/meme can be about: bullying, LGBT rights, women’s rights, Occupy Wall Street, racism, freedom, abuse, texting & driving, peer pressure, etc. You can also PUBLISH & SHARE your webage with your friends on Facebook and Twitter. HAVE FUN!!!
+Is there something that you are passionate about and always quick to defend? Well with Thimble you can use your HTML and CSS swagger to mix and match elements to create a webpage that encourages people to TAKE A STAND FOR something that you believe in. Here are some suggestions of what your webpage/meme can be about: bullying, LGBT rights, women’s rights, Occupy Wall Street, racism, freedom, abuse, texting & driving, peer pressure, etc. You can also PUBLISH & SHARE your webage with your friends on Facebook and Twitter. HAVE FUN!!!
 ========================================================
 -->
 
@@ -11,7 +11,7 @@ Let's get started.
 
 1) READ THROUGH THE COMMENTS. This is a comment. Everything inside of this tag for HTML or '/*' for CSS, is not processed as code, but as text comments about the code. For this project the comments will give you instructions, hints and guides to completing the project, so skim down through the comments to get an understanding of what you are being asked to do.
 
-2) GET ORIENTED IN THE CODE. HTML is made up of tags that look like this <p> </p>. The tags tell you something about the information contained between them. You can click on the tags below to learn more about them. You can also click on the site on the right hand pane to see the code highlighted on the left.
+2) GET ORIENTED IN THE CODE. HTML is made up of tags that look like this <p> </p>. The tags tell you something about the information contained between them. You can click on the tags below to learn more about them. You can also click on the site on the right hand pane to see the code highlighted on the left. 
 -->
 
 <html>
@@ -41,16 +41,16 @@ Now that you are a master of header tags, you can give your webpage a sub-header
 
 <!--
 Now change out the images below with images of your choice. You can also choose fewer images or add more. Images are defined in HTML with the <img> tag. <img> is one of the few weird tags that you don't have to close. Every <img> tag has a src attribute where you include the URL to the image you want to use. To change the image below, replace the
-content  within the quotes with a url of another image. You can also change the  size of the image using the width and the height. If you are looking for images a good place to start is google.com. To get the URL of an image, right click or CTRL-click and select "Copy Image Address", or within Flickr, select Share, the copy the image URL.
+content  within the quotes with a url of another image. You can also change the  size of the image using the width and the height. If you are looking for images a good place to start is google.com. To get the URL of an image, right click (or CTRL-click on a Mac) and select "Copy Image Address". If you find an image on Flickr, you can select Share and copy the image URL from the dropdown.
 -->
 
-    <img src="http://fc00.deviantart.net/fs71/i/2010/205/4/5/Take_A_Stand_logo_by_InflatableBanana.png" width="320" height="350">
+    <img src="{{ HTTP_STATIC_URL }}stand/Take_A_Stand_logo_by_InflatableBanana.png" width="320" height="350">
+    
+    <img src="{{ HTTP_STATIC_URL }}stand/tumblr_m4syw6KCgN1rvdgg9o1_500.jpg">
 
-    <img src="http://25.media.tumblr.com/tumblr_m4syw6KCgN1rvdgg9o1_500.jpg">
+    <img src="{{ HTTP_STATIC_URL }}stand/stand%20right%20even%20if%20youre%20standing%20alone.jpg" >
 
-    <img src="http://1.bp.blogspot.com/-yEOOEdOQGXw/TwiLOvUm8nI/AAAAAAAAD-g/AUtOaeE7nhw/s640/stand+right+even+if+you%2527re+standing+alone.jpg" >
-
-    <img src="http://blog.amandacollins.me/wp-content/uploads/2011/12/be-the-change-you-want-to-see-in-the-world.jpg">
+    <img src="{{ HTTP_STATIC_URL }}stand/be-the-change-you-want-to-see-in-the-world.jpg">
 
 <style>
 /*
@@ -58,9 +58,9 @@ You've played with HTML, now try playing around with the look of your page. To d
 */
 
     body {
-	background-color: black;
-	color: white;
-	text-align: center;
+        background-color: black;
+        color: white;
+        text-align: center;
     }
 
 /*
@@ -68,33 +68,33 @@ Try tinkering with the different kinds of style attributes. Maybe you want to ch
 */
 
     h1, h2 {
-	z-index: 100;
-	margin: 0 auto;
+        z-index: 100;
+        margin: 0 auto;
     }
 
 /*
-Finally, let's fine tune your webpage. Change the position of the headings by adjusting the numbers in "padding-top" attribute. Here they are listed as px- which stands for pixels. Make incremental changes to see how the headings move. You can also change the colors, fonts, etc.
+Finally, let's fine tune your webpage. Change the position of the headings by adjusting the numbers in "padding-top" attribute. Here they are listed as "px" which stands for pixels. Make incremental changes to see how the headings move. You can also change the colors, fonts, etc.
 */
 
     h1 {
-	color: white;
-	font-family: Times New Romans;
-	font-size: 55px;
-	padding-top: 50px;
-	padding-bottom: 100px;
+        color: white;
+        font-family: "Times New Roman";
+        font-size: 55px;
+        padding-top: 50px;
+        padding-bottom: 100px;
     }
 
     h2 {
-	color: white;
-	font-family: Sans Serif;
-	font-size: 30px;
-	padding-top: 50px;
-	padding-bottom: 25px;
+        color: white;
+        font-family: sans-serif;
+        font-size: 30px;
+        padding-top: 50px;
+        padding-bottom: 25px;
     }
 
 </style>
 
-<!--
+<!-- 
 Note, the <style> tag is closed so you are back working in HTML instead of CSS.
 -->
 
@@ -117,15 +117,16 @@ Hint: Hyperlinks in HTML use the <a> tag and look something like this:
 <!--
 ================================================
 And with that, you've created your webpage! Watch out, Internet! Here are a few things you learned while building your webpage: how to set the title of a webpage (<title> tag), work with images (<img> tag), organize your text with headers (<h1>, <h2>, etc.) and start to get down and dirty in CSS to change the look and feel of your page. Good webmaking and speaking out, my friend!
-===================================================
+================================================
 -->
 
 <!--
 ================================================
-Last but certainly not least, publish your page using the Publish button in the upper right corner. You can copy the URL and then share it with The Hive Learning Network NYC either on our Facebook page: http://www.facebook.com/HiveLearningNYC or on Twitter @HiveLearningNYC. We really hope that you had a great time creating this webpage and learned a few handy new things.
-==============================
+Last but certainly not least, publish your page using the Publish button in the upper right corner. You can copy the URL and then share it with The Hive Learning Network NYC either on our Facebook page: http://www.facebook.com/HiveLearningNYC or on Twitter @HiveLearningNYC. We really hope that you had a great time creating this webpage and learned a few handy new things. 
+================================================
 -->
 
 </body>
 
 </html>
+ 
