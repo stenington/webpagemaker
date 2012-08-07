@@ -75,6 +75,10 @@ LEARNING_PROJECTS_DROPBOXES = {
     'nesta': {
         'static': 'sn',
         'url': 'http://labs.toolness.com/temp/nesta/'
+    },
+    'tgl': {
+        'static': 'st',
+        'url': 'http://tgl.toolness.org:3000/static/'
     }
 }
 
