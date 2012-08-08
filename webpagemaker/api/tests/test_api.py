@@ -84,6 +84,10 @@ class PublishTests(test_utils.TestCase):
         response = self.client.get(response.content)
         eq_(response['x-original-url'], 'http://blah.com/')
 
+    def test_published_pages_are_embeddable(self):
+        response = self._publish_and_verify(SIMPLE_HTML)
+        ok_('X-Frame-Options' not in response)
+
     def test_void_content_is_rejected(self):
         response = self.client.post('/api/page', {'html': ''})
         eq_(response.status_code, 400)

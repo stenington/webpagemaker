@@ -91,6 +91,7 @@ def get_page(request, page_id):
         if page.original_url:
             response['X-Original-URL'] = page.original_url
         response['X-Robots-Tag'] = 'noindex, nofollow'
+        response.no_frame_options = True
         
         # generate an etag from the sha1 hash of the page contents
         response['ETag'] = generate_etag(page.html)
