@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}"
+      class="deployment-type-{{ DEPLOYMENT_TYPE }}">
+  <head>
+    <meta charset="utf-8">
+    <base target="_blank">
+
+    <title>Mozilla Thimble</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/friendlycode.css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/thimble.css">
+  </head>
+  <body>
+     <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
+
+    <header id="thimble-header">
+      <div class="logo">
+        <a href="/">
+          <img src="{{ MEDIA_URL }}friendlycode/img/thimble-logo.png" alt="Mozilla Thimble">
+        </a>
+      </div>
+    </header>
+
+    <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
+
+    <script>
+    if (!location.search.match(/notypekit=1/))
+      document.write('<script src="//use.typekit.com/qjh6hdg.js"></' +
+                     'script>');
+    </script>
+    <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
+    <script src="{{ MEDIA_URL }}friendlycode/js/require.min.js"></script>
+    <script>
+    "use strict";
+
+    define("main", function(require) {
+      var $ = require("jquery"),
+          FriendlycodeEditor = require('friendlycode');
+
+      require("typekit-ready!");
+
+      return FriendlycodeEditor({
+        publishURL: "{{ PUBLISH_URL }}",
+        pageToLoad: "{{ remix_url }}",
+        remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
+        container: $("#thimble-friendlycode-holder")
+      });
+    });
+
+    require(['main'], function () {});
+    </script>
+
+    <!-- this COULD hold up the page, so do this absolutely last -->
+    <link rel="stylesheet" href="//www.mozilla.org/tabzilla/media/css/tabzilla.css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/tabzilla-overrides.css">
+    <script>
+    // tabzilla.js will inject jQuery itself if it doesn't see it at
+    // load time, which is a problem for us because it creates a race
+    // condition for jQuery loading between requirejs and tabzilla. So
+    // we'll wait until requirejs has loaded jquery before loading
+    // tabzilla.
+    require(["jquery"], function() {
+      var tabzillaJS = "//www.mozilla.org/tabzilla/media/js/tabzilla.js";
+      var script = document.createElement('script');
+      script.setAttribute('src', tabzillaJS);
+      document.body.appendChild(script);
+    });
+    </script>
+  </body>
+</html>
