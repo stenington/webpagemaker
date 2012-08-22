@@ -35,10 +35,22 @@ urlpatterns = patterns('',
 
 ## In DEBUG mode, serve media files through Django.
 if settings.DEBUG:
+    from django.views.static import serve as orig_static_serve
+
+    def debug_static_serve(request, path, document_root):
+        # Just like django.views.static.serve, but force the
+        # removal of the X-Frame-Options header. This allows
+        # our static files to be delivered the way they will
+        # be in production, and also allows our browser unit tests
+        # to use iframes.
+        response = orig_static_serve(request, path, document_root)
+        response.no_frame_options = True
+        return response
+
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
     urlpatterns += patterns('',
-        (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
+        (r'^%s/(?P<path>.*)$' % media_url, debug_static_serve,
          {'document_root': settings.MEDIA_ROOT}),
     )
 
@@ -47,7 +59,7 @@ if settings.DEBUG:
     learning_static_url = learning_static_url.lstrip('/').rstrip('/')
     urlpatterns += patterns('',
         (r'^%s/(?P<path>.*)$' % learning_static_url,
-         'django.views.static.serve',
+         debug_static_serve,
          {'document_root': settings.LEARNING_PROJECTS_STATIC_ROOT}),
     )
     
