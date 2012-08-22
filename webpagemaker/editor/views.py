@@ -16,8 +16,8 @@ def _editor(request, remix_url):
     return jingo.render(request, "editor/editor.html", ctx)
     
 def default_editor(request):
-    return _editor(request,
-                   '%sfriendlycode/default-content.html' % settings.MEDIA_URL)
+    return _editor(request, '%sfriendlycode/templates/default-content.html' %
+                             settings.MEDIA_URL)
 
 def editor(request, **kwargs):
     viewname = kwargs['remix']
