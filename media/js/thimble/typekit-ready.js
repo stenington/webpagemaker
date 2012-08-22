@@ -6,6 +6,8 @@
 //  [RequireJS plugin]: http://requirejs.org/docs/plugins.html#apiload
 define({
   load: function(name, req, onLoad, config) {
+    var Typekit = config.Typekit || window.Typekit;
+    
     function tryLoadingTypekit() {
       try {
         Typekit.load({
