@@ -33,6 +33,7 @@ ALLOWED_ATTRS = {
     "a": ["href"],
     "base": ["href"],
     "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"],
+    "audio": ["controls", "autoplay", "preload", "loop", "src"],
     "link": ["href", "rel", "type"]
 }
 
