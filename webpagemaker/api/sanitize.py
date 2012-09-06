@@ -33,6 +33,7 @@ ALLOWED_ATTRS = {
     "a": ["href"],
     "base": ["href"],
     "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"],
+    "source": ["src", "type"],
     "link": ["href", "rel", "type"]
 }
 
