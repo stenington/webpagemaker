@@ -33,6 +33,7 @@ ALLOWED_ATTRS = {
     "a": ["href"],
     "base": ["href"],
     "iframe": ["src", "width", "height", "frameborder", "allowfullscreen"],
+    "video": ["controls", "autoplay", "preload", "loop", "mediaGroup", "src", "poster", "muted", "width", "height"],
     "link": ["href", "rel", "type"]
 }
 
