@@ -36,6 +36,7 @@ ALLOWED_ATTRS = {
     "video": ["controls", "autoplay", "preload", "loop", "mediaGroup", "src",
               "poster", "muted", "width", "height"],
     "audio": ["controls", "autoplay", "preload", "loop", "src"],
+    "source": ["src", "type"],
     "link": ["href", "rel", "type"]
 }
 
