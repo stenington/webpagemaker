@@ -76,6 +76,14 @@ class PublishTests(test_utils.TestCase):
           })
         eq_(response.status_code, 200)
     
+    def test_page_source_is_plaintext(self):
+        response = self.client.post('/api/page', {
+          'html': '<script>alert("YO");</script>'
+          })
+        src_response = self.client.get(response.content + '/raw')
+        eq_(src_response['Content-Type'], 'text/plain')
+        eq_(src_response.content, '<script>alert("YO");</script>')
+
     def test_origin_url_is_returned(self):
         response = self.client.post('/api/page', {
           'html': 'hi',
