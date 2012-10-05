@@ -10,3 +10,9 @@
 [submodule "vendor-local/src/django-south"]
 	path = vendor-local/src/django-south
 	url = git://github.com/toolness/django-south.git
+[submodule "vendor-local/src/django-browserid"]
+	path = vendor-local/src/django-browserid
+	url = git://github.com/mozilla/django-browserid.git
+[submodule "vendor-local/src/requests"]
+	path = vendor-local/src/requests
+	url = git://github.com/kennethreitz/requests.git
