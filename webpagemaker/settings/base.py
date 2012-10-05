@@ -18,7 +18,12 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'webpagemaker.website',
     'webpagemaker.editor',
     'webpagemaker.learning_projects',
+    'django_browserid'
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django_browserid.auth.BrowserIDBackend',
+)
 
 # Because Jinja2 is the default template loader, add any non-Jinja templated
 # apps here:
@@ -57,7 +62,9 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
     # static resources for in-development learning projects
     'sd',
     # Mission development API (debug only)
-    'mission-slurp'
+    'mission-slurp',
+    # BrowserID auth backend
+    'browserid'
 ]
 
 # Maximum size, in bytes, of published pages. Note that if you change this

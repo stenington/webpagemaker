@@ -31,6 +31,12 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^browserid/status', 'webpagemaker.browserid_ajax.get_status', {},
+     'browserid_ajax_get_status'),
+    (r'^browserid/logout', 'webpagemaker.browserid_ajax.logout', {},
+     'browserid_ajax_logout'),
+    (r'^browserid/verify', 'webpagemaker.browserid_ajax.verify', {},
+     'browserid_ajax_verify')
 )
 
 ## In DEBUG mode, serve media files through Django.
