@@ -1,47 +1,32 @@
-define(function() {
+define(["jquery"], function($) {
   return function BrowserIDAjax(options) {
     var self = {
       email: options.email,
       csrfToken: options.csrfToken
     };
     
-    function updateLoginStatus(req) {
-      var info = JSON.parse(req.responseText);
-      self.csrfToken = info.csrfToken;
-      self.email = info.email;
+    function post(url, data, cb) {
+      $.ajax({
+        type: 'POST',
+        url: url,
+        headers: {"X-CSRFToken": self.csrfToken},
+        dataType: 'json',
+        data: data,
+        success: function(data) {
+          self.csrfToken = data.csrfToken;
+          self.email = data.email;
+          cb.call(self);
+        }
+      });
     }
-
+    
     navigator.id.watch({
       loggedInUser: email,
       onlogin: function(assertion) {
-        var req = new XMLHttpRequest();
-        var form = new FormData();
-        form.append("assertion", assertion);
-        req.open('POST', options.verifyURL);
-        req.setRequestHeader("X-CSRFToken", self.csrfToken);
-        req.onload = function() {
-          if (req.status == 200) {
-            updateLoginStatus(req);
-            options.onlogin.call(self);
-          } else {
-            console.log("LOGIN FAIL", req.responseText);
-          }
-        };
-        req.send(form);
+        post(options.verifyURL, {assertion: assertion}, options.onlogin);
       },
       onlogout: function() {
-        var req = new XMLHttpRequest();
-        req.open('POST', options.logoutURL);
-        req.setRequestHeader("X-CSRFToken", self.csrfToken);
-        req.onload = function() {
-          if (req.status == 200) {
-            updateLoginStatus(req);
-            options.onlogout.call(self);
-          } else {
-            console.log("LOGOUT FAIL", req.responseText);
-          }
-        };
-        req.send(null);
+        post(options.logoutURL, {}, options.onlogout);
       }
     });
   };
