@@ -39,3 +39,11 @@ html, body {
   color: #27AAE1;
   text-decoration: none;
 }
+
+body:not(.logged-in) .logged-in {
+  display: none;
+}
+
+body.logged-in .logged-out {
+  display: none;
+}

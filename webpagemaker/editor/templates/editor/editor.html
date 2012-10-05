@@ -8,15 +8,6 @@
     <title>Mozilla Thimble</title>
     <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/friendlycode.css">
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/editor.css">
-    <style>
-    body:not(.logged-in) .logged-in {
-      display: none;
-    }
-    
-    body.logged-in .logged-out {
-      display: none;
-    }
-    </style>
   </head>
   <body {% if user.email %}class="logged-in"{% endif %}>
      <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
@@ -31,57 +22,8 @@
         <span id="email">{{ user.email }}</span>
         <button onclick="navigator.id.logout()">Sign Out</button>
       </span>
-      <button class="logged-out" onclick="navigator.id.request()">Sign In</button>
-      <script src="https://login.persona.org/include.js"></script>
-      <script>
-      var email = '{{ user.email }}';
-      var csrfToken = '{{ csrf_token }}';
-      
-      function updateLoginStatus(req) {
-        var info = JSON.parse(req.responseText);
-        csrfToken = info.csrfToken;
-        document.getElementById("email").textContent = email = info.email;
-        if (email)
-          document.body.classList.add("logged-in");
-        else
-          document.body.classList.remove("logged-in");
-      }
-      
-      navigator.id.watch({
-        loggedInUser: email,
-        onlogin: function(assertion) {
-          var url = "{{ url('browserid_ajax_verify') }}";
-          var req = new XMLHttpRequest();
-          var form = new FormData();
-          form.append("assertion", assertion);
-          req.open('POST', url);
-          req.setRequestHeader("X-CSRFToken", csrfToken);
-          req.onload = function() {
-            if (req.status == 200) {
-              updateLoginStatus(req);
-            } else {
-              console.log("LOGIN FAIL", req.responseText);
-            }
-          };
-          req.send(form);
-        },
-        onlogout: function() {
-          var req = new XMLHttpRequest();
-          var url = "{{ url('browserid_ajax_logout') }}";
-          var form = new FormData();
-          req.open('POST', url);
-          req.setRequestHeader("X-CSRFToken", csrfToken);
-          req.onload = function() {
-            if (req.status == 200) {
-              updateLoginStatus(req);
-            } else {
-              console.log("LOGOUT FAIL", req.responseText);
-            }
-          };
-          req.send(form);
-        }
-      });
-      </script>
+      <button class="logged-out"
+       onclick="navigator.id.request()">Sign In</button>
     </header>
 
     <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
@@ -91,6 +33,7 @@
       document.write('<script src="//use.typekit.com/qjh6hdg.js"></' +
                      'script>');
     </script>
+    <script src="https://login.persona.org/include.js"></script>
     <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
     <script>
     require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
@@ -101,16 +44,32 @@
 
     define("main", function(require) {
       var $ = require("jquery"),
-          FriendlycodeEditor = require('friendlycode');
+          FriendlycodeEditor = require('friendlycode'),
+          BrowserIDAjax = require("thimble/browserid-ajax");
 
       require("thimble/typekit-ready!");
 
-      return FriendlycodeEditor({
-        publishURL: "{{ PUBLISH_URL }}",
-        pageToLoad: "{{ remix_url }}",
-        remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
-        container: $("#thimble-friendlycode-holder")
-      });
+      return {
+        auth: BrowserIDAjax({
+          email: "{{ user.email }}",
+          csrfToken: "{{ csrf_token }}",
+          verifyURL: "{{ url('browserid_ajax_verify') }}",
+          logoutURL: "{{ url('browserid_ajax_logout') }}",
+          onlogin: function() {
+            $("#email").text(this.email);
+            $("body").addClass("logged-in");
+          },
+          onlogout: function() {
+            $("body").removeClass("logged-in");
+          }
+        }),
+        editor: FriendlycodeEditor({
+          publishURL: "{{ PUBLISH_URL }}",
+          pageToLoad: "{{ remix_url }}",
+          remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
+          container: $("#thimble-friendlycode-holder")
+        })
+      };
     });
 
     require(['main'], function () {});
