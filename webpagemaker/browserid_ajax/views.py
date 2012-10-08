@@ -27,7 +27,7 @@ def logout(request):
 @require_POST
 def verify(request):
     if not 'assertion' in request.POST:
-        return HttpResponseBadRequest('need an assertion, bro.')
+        return HttpResponseBadRequest('assertion required')
 
     assertion = request.POST['assertion']
     audience = get_audience(request)
@@ -37,4 +37,4 @@ def verify(request):
         auth.login(request, user)
         return HttpResponseRedirect(reverse(get_status))
     else:
-        return HttpResponseBadRequest('bad assertion, bro.')
+        return HttpResponseBadRequest('bad assertion')
