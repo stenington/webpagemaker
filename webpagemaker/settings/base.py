@@ -18,6 +18,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'webpagemaker.website',
     'webpagemaker.editor',
     'webpagemaker.learning_projects',
+    'webpagemaker.browserid_ajax',
     'django_browserid'
 ]
 
