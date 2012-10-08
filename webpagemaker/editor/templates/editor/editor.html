@@ -45,24 +45,25 @@
     define("main", function(require) {
       var $ = require("jquery"),
           FriendlycodeEditor = require('friendlycode'),
-          BrowserIDAjax = require("thimble/browserid-ajax");
+          BrowserIDAjax = require("thimble/browserid-ajax"),
+          auth = BrowserIDAjax({
+            email: "{{ user.email }}",
+            csrfToken: "{{ csrf_token }}",
+            verifyURL: "{{ url('browserid_ajax_verify') }}",
+            logoutURL: "{{ url('browserid_ajax_logout') }}"
+          });
 
       require("thimble/typekit-ready!");
 
+      auth.on("login", function() {
+        $("#email").text(auth.email);
+        $("body").addClass("logged-in");
+      }).on("logout", function() {
+        $("body").removeClass("logged-in");
+      });
+
       return {
-        auth: BrowserIDAjax({
-          email: "{{ user.email }}",
-          csrfToken: "{{ csrf_token }}",
-          verifyURL: "{{ url('browserid_ajax_verify') }}",
-          logoutURL: "{{ url('browserid_ajax_logout') }}",
-          onlogin: function() {
-            $("#email").text(this.email);
-            $("body").addClass("logged-in");
-          },
-          onlogout: function() {
-            $("body").removeClass("logged-in");
-          }
-        }),
+        auth: auth,
         editor: FriendlycodeEditor({
           publishURL: "{{ PUBLISH_URL }}",
           pageToLoad: "{{ remix_url }}",
