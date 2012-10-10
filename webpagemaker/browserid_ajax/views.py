@@ -26,7 +26,7 @@ def logout(request):
 
 @require_POST
 def verify(request):
-    if not 'assertion' in request.POST:
+    if 'assertion' not in request.POST:
         return HttpResponseBadRequest('assertion required')
 
     assertion = request.POST['assertion']
