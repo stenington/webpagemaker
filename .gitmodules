@@ -16,3 +16,6 @@
 [submodule "vendor-local/src/requests"]
 	path = vendor-local/src/requests
 	url = git://github.com/kennethreitz/requests.git
+[submodule "vendor-local/src/pyjwt"]
+	path = vendor-local/src/pyjwt
+	url = git://github.com/progrium/pyjwt.git
