@@ -1,5 +1,5 @@
-from django.http import HttpResponse, HttpResponseBadRequest, \
-                        HttpResponseRedirect
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                         HttpResponseRedirect)
 from django.contrib import auth
 from django.views.decorators.http import require_POST
 from session_csrf import anonymous_csrf
