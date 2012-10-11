@@ -18,6 +18,8 @@
           <img src="{{ MEDIA_URL }}img/thimble-logo.png" alt="Mozilla Thimble">
         </a>
       </div>
+      <!-- This login HTML is only temporary until we get universal nav
+           integrated here. -->
       <span class="logged-in">
         <span id="email">{{ user.email }}</span>
         <button onclick="navigator.id.logout()">Sign Out</button>
