@@ -1,3 +1,4 @@
+from session_csrf import anonymous_csrf
 from django.conf import settings
 from django.core.urlresolvers import reverse
 import jingo
@@ -15,10 +16,12 @@ def _editor(request, remix_url):
         ctx['DEPLOYMENT_TYPE'] = 'production'
     return jingo.render(request, "editor/editor.html", ctx)
     
+@anonymous_csrf
 def default_editor(request):
     return _editor(request, '%sfriendlycode/templates/default-content.html' %
                              settings.MEDIA_URL)
 
+@anonymous_csrf
 def editor(request, **kwargs):
     viewname = kwargs['remix']
     del kwargs['remix']

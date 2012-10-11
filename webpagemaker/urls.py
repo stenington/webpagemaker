@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include
 
-from .api import urls
+from . import api, browserid_ajax
 
 from funfactory.monkeypatches import patch
 patch()
@@ -23,14 +23,16 @@ urlpatterns = patterns('',
     (r'^projects/(?P<name>[A-Za-z0-9\-_]+)/edit$',
      'webpagemaker.editor.views.editor', {'remix': 'view_project'},
      'edit_project'),
-    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/media/img/favicon.ico'}),
-    (r'', include(urls)),
+    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
+     {'url': '/media/img/favicon.ico'}),
+    (r'', include(api.urls)),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^browserid/', include(browserid_ajax.urls))
 )
 
 ## In DEBUG mode, serve media files through Django.

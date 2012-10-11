@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/friendlycode.css">
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/editor.css">
   </head>
-  <body>
+  <body {% if user.email %}class="logged-in"{% endif %}>
      <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
 
     <header id="thimble-header">
@@ -18,6 +18,14 @@
           <img src="{{ MEDIA_URL }}img/thimble-logo.png" alt="Mozilla Thimble">
         </a>
       </div>
+      <!-- This login HTML is only temporary until we get universal nav
+           integrated here. -->
+      <span class="logged-in">
+        <span id="email">{{ user.email }}</span>
+        <button onclick="navigator.id.logout()">Sign Out</button>
+      </span>
+      <button class="logged-out"
+       onclick="navigator.id.request()">Sign In</button>
     </header>
 
     <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
@@ -27,6 +35,7 @@
       document.write('<script src="//use.typekit.com/qjh6hdg.js"></' +
                      'script>');
     </script>
+    <script src="https://login.persona.org/include.js"></script>
     <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
     <script>
     require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
@@ -37,16 +46,33 @@
 
     define("main", function(require) {
       var $ = require("jquery"),
-          FriendlycodeEditor = require('friendlycode');
+          FriendlycodeEditor = require('friendlycode'),
+          BrowserIDAjax = require("thimble/browserid-ajax"),
+          auth = BrowserIDAjax({
+            email: "{{ user.email }}",
+            csrfToken: "{{ csrf_token }}",
+            verifyURL: "{{ url('browserid_ajax_verify') }}",
+            logoutURL: "{{ url('browserid_ajax_logout') }}"
+          });
 
       require("thimble/typekit-ready!");
 
-      return FriendlycodeEditor({
-        publishURL: "{{ PUBLISH_URL }}",
-        pageToLoad: "{{ remix_url }}",
-        remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
-        container: $("#thimble-friendlycode-holder")
+      auth.on("login", function() {
+        $("#email").text(auth.email);
+        $("body").addClass("logged-in");
+      }).on("logout", function() {
+        $("body").removeClass("logged-in");
       });
+
+      return {
+        auth: auth,
+        editor: FriendlycodeEditor({
+          publishURL: "{{ PUBLISH_URL }}",
+          pageToLoad: "{{ remix_url }}",
+          remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
+          container: $("#thimble-friendlycode-holder")
+        })
+      };
     });
 
     require(['main'], function () {});
