@@ -5,7 +5,7 @@ defineTests([
   "backbone-events",
   "slowparse/slowparse"
 ], function(HTMLBadges, BackboneEvents, Slowparse) {
-  module("html-badges");
+  module("thimble/html-badges");
   
   function HTMLBadgeTest(name, options) {
     test(name, function() {
