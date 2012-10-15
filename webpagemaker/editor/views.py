@@ -3,9 +3,15 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 import jingo
 
+from webpagemaker.browserid_ajax import clopenbadger
+
 def _editor(request, remix_url):
     ctx = {
         'remix_url': remix_url,
+        'clopenbadger_token': clopenbadger.create_token_from_request(
+            request=request,
+            default=''
+        ),
         'PUBLISH_URL': request.build_absolute_uri("/")[:-1],
         'REMIX_URL_TEMPLATE': request.build_absolute_uri("/")[:-1] +
                               "{{VIEW_URL}}/edit"

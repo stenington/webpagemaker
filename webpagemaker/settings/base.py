@@ -101,3 +101,5 @@ LEARNING_PROJECTS_STATIC_ROOT = path('webpagemaker/learning_projects/static')
 
 # Use our symlink for the admin media.
 ADMIN_MEDIA_PREFIX = '/media/admin/'
+
+CLOPENBADGER_TOKEN_LIFETIME = 604800 # 1 Week
