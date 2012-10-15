@@ -35,7 +35,8 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
           equal(options.dataType, 'json');
           options.success({
             csrfToken: 'new fake csrf token',
-            email: 'foo@bar.org'
+            email: 'foo@bar.org',
+            clopenbadgerToken: 'fake clopenbadger token'
           });
         }
       })
@@ -44,12 +45,14 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
     equal(browserid.id._options.loggedInUser, null);
     equal(browserid.email, null);
     equal(browserid.csrfToken, 'fake csrf token');
+    equal(browserid.clopenbadgerToken, null);
     
     browserid.id._options.onlogin('fake assertion for foo@bar.org');
     
     equal(loginEvents, 1);
     equal(browserid.email, 'foo@bar.org');
     equal(browserid.csrfToken, 'new fake csrf token');
+    equal(browserid.clopenbadgerToken, 'fake clopenbadger token');
   });
   
   test("logout works", function() {
@@ -60,13 +63,15 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
       verifyURL: '/verify',
       logoutURL: '/logout',
       csrfToken: 'fake csrf token',
+      clopenbadgerToken: 'fake clopenbadger token',
       network: FakeNetwork({
         'POST /logout': function(options) {
           equal(options.headers['X-CSRFToken'], 'fake csrf token');
           equal(options.dataType, 'json');
           options.success({
             csrfToken: 'another new fake csrf token',
-            email: null
+            email: null,
+            clopenbadgerToken: null
           });
         }
       })
@@ -75,11 +80,13 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
     equal(browserid.id._options.loggedInUser, 'foo@barf.org');
     equal(browserid.email, 'foo@barf.org');
     equal(browserid.csrfToken, 'fake csrf token');
+    equal(browserid.clopenbadgerToken, 'fake clopenbadger token');
     
     browserid.id._options.onlogout();
     
     equal(logoutEvents, 1);
     equal(browserid.email, null);
     equal(browserid.csrfToken, 'another new fake csrf token');
+    equal(browserid.clopenbadgerToken, null);
   });
 });

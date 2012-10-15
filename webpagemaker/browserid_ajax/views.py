@@ -12,15 +12,12 @@ from . import clopenbadger
 @anonymous_csrf
 def get_status(request):
     email = None
-    clopenbadger_token = None
     if request.user.is_authenticated():
         email = request.user.email
-    if email:
-        clopenbadger_token = clopenbadger.create_token(email)
     data = {
       'email': email,
       'csrfToken': request.csrf_token,
-      'clopenbadgerToken': clopenbadger_token
+      'clopenbadgerToken': clopenbadger.create_token_from_request(request)
     }
     return HttpResponse(json.dumps(data), mimetype="application/json")
 

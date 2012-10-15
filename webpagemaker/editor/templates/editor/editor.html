@@ -51,6 +51,7 @@
           auth = BrowserIDAjax({
             email: "{{ user.email }}",
             csrfToken: "{{ csrf_token }}",
+            clopenbadgerToken: "{{ clopenbadger_token }}",
             verifyURL: "{{ url('browserid_ajax_verify') }}",
             logoutURL: "{{ url('browserid_ajax_logout') }}"
           });
