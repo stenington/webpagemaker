@@ -31,8 +31,7 @@ html, body {
 #thimble-header .logo {
   display: inline-block;
   margin-left: 15px;
-  width: 200px;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 #thimble-header .logo a {
@@ -40,10 +39,14 @@ html, body {
   text-decoration: none;
 }
 
-body:not(.logged-in) .logged-in {
-  display: none;
+#thimble-header .logo a img {
+  width: 138px;
 }
 
-body.logged-in .logged-out {
-  display: none;
+#webmaker-nav {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9000;
 }

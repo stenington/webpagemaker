@@ -16,3 +16,6 @@
 [submodule "vendor-local/src/requests"]
 	path = vendor-local/src/requests
 	url = git://github.com/kennethreitz/requests.git
+[submodule "media/webmaker-nav"]
+	path = media/webmaker-nav
+	url = git://github.com/toolness/webmaker-nav.git

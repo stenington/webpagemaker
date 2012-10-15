@@ -8,9 +8,12 @@
     <title>Mozilla Thimble</title>
     <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/friendlycode.css">
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/editor.css">
+    <link rel="stylesheet"
+     href="{{ MEDIA_URL }}/webmaker-nav/webmaker-nav/css/webmaker-nav.css">
   </head>
-  <body {% if user.email %}class="logged-in"{% endif %}>
+  <body>
      <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
+     <div id="webmaker-nav"></div>
 
     <header id="thimble-header">
       <div class="logo">
@@ -18,14 +21,6 @@
           <img src="{{ MEDIA_URL }}img/thimble-logo.png" alt="Mozilla Thimble">
         </a>
       </div>
-      <!-- This login HTML is only temporary until we get universal nav
-           integrated here. -->
-      <span class="logged-in">
-        <span id="email">{{ user.email }}</span>
-        <button onclick="navigator.id.logout()">Sign Out</button>
-      </span>
-      <button class="logged-out"
-       onclick="navigator.id.request()">Sign In</button>
     </header>
 
     <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
@@ -39,6 +34,12 @@
     <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
     <script>
     require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
+    if (!require.packages)
+      require.packages = [];
+    require.packages.push({
+      name: 'webmaker-nav',
+      location: '{{ MEDIA_URL }}/webmaker-nav/webmaker-nav'
+    });
     </script>
     <script src="{{ MEDIA_URL }}friendlycode/js/require.min.js"></script>
     <script>
@@ -48,6 +49,12 @@
       var $ = require("jquery"),
           FriendlycodeEditor = require('friendlycode'),
           BrowserIDAjax = require("thimble/browserid-ajax"),
+          WebmakerNav = require("webmaker-nav"),
+          webmakerNav = new WebmakerNav({
+            container: $("#webmaker-nav")[0],
+            loginBtnCallback: function() { navigator.id.request(); },
+            logoutBtnCallback: function() { navigator.id.logout(); }
+          }),
           auth = BrowserIDAjax({
             email: "{{ user.email }}",
             csrfToken: "{{ csrf_token }}",
@@ -58,11 +65,11 @@
       require("thimble/typekit-ready!");
 
       auth.on("login", function() {
-        $("#email").text(auth.email);
-        $("body").addClass("logged-in");
+        webmakerNav.views.login({username: auth.email});
       }).on("logout", function() {
-        $("body").removeClass("logged-in");
+        webmakerNav.views.logout();
       });
+      auth.trigger(auth.email ? 'login' : 'logout', auth);
 
       return {
         auth: auth,
