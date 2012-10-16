@@ -50,3 +50,67 @@ html, body {
   right: 0px;
   z-index: 9000;
 }
+
+/* BEGIN EXTREMELY TEMPORARY STYLES */
+
+#webmaker-nav li.user-badges div.badge-ui-widget {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  background: blue;
+  cursor: pointer;
+}
+
+#webmaker-nav li.user-badges div.badge-ui-widget:hover {
+  background: slateblue;
+}
+
+#webmaker-nav li.user-badges div.badge-ui-widget ul {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  padding: 0;
+  background: darkgray;
+  color: lightgray;
+  z-index: 9001;
+  list-style-type: none;
+}
+
+#webmaker-nav li.user-badges div.badge-ui-widget:not(.badge-ui-on) ul {
+  display: none;
+}
+
+#webmaker-nav li.user-badges div.badge-ui-unread {
+  font-size: 12px;
+  line-height: 12px;
+}
+
+#webmaker-nav li.user-badges div.badge-ui-widget ul li {
+  padding: 4px;
+  white-space: pre;
+}
+
+#webmaker-nav li.user-badges .badge-ui-earned {
+  background: green;
+  color: white;
+}
+
+.ui-badge-alert:before {
+  color: black;
+  content: 'U Earned ';
+}
+
+.ui-badge-alert {
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: darkgray;
+  color: lightgray;
+  font-size: 18px;
+  padding: 40px;
+}
+
+/* END EXTREMELY TEMPORARY STYLES */

@@ -34,6 +34,7 @@
     <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
     <script>
     require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
+    require.paths.clopenbadger = '{{ MEDIA_URL }}clopenbadger';
     if (!require.packages)
       require.packages = [];
     require.packages.push({
@@ -48,6 +49,8 @@
     define("main", function(require) {
       var $ = require("jquery"),
           FriendlycodeEditor = require('friendlycode'),
+          HTMLBadges = require("thimble/html-badges"),
+          BadgeUI = require("thimble/badge-ui"),
           BrowserIDAjax = require("thimble/browserid-ajax"),
           WebmakerNav = require("webmaker-nav"),
           webmakerNav = new WebmakerNav({
@@ -61,6 +64,17 @@
             clopenbadgerToken: "{{ clopenbadger_token }}",
             verifyURL: "{{ url('browserid_ajax_verify') }}",
             logoutURL: "{{ url('browserid_ajax_logout') }}"
+          }),
+          badgeUI = BadgeUI({
+            auth: auth,
+            container: $('<li class="user-badges"></li>')
+              .prependTo("#webmaker-nav ul.user-info")
+          }),
+          editor = FriendlycodeEditor({
+            publishURL: "{{ PUBLISH_URL }}",
+            pageToLoad: "{{ remix_url }}",
+            remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
+            container: $("#thimble-friendlycode-holder")
           });
 
       require("thimble/typekit-ready!");
@@ -72,14 +86,14 @@
       });
       auth.trigger(auth.email ? 'login' : 'logout', auth);
 
+      editor.ready.done(function() {
+        HTMLBadges.attachProbes(editor.codeMirror, badgeUI);
+      });
+      
       return {
         auth: auth,
-        editor: FriendlycodeEditor({
-          publishURL: "{{ PUBLISH_URL }}",
-          pageToLoad: "{{ remix_url }}",
-          remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
-          container: $("#thimble-friendlycode-holder")
-        })
+        badgeUI: badgeUI,
+        editor: editor
       };
     });
 

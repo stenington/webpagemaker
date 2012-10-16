@@ -22,3 +22,6 @@
 [submodule "vendor-local/src/pyjwt"]
 	path = vendor-local/src/pyjwt
 	url = git://github.com/progrium/pyjwt.git
+[submodule "media/clopenbadger"]
+	path = media/clopenbadger
+	url = git://github.com/toolness/clopenbadger-consumer.git
