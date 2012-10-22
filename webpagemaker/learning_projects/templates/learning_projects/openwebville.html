@@ -1,0 +1,111 @@
+{% extends "website/layout.html" %}
+{% block head %}
+<style>
+/*@font-face {
+    font-family: 'Lobster';
+    src: url('/media/css/Lobster.otf');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+#openwebville .hero-unit h1 {
+  background-color: yellow;
+  color: #4098D5;
+  display: inline-block;
+  padding: 10px 8px 0 8px;
+  font-family: "Lobster";
+  font-size: 64px;
+  word-spacing: -0.25em;
+}*/
+
+#openwebville .divider {
+    border-bottom: 4px dashed #4098D5;
+}
+
+.arcade {
+    background: url("/media/img/projects/openwebville_master.png") no-repeat scroll right top transparent;
+    min-height: 270px;
+    padding-right: 233px;
+}
+
+</style>
+{% endblock %}
+{% block page_id %}openwebville{% endblock %}
+{% block body %}
+  <div class="container divider">
+    <div class="row arcade">
+      <div class="hero-unit span7">
+        <hgroup class="large">
+          <h2>Welcome to</h2>
+          <h1>Open Webville</h1>
+        </hgroup>
+        <p>
+           Play classic arcade-style games that teach webmaking basics. The “Web Arcade” is a collection of 
+           fun mini-games that sharpen your web design, HTML and CSS skills as you go. Create your own web 
+           pages, swap images, close broken tags and dodge hurtling LOLcats to advance through each level and 
+           prevail. 
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <ul class="projects show-thumbs">
+      {{ project(
+           title       = "Learn HTML fast by making your own web page",
+           description = "Learn HTML basics using Mozilla's Thimble to make your first web page. This starter project helps you play around with the most common HTML elements and tags using a simple side-by-side visual editor. It's a great way to gain some of the baseline skills you'll need for other Webmaker projects&mdash;or to start a project of your own! If you have no HTML experience, give this one a go first. You'll be surprised by how easy it is to get started.",
+           author      = "Mozilla",
+           url         = url('edit_project', 'wrangler'),
+           img         = "/media/img/projects/opengallery.png",
+         ) 
+      }}
+	    {{ project(
+           title       = "Make a map of your world on the web",
+           description = "Create your own 8-bit style “map” of your favorite web sites, images and places. Use HTML to remix and create your own classic video game-style map of your favorite stuff on the web. Add images, text, links and places, then share your completed map with friends so they can explore the world you've created.",
+           author      = "Mozilla",
+           url         = url('edit_project', 'map'),
+           img         = "/media/img/projects/opendisco.png",
+         ) 
+      }}
+      {{ project(
+           title       = "Play Bakery Bash",
+           description = "Throw an awesome kitchen party on the web. In this web-based game, your mission is to help “Loaf Cat” throw a sweet party in her cozy bakery&mdash;fending off uninvited party-crashers, inviting your own guest celebrities from across the web, and (of course) adding some awesome music to get the party started! Use HTML to fix links and swap images to advance. It's simple but strangely addictive. Did we mention the dancing cats?",
+           author      = "Mozilla",
+           url         = url('edit_project', 'bakery'),
+           img         = "/media/img/projects/opencinema.png",
+         ) 
+      }}
+	    {{ project(
+           title       = "Make your own animated avatar",
+           description = "Mix and match elements to create your own webmaker avatar. Choose from a mix of different googly eyes, mustaches, colors and styles to create your own unique webmaker character. It's like the cooler web version of “Mr. Potato Head”. Then fill in the blanks and add your own links to create a portfolio of projects you've created online. The result: your own shareable webmaker portfolio page. Use it to show off all the great stuff you've made.",
+           author      = "Mozilla",
+           url         = url('edit_project', 'avataromatic'),
+           img         = "/media/img/projects/openmasterpiece.png",
+         ) 
+      }}
+    </ul>
+  </div>
+      
+{% endblock %}
+{% block scripts %}
+<script src="/media/js/projects.js"></script>
+{% endblock %}
+{% macro project(title, description, author, url, img) -%}
+  <li class="project">
+    <div class="thumb">
+        <a href="{{ url }}">
+          <img src="{{ img }}" alt="{{ title }}">
+        </a>
+        <div class="caption">
+          <p>By {{ author }}</p>
+        </div>
+    </div>
+    <div class="info">
+      <h3 class="title">{{ title }}</h3>
+      <p class="description">{{ description|safe }}</p>
+      <p><a href="{{ url }}" class="button-blue">Make Project</a>
+    </div>
+  </li>
+{%- endmacro %}
