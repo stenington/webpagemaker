@@ -7,9 +7,11 @@
 
     <title>Mozilla Thimble</title>
     <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/friendlycode.css">
-    <link rel="stylesheet" href="{{ MEDIA_URL }}css/editor.css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/editor.css">    
     <link rel="stylesheet"
      href="{{ MEDIA_URL }}/webmaker-nav/webmaker-nav/css/webmaker-nav.css">
+    <link rel="stylesheet"
+     href="{{ MEDIA_URL }}/webmaker-nav/webmaker-nav/css/badge-ui.css">
   </head>
   <body>
      <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
@@ -46,12 +48,42 @@
     <script>
     "use strict";
 
+    define("fake-thimble-badges", [
+      "clopenbadger/test/fake-clopenbadger-server"
+    ], function(FakeClopenbadgerServer) {
+      var url = "http://fake-clopenbadger";
+      FakeClopenbadgerServer.setup({
+        urlPrefix: url,
+        availableBadges: {
+          "FIRST_LOGIN": {
+            "name": "First Login",
+            "description": "Like a champion, you logged in...",
+            "criteria": "Can log into a site that uses Persona for auth.",
+            "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+            "behaviors": [{"name": "LOGGED_IN", "score": 1}],
+            "prerequisites": []
+          },
+          "HYPERLINKER": {
+            "name": "Hyperlinker",
+            "description": "You made links.",
+            "criteria": "Can make anchor tags with valid href attributes.",
+            "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+            "behavior": "HYPERLINK",
+            "behaviors": [{"name": "HYPERLINK", "score": 1}],
+            "prerequisites": []
+          }
+        }
+      });
+      return {url: url};
+    });
+    
     define("main", function(require) {
       var $ = require("jquery"),
           FriendlycodeEditor = require('friendlycode'),
           HTMLBadges = require("thimble/html-badges"),
-          BadgeUI = require("thimble/badge-ui"),
+          BadgeUI = require("webmaker-nav/badge-ui"),
           BrowserIDAjax = require("thimble/browserid-ajax"),
+          Clopenbadger = require("clopenbadger/clopenbadger"),
           WebmakerNav = require("webmaker-nav"),
           webmakerNav = new WebmakerNav({
             container: $("#webmaker-nav")[0],
@@ -65,29 +97,42 @@
             verifyURL: "{{ url('browserid_ajax_verify') }}",
             logoutURL: "{{ url('browserid_ajax_logout') }}"
           }),
-          badgeUI = BadgeUI({
-            auth: auth,
-            container: $('<li class="user-badges"></li>')
-              .prependTo("#webmaker-nav ul.user-info")
-          }),
+          badgeUI = new BadgeUI(webmakerNav),
           editor = FriendlycodeEditor({
             publishURL: "{{ PUBLISH_URL }}",
             pageToLoad: "{{ remix_url }}",
             remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
             container: $("#thimble-friendlycode-holder")
-          });
+          }),
+          badger = null,
+          FakeThimbleBadges = require("fake-thimble-badges"),
+          creditor = {
+            credit: function(behavior) {
+              if (badger)
+                badger.credit(behavior);
+            }
+          };
 
       require("thimble/typekit-ready!");
 
       auth.on("login", function() {
         webmakerNav.views.login({username: auth.email});
+        badger = Clopenbadger({
+          server: FakeThimbleBadges.url,
+          token: auth.clopenbadgerToken,
+          email: auth.email
+        });
+        badgeUI.setBadger(badger);
+        creditor.credit("LOGGED_IN");
       }).on("logout", function() {
+        badger = null;
         webmakerNav.views.logout();
+        badgeUI.setBadger(badger);
       });
       auth.trigger(auth.email ? 'login' : 'logout', auth);
 
       editor.ready.done(function() {
-        HTMLBadges.attachProbes(editor.codeMirror, badgeUI);
+        HTMLBadges.attachProbes(editor.codeMirror, creditor);
       });
       
       return {
