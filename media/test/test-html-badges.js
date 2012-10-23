@@ -14,18 +14,15 @@ defineTests([
       var modifiedHTML = options.endHTML;
       var currentHTML = originalHTML;
       var credits = [];
-      var badger = {
-        credit: function(behavior) {
-          credits.push(behavior);
-        }
-      };
       var parsingCodeMirror = BackboneEvents.mixin({
         getValue: function() {
           return currentHTML;
         }
       });
     
-      HTMLBadges.attachProbes(parsingCodeMirror, badger);
+      HTMLBadges.attachProbes(parsingCodeMirror, function credit(behavior) {
+        credits.push(behavior);
+      });
 
       ok(originalHTML != modifiedHTML,
          "begin snippet (" + parsingCodeMirror.getValue() +

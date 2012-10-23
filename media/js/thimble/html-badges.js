@@ -43,7 +43,7 @@ define(function() {
   };
   
   return {
-    attachProbes: function(parsingCodeMirror, badger) {
+    attachProbes: function(parsingCodeMirror, credit) {
       var originalCode = parsingCodeMirror.getValue();
       
       parsingCodeMirror.on("reparse", function(event) {
@@ -58,7 +58,7 @@ define(function() {
           candidates.forEach(function(info) {
             var snippet = currentCode.slice(info.start, info.end);
             if (originalCode.indexOf(snippet) == -1) {
-              badger.credit(behavior);
+              credit(behavior);
               originalCode = currentCode;
               //console.log("credit " + behavior + " for " + snippet);
             }

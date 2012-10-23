@@ -106,12 +106,7 @@
           }),
           badger = null,
           FakeThimbleBadges = require("fake-thimble-badges"),
-          creditor = {
-            credit: function(behavior) {
-              if (badger)
-                badger.credit(behavior);
-            }
-          };
+          credit = function(behavior) { badger && badger.credit(behavior); };
 
       require("thimble/typekit-ready!");
 
@@ -123,7 +118,7 @@
           email: auth.email
         });
         badgeUI.setBadger(badger);
-        creditor.credit("LOGGED_IN");
+        credit("LOGGED_IN");
       }).on("logout", function() {
         badger = null;
         webmakerNav.views.logout();
@@ -132,7 +127,7 @@
       auth.trigger(auth.email ? 'login' : 'logout', auth);
 
       editor.ready.done(function() {
-        HTMLBadges.attachProbes(editor.codeMirror, creditor);
+        HTMLBadges.attachProbes(editor.codeMirror, credit);
       });
       
       return {
