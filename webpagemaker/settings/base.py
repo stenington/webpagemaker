@@ -103,3 +103,9 @@ LEARNING_PROJECTS_STATIC_ROOT = path('webpagemaker/learning_projects/static')
 ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 CLOPENBADGER_TOKEN_LIFETIME = 604800 # 1 Week
+
+# A real clopenbadger server doesn't exist yet, so we'll put these
+# settings here for now. Once a real one exists, these need to be
+# removed.
+CLOPENBADGER_URL = 'http://fake-clopenbadger'
+CLOPENBADGER_SECRET = 'fake-clopenbadger-token'
