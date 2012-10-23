@@ -16,3 +16,12 @@
 [submodule "vendor-local/src/requests"]
 	path = vendor-local/src/requests
 	url = git://github.com/kennethreitz/requests.git
+[submodule "media/webmaker-nav"]
+	path = media/webmaker-nav
+	url = git://github.com/toolness/webmaker-nav.git
+[submodule "vendor-local/src/pyjwt"]
+	path = vendor-local/src/pyjwt
+	url = git://github.com/progrium/pyjwt.git
+[submodule "media/clopenbadger"]
+	path = media/clopenbadger
+	url = git://github.com/toolness/clopenbadger-consumer.git

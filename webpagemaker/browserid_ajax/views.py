@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.utils import simplejson as json
 
 from django_browserid.base import get_audience
+from . import clopenbadger
 
 @anonymous_csrf
 def get_status(request):
@@ -15,7 +16,8 @@ def get_status(request):
         email = request.user.email
     data = {
       'email': email,
-      'csrfToken': request.csrf_token
+      'csrfToken': request.csrf_token,
+      'clopenbadgerToken': clopenbadger.create_token_from_request(request)
     }
     return HttpResponse(json.dumps(data), mimetype="application/json")
 

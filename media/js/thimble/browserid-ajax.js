@@ -7,6 +7,7 @@ define(["jquery", "backbone-events"], function($, BackboneEvents) {
     var self = {
       email: options.email || null,
       csrfToken: options.csrfToken,
+      clopenbadgerToken: options.clopenbadgerToken || null,
       id: id
     };
 
@@ -22,6 +23,7 @@ define(["jquery", "backbone-events"], function($, BackboneEvents) {
         success: function(data) {
           self.csrfToken = data.csrfToken;
           self.email = data.email;
+          self.clopenbadgerToken = data.clopenbadgerToken;
           self.trigger(eventName, self);
         }
       });

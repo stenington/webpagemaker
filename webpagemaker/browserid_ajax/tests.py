@@ -1,7 +1,22 @@
+import warnings
 from django.utils import simplejson as json
+from django.conf import settings
 import test_utils
 from nose.tools import eq_, ok_
 import mock
+import jwt
+
+DEFAULT_SETTINGS = {
+    'SITE_URL': 'http://localhost:8000',
+    'CLOPENBADGER_URL': 'https://clopenbadger.org',
+    'CLOPENBADGER_SECRET': 'seekret',
+}
+
+for setting in DEFAULT_SETTINGS:
+    if not hasattr(settings, setting):
+        warnings.warn("local setting %s is undefined." % setting)
+        setattr(settings, setting, DEFAULT_SETTINGS[setting])
+del setting
 
 def fake_verify_failure(assertion, audience):
     return False
@@ -15,6 +30,26 @@ def fake_verify_success(assertion, audience):
 def ensure_status_has_csrf_token(status):
     eq_(type(status['csrfToken']), unicode)
     ok_(len(status['csrfToken']))
+
+class ClopenbadgerTokenTests(test_utils.TestCase):
+    def test_no_token_provided_when_logged_out(self):
+        response = self.client.get('/browserid/status')
+        status = json.loads(response.content)
+        eq_(status['clopenbadgerToken'], None)
+
+    @mock.patch('django_browserid.auth.verify', fake_verify_success)
+    @mock.patch('time.time', lambda: 5)
+    def test_token_provided_when_logged_in(self):
+        response = self.client.post('/browserid/verify', {
+            'assertion': 'foo@bar.org'
+        }, follow=True)
+        status = json.loads(response.content)
+        token = status['clopenbadgerToken'].encode('ascii')
+        claims = jwt.decode(token, settings.CLOPENBADGER_SECRET)
+        eq_(claims['iss'], settings.SITE_URL)
+        eq_(claims['aud'], settings.CLOPENBADGER_URL)
+        eq_(claims['prn'], 'foo@bar.org')
+        eq_(claims['exp'], 5 + settings.CLOPENBADGER_TOKEN_LIFETIME)
 
 class BrowseridAjaxTests(test_utils.TestCase):
     def test_status_works(self):

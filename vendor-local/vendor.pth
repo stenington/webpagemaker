@@ -2,3 +2,4 @@ src/bleach
 src/django-south
 src/requests
 src/django-browserid
+src/pyjwt
