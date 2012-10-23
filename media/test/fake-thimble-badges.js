@@ -28,8 +28,7 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "HTML_COMMENT", "score": 1}],
         "prerequisites": []
-      },
-      
+      }
     }
   });
   return {url: url};
