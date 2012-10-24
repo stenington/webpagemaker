@@ -1,22 +1,25 @@
 define(function() {
+  function all(doc, selector) {
+    return Array.prototype.slice.call(doc.querySelectorAll(selector));
+  }
+  
+  function candidateFromElement(node) {
+    return {
+      node: node,
+      start: node.parseInfo.openTag.start,
+      end: node.parseInfo.closeTag.end
+    };
+  }
+
   var behaviorQueries = {
     HYPERLINK: function(doc) {
-      var anchors = doc.querySelectorAll("a");
-      var candidates = [];
-      
-      for (var i = 0; i < anchors.length; i++)
-        if ((anchors[i].children.length ||
-             anchors[i].textContent.trim()) &&
-            anchors[i].hasAttribute('href') &&
-            anchors[i].getAttribute('href').match(/^https?:/i))
-          // TODO: Check href to make sure entire URL is well-formed.
-          candidates.push({
-            node: anchors[i],
-            start: anchors[i].parseInfo.openTag.start,
-            end: anchors[i].parseInfo.closeTag.end
-          });
-      
-      return candidates;
+      return all(doc, "a").filter(function(anchor) {
+        return ((anchor.children.length ||
+                 anchor.textContent.trim()) &&
+                 anchor.hasAttribute('href') &&
+                 anchor.getAttribute('href').match(/^https?:/i));
+        // TODO: Check href to make sure entire URL is well-formed.        
+      }).map(candidateFromElement);
     },
     HTML_COMMENT: function(doc) {
       var candidates = [];
@@ -41,19 +44,9 @@ define(function() {
       return candidates;
     },
     CSS_CHANGED: function(doc) {
-      var styles = doc.querySelectorAll("style");
-      var candidates = [];
-      
-      for (var i = 0; i < styles.length; i++) {
-        if (styles[i].textContent.trim())
-          candidates.push({
-            node: styles[i],
-            start: styles[i].parseInfo.openTag.start,
-            end: styles[i].parseInfo.closeTag.end
-          });
-      }
-      
-      return candidates;
+      return all(doc, "style").filter(function(style) {
+        return (style.textContent.trim());
+      }).map(candidateFromElement);
     }
   };
   
