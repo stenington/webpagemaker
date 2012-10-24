@@ -73,4 +73,9 @@ defineTests([
     endHTML: '<style>#foo { color: red; }</style>',
     credits: ['CSS_CHANGED']
   });
+  
+  HTMLBadgeTest("empty style elements are not credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<style></style><p></p>'
+  });
 });
