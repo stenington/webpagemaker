@@ -102,7 +102,12 @@
       editor.ready.done(function() {
         HTMLBadges.attachProbes(editor.codeMirror, credit);
       });
-      
+      editor.publishUI.on('publish', function(info) {
+        // TODO: Would be nice if we could submit info.viewURL as
+        // evidence.
+        credit('PUBLISHED');
+      });
+
       return {
         auth: auth,
         badgeUI: badgeUI,

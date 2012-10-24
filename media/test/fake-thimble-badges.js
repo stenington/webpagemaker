@@ -84,6 +84,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "AUDIO", "score": 1}],
         "prerequisites": []
+      },
+      "PUBLISHER": {
+        "name": "Publisher",
+        "description": "You can publish web pages.",
+        "criteria": "Can use the publish functionality of Thimble.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "PUBLISHED", "score": 1}],
+        "prerequisites": []
       }
     }
   });
