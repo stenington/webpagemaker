@@ -67,4 +67,10 @@ defineTests([
     beginHTML: '<p>hello</p>',
     endHTML: '<p>hello <!--  --></p>'
   });
+  
+  HTMLBadgeTest("changed CSS is credited", {
+    beginHTML: '<style>#foo { color: pink; }</style>',
+    endHTML: '<style>#foo { color: red; }</style>',
+    credits: ['CSS_CHANGED']
+  });
 });

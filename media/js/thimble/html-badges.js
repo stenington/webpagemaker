@@ -39,6 +39,21 @@ define(function() {
       
       traverse(doc);
       return candidates;
+    },
+    CSS_CHANGED: function(doc) {
+      var styles = doc.querySelectorAll("style");
+      var candidates = [];
+      
+      for (var i = 0; i < styles.length; i++) {
+        if (styles[i].textContent.trim())
+          candidates.push({
+            node: styles[i],
+            start: styles[i].parseInfo.openTag.start,
+            end: styles[i].parseInfo.closeTag.end
+          });
+      }
+      
+      return candidates;
     }
   };
   

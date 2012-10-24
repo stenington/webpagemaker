@@ -28,6 +28,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "HTML_COMMENT", "score": 1}],
         "prerequisites": []
+      },
+      "CSS_LORD": {
+        "name": "CSS Lord",
+        "description": "You changed CSS.",
+        "criteria": "Can change CSS.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "CSS_CHANGED", "score": 1}],
+        "prerequisites": []
       }
     }
   });
