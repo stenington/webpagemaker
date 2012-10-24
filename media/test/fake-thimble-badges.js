@@ -52,6 +52,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "IMAGE", "score": 1}],
         "prerequisites": []
+      },
+      "A_LISTER": {
+        "name": "A-Lister",
+        "description": "You added or changed a list.",
+        "criteria": "Can add or change ol/li/ul elements.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "LIST", "score": 1}],
+        "prerequisites": []
       }
     }
   });

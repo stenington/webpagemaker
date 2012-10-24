@@ -110,4 +110,26 @@ defineTests([
     beginHTML: '<p>hi</p>',
     endHTML: '<p>hi <img></p>',
   });
+
+  HTMLBadgeTest("valid ordered lists are credited", {
+    beginHTML: '<p>hi <ol></ol></p>',
+    endHTML: '<p>hi <ol><li>sup</li></ol></p>',
+    credits: ['LIST']
+  });
+
+  HTMLBadgeTest("valid unordered lists are credited", {
+    beginHTML: '<p>hi <ul></ul></p>',
+    endHTML: '<p>hi <ul><li>sup</li></ul></p>',
+    credits: ['LIST']
+  });
+
+  HTMLBadgeTest("empty list elements are not credited", {
+    beginHTML: '<p>hi <ol></ol></p>',
+    endHTML: '<p>hi <ol><li></li></ol></p>'
+  });
+
+  HTMLBadgeTest("orphan list elements are not credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <li>sup</li></p>'
+  });
 });

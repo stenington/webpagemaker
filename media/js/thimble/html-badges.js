@@ -57,7 +57,7 @@ define(function() {
     },
     CSS_CHANGED: function(doc) {
       return select(doc, "style").filter(function(style) {
-        return (style.textContent.trim());
+        return (!!style.textContent.trim());
       }).map(candidateFromElement);
     },
     IFRAME: function(doc) {
@@ -69,6 +69,14 @@ define(function() {
       return select(doc, "img").filter(function(img) {
         return attrHasValidURL(img, 'src');
       }).map(candidateFromOpenTag);
+    },
+    LIST: function(doc) {
+      return select(doc, "li").filter(function(li) {
+        return (!!li.textContent.trim() &&
+                li.parentNode &&
+                (li.parentNode.nodeName == "OL" ||
+                 li.parentNode.nodeName == "UL"));
+      }).map(candidateFromElement);
     }
   };
   
