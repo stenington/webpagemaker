@@ -60,6 +60,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "LIST", "score": 1}],
         "prerequisites": []
+      },
+      "TYPIST": {
+        "name": "Typist",
+        "description": "You can type. Awesome.",
+        "criteria": "Can add or change heading and paragraph elements.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "TEXT", "score": 1}],
+        "prerequisites": []
       }
     }
   });

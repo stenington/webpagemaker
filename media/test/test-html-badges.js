@@ -132,4 +132,18 @@ defineTests([
     beginHTML: '<p>hi</p>',
     endHTML: '<p>hi <li>sup</li></p>'
   });
+  
+  for (var i = 1; i <= 6; i++) {
+    HTMLBadgeTest("valid h" + i + " tags are credited", {
+      beginHTML: '<p>hi</p>',
+      endHTML: '<h' + i + '>yo</h' + i + '><p>hi</p>',
+      credits: ['TEXT']
+    });
+  }
+
+  HTMLBadgeTest("changing paragraph text is credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi there</p>',
+    credits: ['TEXT']
+  });
 });

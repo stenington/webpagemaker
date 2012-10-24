@@ -77,6 +77,13 @@ define(function() {
                 (li.parentNode.nodeName == "OL" ||
                  li.parentNode.nodeName == "UL"));
       }).map(candidateFromElement);
+    },
+    TEXT: function(doc) {
+      return select(doc, "h1,h2,h3,h4,h5,h6,p").filter(function(node) {
+        return (node.childNodes.length == 1 &&
+                node.childNodes[0].nodeType == node.TEXT_NODE &&
+                node.childNodes[0].nodeValue.trim());
+      }).map(candidateFromElement);
     }
   };
   
