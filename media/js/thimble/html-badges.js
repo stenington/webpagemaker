@@ -64,6 +64,11 @@ define(function() {
       return all(doc, "iframe").filter(function(iframe) {
         return attrHasValidURL(iframe, 'src');
       }).map(candidateFromOpenTag);
+    },
+    IMAGE: function(doc) {
+      return all(doc, "img").filter(function(img) {
+        return attrHasValidURL(img, 'src');
+      }).map(candidateFromOpenTag);
     }
   };
   

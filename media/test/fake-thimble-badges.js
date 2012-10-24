@@ -44,6 +44,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "IFRAME", "score": 1}],
         "prerequisites": []
+      },
+      "IMAGE_MAKER": {
+        "name": "Da Vinci Coder",
+        "description": "You added or changed an image.",
+        "criteria": "Can add or change img tags.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "IMAGE", "score": 1}],
+        "prerequisites": []
       }
     }
   });

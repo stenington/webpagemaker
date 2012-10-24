@@ -99,4 +99,15 @@ defineTests([
     beginHTML: '<p>hi <iframe src="http://foo.org/"></iframe></p>',
     endHTML: '<p>hi <iframe src="http://foo.org/">lol</iframe></p>'
   });
+  
+  HTMLBadgeTest("valid images are credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <img src="http://foo.org/"></p>',
+    credits: ['IMAGE']
+  });
+  
+  HTMLBadgeTest("images w/o src attrs are not credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <img></p>',
+  });
 });
