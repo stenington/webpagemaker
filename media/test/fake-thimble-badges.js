@@ -32,7 +32,7 @@ define([
       "CSS_LORD": {
         "name": "CSS Lord",
         "description": "You changed CSS.",
-        "criteria": "Can change CSS.",
+        "criteria": "Can change CSS style elements and/or attribute values.",
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "CSS_CHANGED", "score": 1}],
         "prerequisites": []

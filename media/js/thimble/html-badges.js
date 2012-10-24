@@ -25,6 +25,23 @@ define(function() {
     };
   }
 
+  function candidateFromAttr(attr) {
+    return function(node) {
+      for (var i = 0; i < node.attributes.length; i++) {
+        var attrNode = node.attributes[i];
+        if (attrNode.nodeName.toLowerCase() == attr) {
+          return {
+            node: node,
+            start: attrNode.parseInfo.value.start,
+            end: attrNode.parseInfo.value.end
+          };
+        }
+      }
+      throw new Error("assertion failure: node does not have '" +
+                      attr + "' attribute");
+    };
+  }
+  
   var behaviorQueries = {
     HYPERLINK: function(doc) {
       return select(doc, "a").filter(function(anchor) {
@@ -56,9 +73,15 @@ define(function() {
       return candidates;
     },
     CSS_CHANGED: function(doc) {
-      return select(doc, "style").filter(function(style) {
+      var styleElements = select(doc, "style").filter(function(style) {
         return (!!style.textContent.trim());
       }).map(candidateFromElement);
+      
+      var styleAttrs = select(doc, "[style]").filter(function(node) {
+        return (!!node.getAttribute("style").trim());
+      }).map(candidateFromAttr("style"));
+      
+      return styleElements.concat(styleAttrs);
     },
     IFRAME: function(doc) {
       return select(doc, "iframe").filter(function(iframe) {

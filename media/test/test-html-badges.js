@@ -68,10 +68,21 @@ defineTests([
     endHTML: '<p>hello <!--  --></p>'
   });
   
-  HTMLBadgeTest("changed CSS is credited", {
+  HTMLBadgeTest("changed CSS in style elements is credited", {
     beginHTML: '<style>#foo { color: pink; }</style>',
     endHTML: '<style>#foo { color: red; }</style>',
     credits: ['CSS_CHANGED']
+  });
+
+  HTMLBadgeTest("changed CSS in style attributes is credited", {
+    beginHTML: '<span>hi</span>',
+    endHTML: '<span style="color: blue">hi</span>',
+    credits: ['CSS_CHANGED']
+  });
+
+  HTMLBadgeTest("empty style attributes are not credited", {
+    beginHTML: '<span>hi</span>',
+    endHTML: '<span style="">hi</span>'
   });
   
   HTMLBadgeTest("empty style elements are not credited", {
