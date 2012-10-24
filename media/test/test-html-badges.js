@@ -157,4 +157,10 @@ defineTests([
     endHTML: '<p>hi there</p>',
     credits: ['TEXT']
   });
+  
+  HTMLBadgeTest("adding a div is credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<div><p>hi</p></div>',
+    credits: ['DIV']
+  });
 });

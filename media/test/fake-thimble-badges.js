@@ -68,6 +68,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "TEXT", "score": 1}],
         "prerequisites": []
+      },
+      "DIVMAKER": {
+        "name": "Div Maker",
+        "description": "You can make divs.",
+        "criteria": "Can add or change div elements.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "DIV", "score": 1}],
+        "prerequisites": []
       }
     }
   });

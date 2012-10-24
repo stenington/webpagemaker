@@ -107,6 +107,11 @@ define(function() {
                 node.childNodes[0].nodeType == node.TEXT_NODE &&
                 node.childNodes[0].nodeValue.trim());
       }).map(candidateFromElement);
+    },
+    DIV: function(doc) {
+      return select(doc, "div").filter(function(node) {
+        return (!!node.textContent.trim());
+      }).map(candidateFromElement);
     }
   };
   
