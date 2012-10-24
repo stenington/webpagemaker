@@ -78,4 +78,25 @@ defineTests([
     beginHTML: '<p>hi</p>',
     endHTML: '<style></style><p></p>'
   });
+  
+  HTMLBadgeTest("valid iframes are credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <iframe src="http://foo.org/"></iframe></p>',
+    credits: ['IFRAME']
+  });
+  
+  HTMLBadgeTest("iframes w/ invalid src attrs are not credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <iframe src="blarg"></iframe></p>',
+  });
+
+  HTMLBadgeTest("iframes w/o any src attr are not credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <iframe></iframe></p>',
+  });
+
+  HTMLBadgeTest("changing body of an iframe doesn't credit", {
+    beginHTML: '<p>hi <iframe src="http://foo.org/"></iframe></p>',
+    endHTML: '<p>hi <iframe src="http://foo.org/">lol</iframe></p>'
+  });
 });

@@ -36,6 +36,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "CSS_CHANGED", "score": 1}],
         "prerequisites": []
+      },
+      "PORTAL_BUILDER": {
+        "name": "Portal Builder",
+        "description": "You added or changed an iframe.",
+        "criteria": "Can add or change iframes.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "IFRAME", "score": 1}],
+        "prerequisites": []
       }
     }
   });

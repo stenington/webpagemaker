@@ -2,6 +2,20 @@ define(function() {
   function all(doc, selector) {
     return Array.prototype.slice.call(doc.querySelectorAll(selector));
   }
+
+  function attrHasValidURL(node, attr) {
+    // TODO: Check href to make sure entire URL is well-formed.        
+    return (node.hasAttribute(attr) &&
+            node.getAttribute(attr).match(/^https?:/i));
+  }
+  
+  function candidateFromOpenTag(node) {
+    return {
+      node: node,
+      start: node.parseInfo.openTag.start,
+      end: node.parseInfo.openTag.end
+    };
+  }
   
   function candidateFromElement(node) {
     return {
@@ -16,9 +30,7 @@ define(function() {
       return all(doc, "a").filter(function(anchor) {
         return ((anchor.children.length ||
                  anchor.textContent.trim()) &&
-                 anchor.hasAttribute('href') &&
-                 anchor.getAttribute('href').match(/^https?:/i));
-        // TODO: Check href to make sure entire URL is well-formed.        
+                 attrHasValidURL(anchor, 'href'));
       }).map(candidateFromElement);
     },
     HTML_COMMENT: function(doc) {
@@ -47,6 +59,11 @@ define(function() {
       return all(doc, "style").filter(function(style) {
         return (style.textContent.trim());
       }).map(candidateFromElement);
+    },
+    IFRAME: function(doc) {
+      return all(doc, "iframe").filter(function(iframe) {
+        return attrHasValidURL(iframe, 'src');
+      }).map(candidateFromOpenTag);
     }
   };
   
