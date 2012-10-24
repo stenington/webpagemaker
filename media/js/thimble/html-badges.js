@@ -1,5 +1,5 @@
 define(function() {
-  function all(doc, selector) {
+  function select(doc, selector) {
     return Array.prototype.slice.call(doc.querySelectorAll(selector));
   }
 
@@ -27,7 +27,7 @@ define(function() {
 
   var behaviorQueries = {
     HYPERLINK: function(doc) {
-      return all(doc, "a").filter(function(anchor) {
+      return select(doc, "a").filter(function(anchor) {
         return ((anchor.children.length ||
                  anchor.textContent.trim()) &&
                  attrHasValidURL(anchor, 'href'));
@@ -56,17 +56,17 @@ define(function() {
       return candidates;
     },
     CSS_CHANGED: function(doc) {
-      return all(doc, "style").filter(function(style) {
+      return select(doc, "style").filter(function(style) {
         return (style.textContent.trim());
       }).map(candidateFromElement);
     },
     IFRAME: function(doc) {
-      return all(doc, "iframe").filter(function(iframe) {
+      return select(doc, "iframe").filter(function(iframe) {
         return attrHasValidURL(iframe, 'src');
       }).map(candidateFromOpenTag);
     },
     IMAGE: function(doc) {
-      return all(doc, "img").filter(function(img) {
+      return select(doc, "img").filter(function(img) {
         return attrHasValidURL(img, 'src');
       }).map(candidateFromOpenTag);
     }
