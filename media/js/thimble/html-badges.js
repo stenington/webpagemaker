@@ -108,6 +108,14 @@ define(function() {
                 node.childNodes[0].nodeValue.trim());
       }).map(candidateFromElement);
     },
+    AUDIO: function(doc) {
+      return select(doc, "audio").filter(function(node) {
+        if (attrHasValidURL(node, 'src'))
+          return true;
+        var source = node.querySelector("source");
+        return (source && attrHasValidURL(source, 'src'));
+      }).map(candidateFromElement);
+    },
     DIV: function(doc) {
       return select(doc, "div").filter(function(node) {
         return (!!node.textContent.trim());

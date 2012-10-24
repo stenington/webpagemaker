@@ -163,4 +163,21 @@ defineTests([
     endHTML: '<div><p>hi</p></div>',
     credits: ['DIV']
   });
+  
+  HTMLBadgeTest("adding an audio tag w/ valid src attr is credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <audio src="http://foo/"></audio></p>',
+    credits: ['AUDIO']
+  });
+
+  HTMLBadgeTest("adding an audio tag w/ invalid src attr is not credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <audio src="gweg"></audio></p>'
+  });
+  
+  HTMLBadgeTest("adding an audio tag w/ valid source tag is credited", {
+    beginHTML: '<p>hi</p>',
+    endHTML: '<p>hi <audio><source src="http://foo.org/"></audio></p>',
+    credits: ['AUDIO']
+  });
 });

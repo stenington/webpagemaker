@@ -76,6 +76,14 @@ define([
         "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
         "behaviors": [{"name": "DIV", "score": 1}],
         "prerequisites": []
+      },
+      "AUDIOPHILE": {
+        "name": "Audiophile",
+        "description": "You can make audio.",
+        "criteria": "Can add or change audio elements.",
+        "image": "https://wiki.mozilla.org/images/b/bb/Merit-badge.png",
+        "behaviors": [{"name": "AUDIO", "score": 1}],
+        "prerequisites": []
       }
     }
   });
