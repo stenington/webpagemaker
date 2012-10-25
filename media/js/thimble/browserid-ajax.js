@@ -8,7 +8,16 @@ define(["jquery", "backbone-events"], function($, BackboneEvents) {
       email: options.email || null,
       csrfToken: options.csrfToken,
       clopenbadgerToken: options.clopenbadgerToken || null,
-      id: id
+      id: id,
+      login: function() {
+        self.id.get(function(assertion) {
+          if (assertion)
+            post(options.verifyURL, {assertion: assertion}, 'login');
+        });
+      },
+      logout: function() {
+        post(options.logoutURL, {}, 'logout');
+      }
     };
 
     BackboneEvents.mixin(self);
@@ -28,16 +37,6 @@ define(["jquery", "backbone-events"], function($, BackboneEvents) {
         }
       });
     }
-    
-    id.watch({
-      loggedInUser: self.email,
-      onlogin: function(assertion) {
-        post(options.verifyURL, {assertion: assertion}, 'login');
-      },
-      onlogout: function() {
-        post(options.logoutURL, {}, 'logout');
-      }
-    });
     
     return self;
   };
