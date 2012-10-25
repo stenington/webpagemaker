@@ -60,8 +60,8 @@
           WebmakerNav = require("webmaker-nav"),
           webmakerNav = new WebmakerNav({
             container: $("#webmaker-nav")[0],
-            loginBtnCallback: function() { navigator.id.request(); },
-            logoutBtnCallback: function() { navigator.id.logout(); }
+            loginBtnCallback: function() { auth.login(); },
+            logoutBtnCallback: function() { auth.logout(); }
           }),
           auth = BrowserIDAjax({
             email: "{{ user.email }}",
