@@ -47,6 +47,8 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
     equal(browserid.clopenbadgerToken, null);
     
     browserid.login();
+    browserid.id._options.onlogin(null);
+    equal(loginEvents, 0, "null assertions don't trigger login events");
     browserid.id._options.onlogin('fake assertion for foo@bar.org');
     
     equal(loginEvents, 1);
