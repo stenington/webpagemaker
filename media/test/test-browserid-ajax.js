@@ -6,8 +6,8 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
   function FakeNavigatorID() {
     return {
       _options: null,
-      watch: function(options) {
-        this._options = options;
+      get: function(cb) {
+        this._options = {onlogin: cb};
       }
     };
   }
@@ -42,11 +42,11 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
       })
     }).on('login', function() { loginEvents++; });
     
-    equal(browserid.id._options.loggedInUser, null);
     equal(browserid.email, null);
     equal(browserid.csrfToken, 'fake csrf token');
     equal(browserid.clopenbadgerToken, null);
     
+    browserid.login();
     browserid.id._options.onlogin('fake assertion for foo@bar.org');
     
     equal(loginEvents, 1);
@@ -77,12 +77,11 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
       })
     }).on('logout', function() { logoutEvents++; });
     
-    equal(browserid.id._options.loggedInUser, 'foo@barf.org');
     equal(browserid.email, 'foo@barf.org');
     equal(browserid.csrfToken, 'fake csrf token');
     equal(browserid.clopenbadgerToken, 'fake clopenbadger token');
     
-    browserid.id._options.onlogout();
+    browserid.logout();
     
     equal(logoutEvents, 1);
     equal(browserid.email, null);
