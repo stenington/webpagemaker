@@ -47,6 +47,7 @@ html, body {
 
 #thimble-header .logo a img {
   width: 138px;
+  border: 0;
 }
 
 #webmaker-nav {
