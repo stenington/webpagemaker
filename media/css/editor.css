@@ -28,10 +28,16 @@ html, body {
   z-index: 2;
 }
 
+.header-content {
+  height: 50px;
+  padding-top: 29px;
+}
+
 #thimble-header .logo {
   display: inline-block;
   margin-left: 15px;
-  margin-top: 30px;
+  margin-top: 2px;
+  vertical-align: top;
 }
 
 #thimble-header .logo a {
@@ -49,4 +55,35 @@ html, body {
   left: 0px;
   right: 0px;
   z-index: 9000;
+}
+
+.breadcrumbs {
+  position: relative;
+  display: inline-block;
+  width: 1px;
+  height: 100%;
+  margin: 0 15px;
+  border-right: 1px solid #d6d8d7;
+}
+.breadcrumbs:after,
+.breadcrumbs:before {
+  left: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.breadcrumbs:after {
+  border-left-color: #f2f2f2; 
+  border-width: 5px;
+  top: 50%;
+  margin-top: -5px;
+}
+.breadcrumbs:before {
+  border-left-color: #d6d8d7;
+  border-width: 7px;
+  top: 50%;
+  margin-top: -7px;
 }
