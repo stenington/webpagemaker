@@ -37,8 +37,10 @@
     <script>
     require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
     require.paths.clopenbadger = '{{ MEDIA_URL }}clopenbadger';
+    {% if USE_FAKE_CLOPENBADGER is defined %}
     require.paths['fake-thimble-badges'] = '{{ MEDIA_URL }}/test/' +
                                            'fake-thimble-badges';
+    {% endif %}
     if (!require.packages)
       require.packages = [];
     require.packages.push({
@@ -78,15 +80,18 @@
             container: $("#thimble-friendlycode-holder")
           }),
           badger = null,
-          FakeThimbleBadges = require("fake-thimble-badges"),
           credit = function(behavior) { badger && badger.credit(behavior); };
 
       require("thimble/typekit-ready!");
 
+      {% if USE_FAKE_CLOPENBADGER is defined %}
+      require("fake-thimble-badges");
+      {% endif %}
+      
       auth.on("login", function() {
         webmakerNav.views.login({username: auth.email});
         badger = Clopenbadger({
-          server: FakeThimbleBadges.url,
+          server: "{{ CLOPENBADGER_URL }}",
           token: auth.clopenbadgerToken,
           email: auth.email
         });
