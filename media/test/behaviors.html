@@ -26,88 +26,90 @@ textarea {
   width: 100%;
   height: 150px;
 }
+
+#friendlycode-holder {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 1px solid black;
+}
+
+#friendlycode-holder .publish-button {
+  display: none !important;
+}
+
+#credits {
+  list-style-type: none;
+  padding: 0;
+}
+
+#credits .behavior {
+  display: inline-block;
+  padding: 2px 4px;
+  margin: 2px 0;
+  background: green;
+  color: white;
+  border-radius: 4px;
+}
 </style>
+<link rel="stylesheet" href="../friendlycode/css/friendlycode.css">
 <title>Thimble Behaviors</title>
 <h1>Thimble Behaviors</h1>
-<table id="behaviors">
-  <tr>
-    <th>Name</th>
-    <th>Shortname</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td class="name">Logged In</td>
-    <td class="shortname">LOGGED_IN</td>
-    <td class="description">The user logged in, or reloaded the Thimble editor while being logged in.</td>
-  </tr>
-  <tr>
-    <td class="name">Published</td>
-    <td class="shortname">PUBLISHED</td>
-    <td class="description">The user published a page.</td>
-  </tr>
-  <tr>
-    <td class="name">Hyperlink</td>
-    <td class="shortname">HYPERLINK</td>
-    <td class="description">The user wrote a non-empty <code>&lt;a&gt;</code> tag with a valid <code>href</code> attribute.</td>
-  </tr>
-  <tr>
-    <td class="name">HTML Comment</td>
-    <td class="shortname">HTML_COMMENT</td>
-    <td class="description">The user wrote a non-empty HTML comment (e.g., <code>&lt;!-- hello --&gt;</code>).</td>
-  </tr>
-  <tr>
-    <td class="name">CSS Changed</td>
-    <td class="shortname">CSS_CHANGED</td>
-    <td class="description">The user changed some CSS within a <code>&lt;style&gt;</code> tag or <code>style</code> attribute.</td>
-  </tr>
-  <tr>
-    <td class="name">Iframe</td>
-    <td class="shortname">IFRAME</td>
-    <td class="description">The user wrote an <code>&lt;iframe&gt;</code> tag with a valid <code>src</code> attribute.</td>
-  </tr>
-  <tr>
-    <td class="name">Image</td>
-    <td class="shortname">IMAGE</td>
-    <td class="description">The user wrote an <code>&lt;img&gt;</code> tag with a valid <code>src</code> attribute.</td>
-  </tr>
-  <tr>
-    <td class="name">List</td>
-    <td class="shortname">LIST</td>
-    <td class="description">The user wrote a non-empty <code>&lt;li&gt;</code> tag that is a direct descendant of a <code>&lt;ol&gt;</code> or <code>&lt;ul&gt;</code> tag.</td>
-  </tr>
-  <tr>
-    <td class="name">Text</td>
-    <td class="shortname">TEXT</td>
-    <td class="description">The user wrote a non-empty <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> tag or a <code>&lt;p&gt;</code> tag.</td>
-  </tr>
-  <tr>
-    <td class="name">Audio</td>
-    <td class="shortname">AUDIO</td>
-    <td class="description">The user wrote an <code>&lt;audio&gt;</code> tag with either a valid <code>src</code> attribute or a child <code>&lt;source&gt;</code> tag that has a valid <code>src</code> attribute.</td>
-  </tr>
-  <tr>
-    <td class="name">Div</td>
-    <td class="shortname">DIV</td>
-    <td class="description">The user wrote a non-empty <code>&lt;div&gt;</code> tag.</td>
-  </tr>
-</table>
+<h2>Testbed</h2>
+<p>Type code into the editor. Any behaviors that are credited will be displayed below.</p>
+<div id="friendlycode-holder"></div>
+<ul id="credits"></ul>
+<h2>Behaviors Table</h2>
+<p>These are all the behaviors that Thimble credits. For examples of
+the coding-related badges, see their <a href="test-html-behaviors.js">test suite</a>.</p>
+<div id="behaviors-table-holder"></div>
 <h2>JSON Export</h2>
 <p>The data below is in a format suitable for importing into <a href="https://github.com/mozilla/clopenbadger">Clopenbadger</a>.</p>
 <textarea id="export"></textarea>
+<script src="../friendlycode/js/require-config.js"></script>
+<script src="require-test-config.js"></script>
+<script src="../friendlycode/js/require.min.js"></script>
 <script>
-var PROPERTIES = ['name', 'shortname', 'description'];
-
-onload = function() {
-  var rows = document.querySelectorAll("#behaviors tr"),
-      behaviors = [];
-  Array.prototype.slice.call(rows, 1).forEach(function(row) {
-    var behavior = {};
-    PROPERTIES.forEach(function(property) {
-      behavior[property] = row.querySelector('.' + property).textContent;
+define("export-json-from-behaviors", function() {
+  return function(behaviors) {
+    var list = [];
+    Object.keys(behaviors).forEach(function(shortname) {
+      list.push(behaviors[shortname]);
     });
-    behaviors.push(behavior);
+    return JSON.stringify(list, null, 2);
+  }
+});
+
+define("main", function(require) {
+  var behaviorsTableHTML = require("text!thimble-test/behaviors-table.html"),
+      exportJSONFromBehaviors = require("export-json-from-behaviors"),
+      $ = require("jquery"),
+      HTMLBehaviors = require("thimble/html-behaviors"),
+      FriendlycodeEditor = require('friendlycode'),
+      editor = FriendlycodeEditor({container: $("#friendlycode-holder")}),
+      behaviors = {};
+
+  function credit(shortname) {
+    var li = $('<li><span class="behavior"></span> credited.</li>')
+      .prependTo("#credits").hide().slideDown();
+    $('.behavior', li).text(behaviors[shortname].name);
+  }
+  
+  $("#behaviors-table-holder")
+    .html(behaviorsTableHTML)
+    .find("tr:not(:first-child)").each(function() {
+      var behavior = {};
+      $("td", this).each(function() {
+        behavior[this.className] = $(this).text();
+      });
+      behaviors[behavior.shortname] = behavior;
+    });
+  $("#export").val(exportJSONFromBehaviors(behaviors));
+
+  editor.ready.done(function() {
+    HTMLBehaviors.attachProbes(editor.codeMirror, credit);
   });
-  document.querySelector("#export").value = JSON.stringify(behaviors,
-                                                           null, 2);
-};
+});
+
+require(["main"], function() {});
 </script>

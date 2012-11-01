@@ -17,12 +17,7 @@
     <script src="../friendlycode/test/qunit.js"></script>
     <script src="../friendlycode/test/define-tests.js"></script>
     <script src="../friendlycode/js/require-config.js"></script>
-    <script>
-    // These paths are a bit odd because they're relative to
-    // ../friendlycode/js, not the directory this file is in.
-    require.paths['thimble'] = '../../js/thimble';
-    require.paths['thimble-test'] = '../../test';
-    </script>
+    <script src="require-test-config.js"></script>
     <script src="../friendlycode/js/require.min.js"></script>
     <script>
     defineTests.run(["thimble-test/all-tests", "test/all-tests"]);
