@@ -58,7 +58,7 @@
     define("main", function(require) {
       var $ = require("jquery"),
           FriendlycodeEditor = require('friendlycode'),
-          HTMLBadges = require("thimble/html-badges"),
+          HTMLBehaviors = require("thimble/html-behaviors"),
           BadgeUI = require("webmaker-nav/badge-ui"),
           BrowserIDAjax = require("thimble/browserid-ajax"),
           Clopenbadger = require("clopenbadger/clopenbadger"),
@@ -108,7 +108,7 @@
       auth.trigger(auth.email ? 'login' : 'logout', auth);
 
       editor.ready.done(function() {
-        HTMLBadges.attachProbes(editor.codeMirror, credit);
+        HTMLBehaviors.attachProbes(editor.codeMirror, credit);
       });
       editor.publishUI.on('publish', function(info) {
         // TODO: Would be nice if we could submit info.viewURL as
