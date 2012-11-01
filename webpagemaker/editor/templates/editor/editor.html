@@ -30,11 +30,6 @@
 
     <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
 
-    <script>
-    if (!location.search.match(/notypekit=1/))
-      document.write('<script src="//use.typekit.com/qjh6hdg.js"></' +
-                     'script>');
-    </script>
     <script src="https://login.persona.org/include.js"></script>
     <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
     <script>
@@ -84,8 +79,6 @@
           }),
           badger = null,
           credit = function(behavior) { badger && badger.credit(behavior); };
-
-      require("thimble/typekit-ready!");
 
       {% if USE_FAKE_CLOPENBADGER is defined %}
       require("fake-thimble-badges");
