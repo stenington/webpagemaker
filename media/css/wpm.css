@@ -15,7 +15,8 @@ Global styles and classes
   .button,
   .button:link,
   .button:visited {
-    font-family: OpenSansLightItalic;
+    font-family: 'Open Sans Light';
+    font-style: italic;
     line-height: 2.5em;
     height: 2.5em;
   }
@@ -79,13 +80,14 @@ Global styles and classes
     height: 48px;
     line-height: 48px;
     font-size: 1.4em;
-    font-family: OpenSansLightItalic; 
+    font-family: 'Open Sans Light'; 
+    font-style: italic;
   }
   
   .intro-bar em {
     color: #939598;
     margin: 0 15px;
-    font-family: OpenSansLight;
+    font-family: 'Open Sans Light';
     font-size: 1.5em;
     font-style: normal;
     font-weight: 400;
@@ -94,7 +96,8 @@ Global styles and classes
   }
   
   h2 {
-    font-family: OpenSansLightItalic;
+    font-family: 'Open Sans Light';
+    font-style: italic;
     color: #676767;
   }
 
@@ -103,7 +106,8 @@ Global styles and classes
   }
 
   .hero-unit h1 {
-    font-family: OpenSansBold;
+    font-family: 'Open Sans';
+    font-weight: 900;
     color: #676767;
     text-transform: uppercase;
   }
@@ -183,7 +187,7 @@ Layout styles
   }
 
   .logo {
-    font-family: OpenSansLight, sans-serif;
+    font-family: 'Open Sans Light', sans-serif;
     font-size: 2.2em;
     font-weight: 200;
     line-height: normal;
@@ -289,14 +293,15 @@ Layout styles
   }
 
   #colophon h2 {
-    font-family: OpenSansLight;
+    font-family: 'Open Sans Light';
     color: #999; 
     font-size: 2em;
   }
 
   #colophon h3 {
     color: #999;
-    font-family: OpenSansSemibold;
+    font-family: 'Open Sans';
+    font-weight: bold;
     font-size: 1em;
     margin-top: 1em;
   }
@@ -421,14 +426,15 @@ Gallery styles
     display: inline-block;
     color: #999;
     text-transform: uppercase;
-    font-family: OpenSansSemibold;
+    font-family: 'Open Sans';
+    font-weight: bold;
     font-size: 0.75em;
     margin-bottom: 12px;
     line-height: 18px;
   }
 
   #gallery .caption h5 {
-    font-family: OpenSansRegular;
+    font-family: 'Open Sans';
     display: inline-block;
   }
   #gallery .caption h5:after {
@@ -477,7 +483,8 @@ Projects styles
     color: #999;
     text-transform: uppercase;
     text-align: center;
-    font-family: OpenSansSemibold;
+    font-family: 'Open Sans';
+    font-weight: bold;
     font-size: 0.75em;
   }
   .view-style ul {
