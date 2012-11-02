@@ -1,0 +1,9 @@
+#tabzilla-panel {
+    z-index: 9001;
+    -webkit-box-shadow: 0 5px 25px 0 #444;
+    box-shadow: 0 5px 25px 0 #444; 
+}
+
+#tabzilla {
+    z-index: 9001;
+}

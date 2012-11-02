@@ -56,11 +56,11 @@ including login credentials.
 If you want to use the default database mentioned there, `playdoh_app`,
 you can create it using this command:
 
-    mysql -u root -e 'create database playdoh_app;'
+    mysql -u root -e 'CREATE DATABASE playdoh_app CHARACTER SET utf8 COLLATE utf8_general_ci;'
 
 OR by using this command, if your MySQL is password protected:
 
-    mysql -u root -pYourPassWordHere -e 'create database playdoh_app;'
+    mysql -u root -pYourPassWordHere -e 'CREATE DATABASE playdoh_app CHARACTER SET utf8 COLLATE utf8_general_ci;'
 
 Then, synchronize the tables and initial data:
 

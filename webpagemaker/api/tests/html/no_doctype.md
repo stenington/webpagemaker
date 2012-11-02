@@ -1,6 +1,4 @@
-We're not sure if making this test pass is the responsibility of bleach
-or our own sanitization code. Until we figure that out, we're skipping
-this test.
+We want to ensure that any content we deliver has an HTML5 doctype.
 
 ## Input
 

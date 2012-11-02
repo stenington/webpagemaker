@@ -6,7 +6,22 @@
 	url = git://github.com/simonwex/bleach.git
 [submodule "webpagemaker/editor/friendlycode"]
 	path = webpagemaker/editor/friendlycode
-	url = git://github.com/toolness/friendlycode.git
+	url = git://github.com/mozilla/friendlycode.git
 [submodule "vendor-local/src/django-south"]
 	path = vendor-local/src/django-south
 	url = git://github.com/toolness/django-south.git
+[submodule "vendor-local/src/django-browserid"]
+	path = vendor-local/src/django-browserid
+	url = git://github.com/mozilla/django-browserid.git
+[submodule "vendor-local/src/requests"]
+	path = vendor-local/src/requests
+	url = git://github.com/kennethreitz/requests.git
+[submodule "media/webmaker-nav"]
+	path = media/webmaker-nav
+	url = git://github.com/toolness/webmaker-nav.git
+[submodule "vendor-local/src/pyjwt"]
+	path = vendor-local/src/pyjwt
+	url = git://github.com/progrium/pyjwt.git
+[submodule "media/clopenbadger"]
+	path = media/clopenbadger
+	url = git://github.com/toolness/clopenbadger-consumer.git

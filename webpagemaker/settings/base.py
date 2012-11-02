@@ -18,7 +18,13 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'webpagemaker.website',
     'webpagemaker.editor',
     'webpagemaker.learning_projects',
+    'webpagemaker.browserid_ajax',
+    'django_browserid'
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django_browserid.auth.BrowserIDBackend',
+)
 
 # Because Jinja2 is the default template loader, add any non-Jinja templated
 # apps here:
@@ -57,7 +63,9 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
     # static resources for in-development learning projects
     'sd',
     # Mission development API (debug only)
-    'mission-slurp'
+    'mission-slurp',
+    # BrowserID auth backend
+    'browserid'
 ]
 
 # Maximum size, in bytes, of published pages. Note that if you change this
@@ -93,3 +101,11 @@ LEARNING_PROJECTS_STATIC_ROOT = path('webpagemaker/learning_projects/static')
 
 # Use our symlink for the admin media.
 ADMIN_MEDIA_PREFIX = '/media/admin/'
+
+CLOPENBADGER_TOKEN_LIFETIME = 604800 # 1 Week
+
+# A real clopenbadger server doesn't exist yet, so we'll put these
+# settings here for now. Once a real one exists, these need to be
+# removed.
+CLOPENBADGER_URL = 'http://fake-clopenbadger'
+CLOPENBADGER_SECRET = 'fake-clopenbadger-token'

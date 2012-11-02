@@ -14,22 +14,22 @@ class SecurityTests(test_utils.TestCase):
         # distributed through the API", we require that documents
         # require DOCTYPE definitions.
         
-        # TODO: Do we want to reject documents w/o DOCTYPE
-        # definitions outright, or modify them to contain proper
-        # DOCTYPE definitions if possible?
-        
-        raise SkipTest()
+        # This objective is satisfied by the following tests, which we're
+        # merely verifying the existence of here.
+        from . import test_sanitize
+        ok_(getattr(test_sanitize, 'test_no_doctype'))
 
     def test_documents_require_correct_html(self):
         # To mitigate the risk "Copyrighted work can be stored and
         # distributed through the API", we require that documents
         # require syntactically correct HTML.
 
-        # TODO: Do we want to reject invalid HTML outright, or 
-        # fix them up to have syntactically correct HTML? It looks
-        # like bleach tends to do the latter.
-
-        raise SkipTest()
+        # This objective is satisfied by the following tests, which we're
+        # merely verifying the existence of here. Obviously these aren't
+        # exhaustive, but they're really just integration tests to make
+        # sure that we're properly configuring and talking to bleach.
+        from . import test_sanitize
+        ok_(getattr(test_sanitize, 'test_no_doctype'))
 
     def test_nofollow_links_inserted_in_anchors(self):
         # To mitigate the risk "Documents hosted via the API could be used
@@ -62,24 +62,10 @@ class SecurityTests(test_utils.TestCase):
         # attack vector", we require that the publish endpoint be
         # rate-limited.
         
-        # TODO: How do we want to do the rate limiting? Twitter's
-        # REST API rate limiting for unauthenticated calls [1] are:
-        #
-        #   Unauthenticated calls are permitted 150 requests per hour.
-        #   Unauthenticated calls are measured against the public facing
-        #   IP of the server or device making the request.
-        #
-        # Twitter also returns HTTP 400 response codes if the rate limit
-        # is reached. We might want to also provide ways for the front-end
-        # to check the rate limit status [2].
-        #
-        # Note that the rate-limiting can also be done by infrastructure
-        # "in front" of this app, e.g. a Zeus load balancer.
-        #
-        # [1] https://dev.twitter.com/docs/rate-limiting#rest
-        # [2] https://dev.twitter.com/docs/rate-limiting/faq#checking
-
-        raise SkipTest()
+        # This objective is satisfied by the following tests, which we're
+        # merely verifying the existence of here.
+        from . import test_api
+        ok_(test_api.PublishTests.test_publishing_is_rate_limited)
     
     def test_publishing_is_size_limited(self):
         # To mitigate the risks "Copyrighted work can be stored and

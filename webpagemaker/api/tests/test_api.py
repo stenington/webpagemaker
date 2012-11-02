@@ -4,10 +4,22 @@ from django.utils import simplejson as json
 from .. import views
 
 import test_utils
+import mock
 from nose.tools import eq_, ok_
 
 SIMPLE_HTML = "<!DOCTYPE html><html><head><title>hi</title></head>" + \
               "<body>hello.</body></html>"
+
+class FakeCache(object):
+    keys = {}
+    
+    @classmethod
+    def set(cls, key, value, timeout):
+        cls.keys[key] = {'value': value, 'timeout': timeout}
+    
+    @classmethod
+    def get(cls, key):
+        return cls.keys.get(key, {'value': None})['value']
 
 class PublishTests(test_utils.TestCase):
     def _publish_and_verify(self, html, expected_html=None):
@@ -76,6 +88,14 @@ class PublishTests(test_utils.TestCase):
           })
         eq_(response.status_code, 200)
     
+    def test_page_source_is_plaintext(self):
+        response = self.client.post('/api/page', {
+          'html': '<script>alert("YO");</script>'
+          })
+        src_response = self.client.get(response.content + '/raw')
+        eq_(src_response['Content-Type'], 'text/plain')
+        eq_(src_response.content, '<script>alert("YO");</script>')
+
     def test_origin_url_is_returned(self):
         response = self.client.post('/api/page', {
           'html': 'hi',
@@ -84,10 +104,27 @@ class PublishTests(test_utils.TestCase):
         response = self.client.get(response.content)
         eq_(response['x-original-url'], 'http://blah.com/')
 
+    def test_published_pages_are_embeddable(self):
+        response = self._publish_and_verify(SIMPLE_HTML)
+        ok_('X-Frame-Options' not in response)
+
     def test_void_content_is_rejected(self):
         response = self.client.post('/api/page', {'html': ''})
         eq_(response.status_code, 400)
         eq_(response.content, "HTML body expected.")
+
+    @mock.patch('webpagemaker.api.decorators.cache', FakeCache)
+    def test_publishing_is_rate_limited(self):
+        FakeCache.keys.clear()
+        response = self.client.post('/api/page', {'html': 'hi'})
+        eq_(response.status_code, 200)
+        eq_(len(FakeCache.keys), 1)
+        timeout = FakeCache.keys.values()[0]['timeout']
+        ok_(timeout >= 1, 'cache timeout is at least 1s')
+        response = self.client.post('/api/page', {'html': 'hi again'})
+        eq_(response.status_code, 403)
+        eq_(response.content, 'Sorry, you can only publish a page every' +
+                              ' %d seconds, try again in a bit' % timeout)
 
     def test_retrieving_page_delivers_x_robots_tag(self):
         response = self._publish_and_verify(SIMPLE_HTML)
