@@ -8,7 +8,7 @@ html, body {
 
 #thimble-friendlycode-holder {
   position: absolute;
-  top: 79px;
+  top: 92px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -28,7 +28,7 @@ html, body {
 }
 
 .header-content {
-  height: 50px;
+  height: 63px;
   padding-top: 29px;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
