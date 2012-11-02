@@ -31,13 +31,17 @@ html, body {
 .header-content {
   height: 50px;
   padding-top: 29px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.header-item {
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: middle;
 }
 
 #thimble-header .logo {
-  display: inline-block;
-  margin-left: 15px;
   margin-top: 2px;
-  vertical-align: top;
 }
 
 #thimble-header .logo a {
@@ -47,6 +51,11 @@ html, body {
 
 #thimble-header .logo a img {
   width: 138px;
+}
+
+#thimble-header .project-info .title {
+  color: #3887F3;
+  font-weight: bold;
 }
 
 #webmaker-nav {

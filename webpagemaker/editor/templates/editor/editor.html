@@ -19,12 +19,15 @@
 
     <header id="thimble-header">
       <div class="header-content">
-        <div class="logo">
+        <div class="header-item logo">
           <a href="/">
             <img src="{{ MEDIA_URL }}img/thimble-logo.png" alt="Mozilla Thimble">
           </a>
         </div>
-        <div class="breadcrumbs"></div>
+        <div class="header-item breadcrumbs"></div>
+        <div class="header-item project-info">
+          <span class="title"></span>
+        </div>
       </div>
     </header>
 
@@ -102,6 +105,9 @@
 
       editor.ready.done(function() {
         HTMLBehaviors.attachProbes(editor.codeMirror, credit);
+      });
+      editor.editor.panes.preview.on('change:title', function(title){ 
+        $('.header-content .project-info .title').html(title);
       });
       editor.publishUI.on('publish', function(info) {
         // TODO: Would be nice if we could submit info.viewURL as
