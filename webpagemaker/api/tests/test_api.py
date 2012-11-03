@@ -1,11 +1,14 @@
 from django.conf import settings
 from django.utils import simplejson as json
+from django.contrib.auth.models import User
 
+from .. import models
 from .. import views
 
 import test_utils
 import mock
 from nose.tools import eq_, ok_
+from webpagemaker.browserid_ajax.tests import fake_verify_success
 
 SIMPLE_HTML = "<!DOCTYPE html><html><head><title>hi</title></head>" + \
               "<body>hello.</body></html>"
@@ -20,6 +23,15 @@ class FakeCache(object):
     @classmethod
     def get(cls, key):
         return cls.keys.get(key, {'value': None})['value']
+
+def page_from_publish(response):
+    """
+    Given a successful POST request to /api/page, return the
+    corresponding Page object that was created.
+    """
+    
+    short_url_id = response.content.split('/')[-1]
+    return models.Page.objects.get(short_url_id=short_url_id)
 
 class PublishTests(test_utils.TestCase):
     def _publish_and_verify(self, html, expected_html=None):
@@ -44,6 +56,21 @@ class PublishTests(test_utils.TestCase):
         eq_(type(response.content), str)
         eq_(response.content, expected_html)
         return response
+
+    def test_anonymous_publish_has_no_creator(self):
+        response = self.client.post('/api/page', {'html': 'hi'})
+        eq_(page_from_publish(response).creator, None)
+
+    @mock.patch('django_browserid.auth.verify', fake_verify_success)
+    def test_authenticated_publish_has_creator(self):
+        user = User(username='foo', password='meh', email='foo@foo.org')
+        user.save()
+        self.client.login(assertion='foo@foo.org', audience='lol')
+        response = self.client.post('/api/page', {'html': 'hi'})
+        page = page_from_publish(response)
+        eq_(page.creator, user)
+        eq_(user.pages.count(), 1)
+        eq_(user.pages.all()[0], page)
 
     def test_get_sanitizer_config(self):
         response = self.client.get('/api/config')

@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 from tower import ugettext_lazy as _lazy
 
 NUMERALS = "3fldc4mzjyqr7bkug5vh0a68xpon9stew12i"
@@ -21,3 +22,5 @@ class Page(models.Model):
                             verbose_name=_lazy(u'HTML'))
     original_url = models.URLField(blank=True, default='')
     short_url_id = models.CharField(max_length=10, blank=True)
+    creator = models.ForeignKey(User, blank=True, null=True,
+                                related_name='pages')
