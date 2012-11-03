@@ -67,9 +67,10 @@ class ClopenbadgerTokenTests(test_utils.TestCase):
         }, follow=True)
         status = json.loads(response.content)
         token = status['clopenbadgerToken'].encode('ascii')
+        expected_aud = clopenbadger.normalize_url(settings.CLOPENBADGER_URL)
         claims = jwt.decode(token, settings.CLOPENBADGER_SECRET)
         eq_(claims['iss'], settings.SITE_URL)
-        eq_(claims['aud'], settings.CLOPENBADGER_URL)
+        eq_(claims['aud'], expected_aud)
         eq_(claims['prn'], 'foo@bar.org')
         eq_(claims['exp'], 5 + settings.CLOPENBADGER_TOKEN_LIFETIME)
 
