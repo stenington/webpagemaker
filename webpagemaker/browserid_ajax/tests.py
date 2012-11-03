@@ -39,6 +39,9 @@ class ClopenbadgerTokenTests(test_utils.TestCase):
 
     def test_normalize_works_with_https(self):
         eq_(clopenbadger.normalize_url('https://f.org'), 'https://f.org:443')
+
+    def test_normalize_does_not_change_existing_port(self):
+        eq_(clopenbadger.normalize_url('https://f:3'), 'https://f:3')
     
     @mock.patch.object(clopenbadger, 'normalize_url', lambda x: 'norm %s' % x)
     @mock.patch('django_browserid.auth.verify', fake_verify_success)
