@@ -61,10 +61,12 @@
           BrowserIDAjax = require("thimble/browserid-ajax"),
           Clopenbadger = require("clopenbadger/clopenbadger"),
           WebmakerNav = require("webmaker-nav"),
+          QALog = require("thimble/qa-log"),
           webmakerNav = new WebmakerNav({
             container: $("#webmaker-nav")[0],
             loginBtnCallback: function() { auth.login(); },
-            logoutBtnCallback: function() { auth.logout(); }
+            logoutBtnCallback: function() { auth.logout(); },
+            feedbackCallback: function() { QALog.report(); return false; }
           }),
           auth = BrowserIDAjax({
             email: "{{ user.email }}",
@@ -81,18 +83,25 @@
             container: $("#thimble-friendlycode-holder")
           }),
           badger = null,
-          credit = function(behavior) { badger && badger.credit(behavior); };
+          credit = function(behavior) {
+            badger && badger.credit(behavior);
+            QALog.log("credit", behavior);
+          };
 
       {% if USE_FAKE_CLOPENBADGER is defined %}
       require("fake-thimble-badges");
       {% endif %}
-      
+
       auth.on("login", function() {
         webmakerNav.views.login({username: auth.email});
         badger = Clopenbadger({
           server: "{{ CLOPENBADGER_URL }}",
           token: auth.clopenbadgerToken,
           email: auth.email
+        });
+        badger.on('award', function(badges) { QALog.log("award", badges); });
+        badger.on('change:earnedBadges', function() {
+          QALog.log("change:earnedBadges", Object.keys(badger.earnedBadges));
         });
         badgeUI.setBadger(badger);
         credit("LOGGED_IN");
