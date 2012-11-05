@@ -56,8 +56,12 @@ def publish_page(request):
             return HttpResponseBadRequest("Invalid origin URL.")
     trunc = models.Page._meta.get_field_by_name('original_url')[0].max_length
     original_url = request.POST.get('original-url', '')[:trunc]
+    creator = None
+    if request.user.is_authenticated():
+        creator = request.user
     page = models.Page(html=request.POST['html'],
-                       original_url=original_url)
+                       original_url=original_url,
+                       creator=creator)
     page.save()
 
     # After saving, we now have an ID, which we can use to generate a
