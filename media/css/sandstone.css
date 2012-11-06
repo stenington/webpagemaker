@@ -1,8 +1,8 @@
 .open-sans {
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 .open-sans-light {
-  font-family: 'OpenSansLight', sans-serif;
+  font-family: 'Open Sans Light', sans-serif;
   font-weight: normal;
 }
 .clearfix {
@@ -168,7 +168,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -253,7 +253,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -380,7 +380,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -518,7 +518,7 @@ a img {
   text-decoration: none;
   border: 0;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-transition: all linear 0.25s;
   -moz-transition: all linear 0.25s;
   -o-transition: all linear 0.25s;
@@ -631,7 +631,7 @@ li.os_android,
   display: block;
 }
 .download-button small.download-other {
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   display: block;
   font-size: 11px;
   text-align: right;
@@ -721,7 +721,7 @@ h5,
 h6,
 .huge,
 .large {
-  font-family: 'OpenSansLight', sans-serif;
+  font-family: 'Open Sans Light', sans-serif;
   font-weight: normal;
   display: block;
   margin: 0 0 12px 0;
@@ -790,7 +790,7 @@ li {
   margin-left: 24px;
 }
 dl dt {
-  font-family: 'OpenSansLight', sans-serif;
+  font-family: 'Open Sans Light', sans-serif;
   font-weight: normal;
   font-size: 32px;
   line-height: 100%;
@@ -852,7 +852,7 @@ input[type=text]:focus {
 }
 .errorlist {
   margin: 0;
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: #c00;
 }
 .errorlist li {
@@ -1026,7 +1026,7 @@ px      68    160    252    344    436    528    620    712    804    896    */
   margin-right: 16px;
   text-transform: uppercase;
   font-size: 13px;
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 #masthead nav ol li,
 #masthead nav ul li {
@@ -1098,7 +1098,7 @@ px      68    160    252    344    436    528    620    712    804    896    */
 }
 nav.menu-bar {
   text-align: center;
-  font-family: 'OpenSansLight', sans-serif;
+  font-family: 'Open Sans Light', sans-serif;
   font-weight: normal;
   margin-bottom: 48px;
   padding-top: 0;
@@ -1146,7 +1146,7 @@ nav.menu-bar ul li:first-child a {
 /* }}} */
 /* {{{ Sidebar */
 .sidebar nav {
-  font-family: 'OpenSansLight', sans-serif;
+  font-family: 'Open Sans Light', sans-serif;
   font-weight: normal;
   font-size: 16px;
   color: #484848;
@@ -1174,7 +1174,7 @@ nav.menu-bar ul li:first-child a {
   display: block;
   padding: 12px 0;
   border-bottom: 1px dotted #d6d6d6;
-  font-family: 'OpenSansLight', sans-serif;
+  font-family: 'Open Sans Light', sans-serif;
   font-weight: normal;
 }
 .sidebar .reference p {
@@ -1272,7 +1272,7 @@ nav.menu-bar ul li:first-child a {
   color: #20679e;
 }
 #colophon nav {
-  font-family: 'OpenSansRegular', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 #colophon nav ol li,
 #colophon nav ul li {

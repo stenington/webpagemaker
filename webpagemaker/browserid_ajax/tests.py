@@ -6,6 +6,8 @@ from nose.tools import eq_, ok_
 import mock
 import jwt
 
+from . import clopenbadger
+
 DEFAULT_SETTINGS = {
     'SITE_URL': 'http://localhost:8000',
     'CLOPENBADGER_URL': 'https://clopenbadger.org',
@@ -32,6 +34,26 @@ def ensure_status_has_csrf_token(status):
     ok_(len(status['csrfToken']))
 
 class ClopenbadgerTokenTests(test_utils.TestCase):
+    def test_normalize_works_with_http(self):
+        eq_(clopenbadger.normalize_url('http://foo.org'), 'http://foo.org:80')
+
+    def test_normalize_works_with_https(self):
+        eq_(clopenbadger.normalize_url('https://f.org'), 'https://f.org:443')
+
+    def test_normalize_does_not_change_existing_port(self):
+        eq_(clopenbadger.normalize_url('https://f:3'), 'https://f:3')
+    
+    @mock.patch.object(clopenbadger, 'normalize_url', lambda x: 'norm %s' % x)
+    @mock.patch('django_browserid.auth.verify', fake_verify_success)
+    def test_token_aud_is_normalized(self):
+        response = self.client.post('/browserid/verify', {
+            'assertion': 'foo@bar.org'
+        }, follow=True)
+        status = json.loads(response.content)
+        token = status['clopenbadgerToken'].encode('ascii')
+        claims = jwt.decode(token, settings.CLOPENBADGER_SECRET)
+        eq_(claims['aud'], 'norm %s' % settings.CLOPENBADGER_URL)
+
     def test_no_token_provided_when_logged_out(self):
         response = self.client.get('/browserid/status')
         status = json.loads(response.content)
@@ -45,9 +67,10 @@ class ClopenbadgerTokenTests(test_utils.TestCase):
         }, follow=True)
         status = json.loads(response.content)
         token = status['clopenbadgerToken'].encode('ascii')
+        expected_aud = clopenbadger.normalize_url(settings.CLOPENBADGER_URL)
         claims = jwt.decode(token, settings.CLOPENBADGER_SECRET)
         eq_(claims['iss'], settings.SITE_URL)
-        eq_(claims['aud'], settings.CLOPENBADGER_URL)
+        eq_(claims['aud'], expected_aud)
         eq_(claims['prn'], 'foo@bar.org')
         eq_(claims['exp'], 5 + settings.CLOPENBADGER_TOKEN_LIFETIME)
 

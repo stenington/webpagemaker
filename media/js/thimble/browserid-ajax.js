@@ -13,6 +13,8 @@ define(["jquery", "backbone-events"], function($, BackboneEvents) {
         self.id.get(function(assertion) {
           if (assertion)
             post(options.verifyURL, {assertion: assertion}, 'login');
+          else
+            self.trigger("login:error");
         });
       },
       logout: function() {
@@ -29,6 +31,9 @@ define(["jquery", "backbone-events"], function($, BackboneEvents) {
         headers: {"X-CSRFToken": self.csrfToken},
         dataType: 'json',
         data: data,
+        error: function() {
+          self.trigger(eventName + ":error");
+        },
         success: function(data) {
           self.csrfToken = data.csrfToken;
           self.email = data.email;

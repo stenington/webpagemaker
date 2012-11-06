@@ -19,18 +19,26 @@
 
     <header id="thimble-header">
       <div class="header-content">
-        <div class="logo">
+        <div class="header-item logo">
           <a href="/">
             <img src="{{ MEDIA_URL }}img/thimble-logo.png" alt="Mozilla Thimble">
           </a>
         </div>
-        <div class="breadcrumbs"></div>
+        <div class="header-item breadcrumbs"></div>
+        <div class="header-item project-info">
+          <span class="title"></span>
+        </div>
       </div>
     </header>
 
     <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
 
     <script src="https://login.persona.org/include.js"></script>
+    <script>
+    // http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/
+    if (!('withCredentials' in new XMLHttpRequest()))
+      document.write('<script src="{{ MEDIA_URL }}clopenbadger/vendor/ppx.js"></' + 'script>');
+    </script>
     <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
     <script>
     require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
@@ -58,10 +66,12 @@
           BrowserIDAjax = require("thimble/browserid-ajax"),
           Clopenbadger = require("clopenbadger/clopenbadger"),
           WebmakerNav = require("webmaker-nav"),
+          QALog = require("thimble/qa-log"),
           webmakerNav = new WebmakerNav({
             container: $("#webmaker-nav")[0],
             loginBtnCallback: function() { auth.login(); },
-            logoutBtnCallback: function() { auth.logout(); }
+            logoutBtnCallback: function() { auth.logout(); },
+            feedbackCallback: function() { QALog.report(); return false; }
           }),
           auth = BrowserIDAjax({
             email: "{{ user.email }}",
@@ -78,12 +88,15 @@
             container: $("#thimble-friendlycode-holder")
           }),
           badger = null,
-          credit = function(behavior) { badger && badger.credit(behavior); };
+          credit = function(behavior) {
+            badger && badger.credit(behavior);
+            QALog.log("credit", behavior);
+          };
 
       {% if USE_FAKE_CLOPENBADGER is defined %}
       require("fake-thimble-badges");
       {% endif %}
-      
+
       auth.on("login", function() {
         webmakerNav.views.login({username: auth.email});
         badger = Clopenbadger({
@@ -91,17 +104,27 @@
           token: auth.clopenbadgerToken,
           email: auth.email
         });
+        badger.on('award', function(badges) { QALog.log("award", badges); });
+        badger.on('change:earnedBadges', function() {
+          QALog.log("change:earnedBadges", Object.keys(badger.earnedBadges));
+        });
         badgeUI.setBadger(badger);
         credit("LOGGED_IN");
       }).on("logout", function() {
         badger = null;
         webmakerNav.views.logout();
         badgeUI.setBadger(badger);
+      }).on("login:error", function() {
+        webmakerNav.showLoginError();
       });
+      
       auth.trigger(auth.email ? 'login' : 'logout', auth);
 
       editor.ready.done(function() {
         HTMLBehaviors.attachProbes(editor.codeMirror, credit);
+      });
+      editor.editor.panes.preview.on('change:title', function(title){ 
+        $('.header-content .project-info .title').html(title);
       });
       editor.publishUI.on('publish', function(info) {
         // TODO: Would be nice if we could submit info.viewURL as
