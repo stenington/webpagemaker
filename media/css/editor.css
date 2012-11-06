@@ -53,9 +53,14 @@ html, body {
   border: 0;
 }
 
+#thimble-header .project-info {
+  overflow: visible;
+  width: 1px;
+}
 #thimble-header .project-info .title {
   color: #3887F3;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 #webmaker-nav {
