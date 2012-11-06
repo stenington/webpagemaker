@@ -34,6 +34,11 @@
     <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
 
     <script src="https://login.persona.org/include.js"></script>
+    <script>
+    // http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/
+    if (!('withCredentials' in new XMLHttpRequest()))
+      document.write('<script src="{{ MEDIA_URL }}clopenbadger/vendor/ppx.js"></' + 'script>');
+    </script>
     <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
     <script>
     require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
