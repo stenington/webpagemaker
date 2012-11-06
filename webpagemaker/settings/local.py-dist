@@ -79,3 +79,8 @@ CACHES = {
         'LOCATION': 'brian-is-clever'
     }
 }
+
+# Uncomment and replace this as necessary!
+#SITE_URL = 'http://localhost:8000'
+#CLOPENBADGER_URL = 'https://clopenbadger.webmaker.org'
+#CLOPENBADGER_SECRET = 'gaonegeapero3rowkermeanzcnvdf'

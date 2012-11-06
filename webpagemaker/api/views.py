@@ -56,8 +56,12 @@ def publish_page(request):
             return HttpResponseBadRequest("Invalid origin URL.")
     trunc = models.Page._meta.get_field_by_name('original_url')[0].max_length
     original_url = request.POST.get('original-url', '')[:trunc]
+    creator = None
+    if request.user.is_authenticated():
+        creator = request.user
     page = models.Page(html=request.POST['html'],
-                       original_url=original_url)
+                       original_url=original_url,
+                       creator=creator)
     page.save()
 
     # After saving, we now have an ID, which we can use to generate a
@@ -79,6 +83,14 @@ def get_sanitizer_config(request):
     response = HttpResponse(json.dumps(cfg), content_type="application/json")
     return response
  
+@development_cors
+def get_page_source(request, page_id):
+    page = get_object_or_404(models.Page, short_url_id=page_id)
+    response = HttpResponse(page.html)
+    response['X-Robots-Tag'] = 'noindex, nofollow'
+    response['Content-Type'] = 'text/plain'
+    return response
+
 @cache_page(CACHE_LIFETIME)
 @development_cors
 def get_page(request, page_id):
@@ -91,6 +103,7 @@ def get_page(request, page_id):
         if page.original_url:
             response['X-Original-URL'] = page.original_url
         response['X-Robots-Tag'] = 'noindex, nofollow'
+        response.no_frame_options = True
         
         # generate an etag from the sha1 hash of the page contents
         response['ETag'] = generate_etag(page.html)

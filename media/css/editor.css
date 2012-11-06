@@ -1,0 +1,98 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #414244;
+  background-color: #f5f5f5;
+}
+
+#thimble-friendlycode-holder {
+  position: absolute;
+  top: 92px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -1px 12px #bbb;
+}
+
+#thimble-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 79px;
+
+  border-top: 2px solid white;
+  
+  z-index: 2;
+}
+
+.header-content {
+  height: 63px;
+  padding-top: 29px;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.header-item {
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: middle;
+}
+
+#thimble-header .logo {
+  margin: 2px 10px 0 33px;
+}
+
+#thimble-header .logo a {
+  color: #27AAE1;
+  text-decoration: none;
+}
+
+#thimble-header .logo a img {
+  width: 138px;
+  border: 0;
+}
+
+#thimble-header .project-info .title {
+  color: #3887F3;
+  font-weight: bold;
+}
+
+#webmaker-nav {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9000;
+}
+
+.breadcrumbs {
+  position: relative;
+  display: inline-block;
+  width: 1px;
+  height: 100%;
+  margin: 0 15px;
+  border-right: 1px solid #d6d8d7;
+}
+.breadcrumbs:after,
+.breadcrumbs:before {
+  left: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.breadcrumbs:after {
+  border-left-color: #f5f5f5; 
+  border-width: 5px;
+  top: 50%;
+  margin-top: -5px;
+}
+.breadcrumbs:before {
+  border-left-color: #d6d8d7;
+  border-width: 7px;
+  top: 50%;
+  margin-top: -7px;
+}

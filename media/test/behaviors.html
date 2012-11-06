@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+html {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+.shortname {
+  font-family: monospace;
+}
+
+a {
+  color: inherit;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+}
+
+#friendlycode-holder {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border: 1px solid black;
+}
+
+#friendlycode-holder .publish-button {
+  display: none !important;
+}
+
+#credits {
+  list-style-type: none;
+  padding: 0;
+}
+
+#credits .behavior {
+  display: inline-block;
+  padding: 2px 4px;
+  margin: 2px 0;
+  background: green;
+  color: white;
+  border-radius: 4px;
+}
+</style>
+<link rel="stylesheet" href="../friendlycode/css/friendlycode.css">
+<title>Thimble Behaviors</title>
+<h1>Thimble Behaviors</h1>
+<h2>Testbed</h2>
+<p>Type code into the editor. Any behaviors that are credited will be displayed below.</p>
+<div id="friendlycode-holder"></div>
+<ul id="credits"></ul>
+<h2>Behaviors Table</h2>
+<p>These are all the behaviors that Thimble credits. For examples of
+the coding-related badges, see their <a href="test-html-behaviors.js">test suite</a>.</p>
+<div id="behaviors-table-holder"></div>
+<h2>JSON Export</h2>
+<p>The data below is in a format suitable for importing into <a href="https://github.com/mozilla/clopenbadger">Clopenbadger</a>.</p>
+<textarea id="export"></textarea>
+<script src="../friendlycode/js/require-config.js"></script>
+<script src="require-test-config.js"></script>
+<script src="../friendlycode/js/require.min.js"></script>
+<script>
+define("export-json-from-behaviors", function() {
+  return function(behaviors) {
+    var list = [];
+    Object.keys(behaviors).forEach(function(shortname) {
+      list.push(behaviors[shortname]);
+    });
+    return JSON.stringify(list, null, 2);
+  }
+});
+
+define("main", function(require) {
+  var behaviorsTableHTML = require("text!thimble-test/behaviors-table.html"),
+      exportJSONFromBehaviors = require("export-json-from-behaviors"),
+      $ = require("jquery"),
+      HTMLBehaviors = require("thimble/html-behaviors"),
+      FriendlycodeEditor = require('friendlycode'),
+      editor = FriendlycodeEditor({container: $("#friendlycode-holder")}),
+      behaviors = {};
+
+  function credit(shortname) {
+    var li = $('<li><span class="behavior"></span> credited.</li>')
+      .prependTo("#credits").hide().slideDown();
+    $('.behavior', li).text(behaviors[shortname].name);
+  }
+  
+  $("#behaviors-table-holder")
+    .html(behaviorsTableHTML)
+    .find("tr:not(:first-child)").each(function() {
+      var behavior = {};
+      $("td", this).each(function() {
+        behavior[this.className] = $(this).text();
+      });
+      behaviors[behavior.shortname] = behavior;
+    });
+  $("#export").val(exportJSONFromBehaviors(behaviors));
+
+  editor.ready.done(function() {
+    HTMLBehaviors.attachProbes(editor.codeMirror, credit);
+  });
+});
+
+require(["main"], function() {});
+</script>

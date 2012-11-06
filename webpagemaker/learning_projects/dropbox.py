@@ -4,6 +4,8 @@ from django.conf.urls.defaults import patterns
 from django.conf import settings
 from django.http import HttpResponse
 
+from .management.commands.slurplearningprojects import rebase_static_urls
+
 def make_dropbox_patterns(dropbox_name, cfg):
     def render_dropbox_static(request, name, path):
         """
@@ -46,7 +48,7 @@ def make_dropbox_patterns(dropbox_name, cfg):
         html = f.read()
         static_base = request.build_absolute_uri('/%s/%s/' % (cfg['static'],
                                                               name))
-        html = html.replace('static/', static_base)
+        html = rebase_static_urls(html, static_base)
         response = HttpResponse(html)
         response['Access-Control-Allow-Origin'] = '*'
         return response

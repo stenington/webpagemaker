@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}"
+      class="deployment-type-{{ DEPLOYMENT_TYPE }}">
+  <head>
+    <meta charset="utf-8">
+    <base target="_blank">
+
+    <title>Mozilla Thimble</title>
+    <link rel="stylesheet" href="{{ MEDIA_URL }}friendlycode/css/friendlycode.css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/editor.css">    
+    <link rel="stylesheet"
+     href="{{ MEDIA_URL }}/webmaker-nav/webmaker-nav/css/webmaker-nav.css">
+    <link rel="stylesheet"
+     href="{{ MEDIA_URL }}/webmaker-nav/webmaker-nav/css/badge-ui.css">
+  </head>
+  <body>
+     <a href="http://www.mozilla.org/" id="tabzilla">mozilla</a>
+     <div id="webmaker-nav"></div>
+
+    <header id="thimble-header">
+      <div class="header-content">
+        <div class="header-item logo">
+          <a href="/">
+            <img src="{{ MEDIA_URL }}img/thimble-logo.png" alt="Mozilla Thimble">
+          </a>
+        </div>
+        <div class="header-item breadcrumbs"></div>
+        <div class="header-item project-info">
+          <span class="title"></span>
+        </div>
+      </div>
+    </header>
+
+    <div id="thimble-friendlycode-holder" class="friendlycode-loading"></div>
+
+    <script src="https://login.persona.org/include.js"></script>
+    <script>
+    // http://hacks.mozilla.org/2009/07/cross-site-xmlhttprequest-with-cors/
+    if (!('withCredentials' in new XMLHttpRequest()))
+      document.write('<script src="{{ MEDIA_URL }}clopenbadger/vendor/ppx.js"></' + 'script>');
+    </script>
+    <script src="{{ MEDIA_URL }}friendlycode/js/require-config.js"></script>
+    <script>
+    require.paths.thimble = '{{ MEDIA_URL }}js/thimble';
+    require.paths.clopenbadger = '{{ MEDIA_URL }}clopenbadger';
+    {% if USE_FAKE_CLOPENBADGER is defined %}
+    require.paths['fake-thimble-badges'] = '{{ MEDIA_URL }}/test/' +
+                                           'fake-thimble-badges';
+    {% endif %}
+    if (!require.packages)
+      require.packages = [];
+    require.packages.push({
+      name: 'webmaker-nav',
+      location: '{{ MEDIA_URL }}/webmaker-nav/webmaker-nav'
+    });
+    </script>
+    <script src="{{ MEDIA_URL }}friendlycode/js/require.min.js"></script>
+    <script>
+    "use strict";
+
+    define("main", function(require) {
+      var $ = require("jquery"),
+          FriendlycodeEditor = require('friendlycode'),
+          HTMLBehaviors = require("thimble/html-behaviors"),
+          BadgeUI = require("webmaker-nav/badge-ui"),
+          BrowserIDAjax = require("thimble/browserid-ajax"),
+          Clopenbadger = require("clopenbadger/clopenbadger"),
+          WebmakerNav = require("webmaker-nav"),
+          QALog = require("thimble/qa-log"),
+          webmakerNav = new WebmakerNav({
+            container: $("#webmaker-nav")[0],
+            loginBtnCallback: function() { auth.login(); },
+            logoutBtnCallback: function() { auth.logout(); },
+            feedbackCallback: function() { QALog.report(); return false; }
+          }),
+          auth = BrowserIDAjax({
+            email: "{{ user.email }}",
+            csrfToken: "{{ csrf_token }}",
+            clopenbadgerToken: "{{ clopenbadger_token }}",
+            verifyURL: "{{ url('browserid_ajax_verify') }}",
+            logoutURL: "{{ url('browserid_ajax_logout') }}"
+          }),
+          badgeUI = new BadgeUI(webmakerNav),
+          editor = FriendlycodeEditor({
+            publishURL: "{{ PUBLISH_URL }}",
+            pageToLoad: "{{ remix_url }}",
+            remixURLTemplate: "{{ REMIX_URL_TEMPLATE }}",
+            container: $("#thimble-friendlycode-holder")
+          }),
+          badger = null,
+          credit = function(behavior) {
+            badger && badger.credit(behavior);
+            QALog.log("credit", behavior);
+          };
+
+      {% if USE_FAKE_CLOPENBADGER is defined %}
+      require("fake-thimble-badges");
+      {% endif %}
+
+      auth.on("login", function() {
+        webmakerNav.views.login({username: auth.email});
+        badger = Clopenbadger({
+          server: "{{ CLOPENBADGER_URL }}",
+          token: auth.clopenbadgerToken,
+          email: auth.email
+        });
+        badger.on('award', function(badges) { QALog.log("award", badges); });
+        badger.on('change:earnedBadges', function() {
+          QALog.log("change:earnedBadges", Object.keys(badger.earnedBadges));
+        });
+        badgeUI.setBadger(badger);
+        credit("LOGGED_IN");
+      }).on("logout", function() {
+        badger = null;
+        webmakerNav.views.logout();
+        badgeUI.setBadger(badger);
+      }).on("login:error", function() {
+        webmakerNav.showLoginError();
+      });
+      
+      auth.trigger(auth.email ? 'login' : 'logout', auth);
+
+      editor.ready.done(function() {
+        HTMLBehaviors.attachProbes(editor.codeMirror, credit);
+      });
+      editor.editor.panes.preview.on('change:title', function(title){ 
+        $('.header-content .project-info .title').html(title);
+      });
+      editor.publishUI.on('publish', function(info) {
+        // TODO: Would be nice if we could submit info.viewURL as
+        // evidence.
+        credit('PUBLISHED');
+      });
+
+      return {
+        auth: auth,
+        badgeUI: badgeUI,
+        editor: editor
+      };
+    });
+
+    require(['main'], function () {});
+    </script>
+
+    <!-- this COULD hold up the page, so do this absolutely last -->
+    <link rel="stylesheet" href="//www.mozilla.org/tabzilla/media/css/tabzilla.css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/editor-tabzilla-overrides.css">
+    <script>
+    // tabzilla.js will inject jQuery itself if it doesn't see it at
+    // load time, which is a problem for us because it creates a race
+    // condition for jQuery loading between requirejs and tabzilla. So
+    // we'll wait until requirejs has loaded jquery before loading
+    // tabzilla.
+    require(["jquery"], function() {
+      var tabzillaJS = "//www.mozilla.org/tabzilla/media/js/tabzilla.js";
+      var script = document.createElement('script');
+      script.setAttribute('src', tabzillaJS);
+      document.body.appendChild(script);
+    });
+    </script>
+    <script src="//beta.openbadges.org/issuer.js" async></script>
+  </body>
+</html>

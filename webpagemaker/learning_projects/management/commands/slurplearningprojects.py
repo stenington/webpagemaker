@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 
 from django.core.management.base import BaseCommand, CommandError
@@ -9,6 +10,9 @@ try:
     LEARNING_PROJECTS_PATH = settings.LEARNING_PROJECTS_PATH
 except AttributeError:
     LEARNING_PROJECTS_PATH = None
+
+def rebase_static_urls(html, url):
+    return re.sub(r'(?<!/)static/', url, html)
 
 def slurp(fromdir, stdout, project_names):
     projects = [
@@ -36,7 +40,7 @@ def slurp(fromdir, stdout, project_names):
         filename = '%s.html' % project
         dirname = os.path.join(fromdir, project)
         html = open(os.path.join(dirname, filename)).read()
-        html = html.replace('static/', '{{ HTTP_STATIC_URL }}%s/' % project)
+        html = rebase_static_urls(html, '{{ HTTP_STATIC_URL }}%s/' % project)
         f = open(os.path.join(templatedir, filename), 'w')
         f.write(html)
         f.close()

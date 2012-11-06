@@ -21,3 +21,5 @@ class Page(models.Model):
                             verbose_name=_lazy(u'HTML'))
     original_url = models.URLField(blank=True, default='')
     short_url_id = models.CharField(max_length=10, blank=True)
+    creator = models.ForeignKey('auth.User', blank=True, null=True,
+                                related_name='pages')
