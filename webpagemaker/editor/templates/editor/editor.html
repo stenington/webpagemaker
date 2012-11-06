@@ -114,7 +114,10 @@
         badger = null;
         webmakerNav.views.logout();
         badgeUI.setBadger(badger);
+      }).on("login:error", function() {
+        webmakerNav.showLoginError();
       });
+      
       auth.trigger(auth.email ? 'login' : 'logout', auth);
 
       editor.ready.done(function() {

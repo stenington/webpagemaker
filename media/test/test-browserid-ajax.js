@@ -20,8 +20,30 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
     };
   }
   
+  test("login error on failed verify works", function() {
+    var loginErrorEvents = 0;
+    var browserid = BrowserIDAjax({
+      email: '',
+      id: FakeNavigatorID(),
+      verifyURL: '/verify',
+      logoutURL: '/logout',
+      csrfToken: 'fake csrf token',
+      network: FakeNetwork({
+        'POST /verify': function(options) {
+          options.error();
+        }
+      })
+    }).on('login:error', function() { loginErrorEvents++; });
+    
+    equal(loginErrorEvents, 0);
+    browserid.login();
+    browserid.id._options.onlogin('fake assertion for foo@bar.org');
+    equal(loginErrorEvents, 1);
+  });
+  
   test("verification works", function() {
     var loginEvents = 0;
+    var loginErrorEvents = 0;
     var browserid = BrowserIDAjax({
       email: '',
       id: FakeNavigatorID(),
@@ -40,7 +62,8 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
           });
         }
       })
-    }).on('login', function() { loginEvents++; });
+    }).on('login', function() { loginEvents++; })
+      .on('login:error', function() { loginErrorEvents++; });
     
     equal(browserid.email, null);
     equal(browserid.csrfToken, 'fake csrf token');
@@ -49,6 +72,7 @@ defineTests(["thimble/browserid-ajax"], function(BrowserIDAjax) {
     browserid.login();
     browserid.id._options.onlogin(null);
     equal(loginEvents, 0, "null assertions don't trigger login events");
+    equal(loginErrorEvents, 1, "null assertions do trigger login:error evts");
     browserid.id._options.onlogin('fake assertion for foo@bar.org');
     
     equal(loginEvents, 1);
