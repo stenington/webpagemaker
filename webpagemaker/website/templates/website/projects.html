@@ -51,7 +51,7 @@
 
       #}
 
-      {{ project(
+{#      {{ project(
            title       = "Hello World",
            description = "Introduce yourself to the world and learn some basic HTML!", 
            author      = "O2",
@@ -60,14 +60,14 @@
          ) 
       }}
 
-{#      {{ project(
+      {{ project(
            title       = "The Pitch!",
            description = "Create a pitch for your idea and get the HTML smarts to put it on the web. ", 
            author      = "Mozilla",
            url         = url('edit_project', 'o2_thepitch'),
            img         = "/media/img/projects/o2_thepitch.png",
          ) 
-      }} #}
+      }} 
 
       {{ project(
            title       = "Portfolio Maker",
@@ -87,7 +87,7 @@
            url         = url('view_project', 'openwebville'),
            img         = "/media/img/projects/opengallery.png",
          ) 
-      }}
+      }} #}
 
 
 	    {{ project(
