@@ -16,6 +16,6 @@ page_size.short_description = 'Number of characters'
 
 class PageAdmin(admin.ModelAdmin):
     list_display = ('short_url_id', 'original_url', page_size, view_link)
-    search_fields = ['short_url_id']
+    search_fields = ['short_url_id', 'html']
 
 admin.site.register(models.Page, PageAdmin)
