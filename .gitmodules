@@ -18,7 +18,7 @@
 	url = git://github.com/kennethreitz/requests.git
 [submodule "media/webmaker-nav"]
 	path = media/webmaker-nav
-	url = git://github.com/cmcavoy/webmaker-nav.git
+	url = git://github.com/mozilla/webmaker-nav.git
 [submodule "vendor-local/src/pyjwt"]
 	path = vendor-local/src/pyjwt
 	url = git://github.com/progrium/pyjwt.git
