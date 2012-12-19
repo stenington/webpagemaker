@@ -1,0 +1,31 @@
+language: python
+
+python:
+  - 2.6
+  - 2.7
+  - 3.2
+  - pypy
+
+env:
+  - LIBSAAS_XML_LIBRARY=lxml
+  - LIBSAAS_XML_LIBRARY=cElementTree
+  - LIBSAAS_XML_LIBRARY=ElementTree
+
+# lxml won't work on PyPy
+matrix:
+  exclude:
+    - python: pypy
+      env: LIBSAAS_XML_LIBRARY=lxml
+
+# force an older version of python-requests, as 0.14.2 doesn't work on Python 3.2
+install:
+  - test "$LIBSAAS_XML_LIBRARY" == "lxml" && sudo apt-get install libxml2-dev libxslt1-dev || true
+  - test "$LIBSAAS_XML_LIBRARY" == "lxml" && pip install lxml --use-mirrors || true
+  - pip install requests==0.14.1 --use-mirrors
+  - pip install requests-oauth==0.4.1 --use-mirrors
+
+script: python setup.py test
+
+notifications:
+  email:
+    - hackers@libsaas.net
