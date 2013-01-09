@@ -13,9 +13,11 @@ body {
    font-size: 1em;
    padding-top: 10px;
    margin: 0 auto;
+   background-color: #0b0b0b;
    background-image: url('btwf_bg.png');
    background-repeat: no-repeat;
    background-attachment: fixed;
+   background-position: center top;
    text-align: center;
    margin-bottom: 100px;
 }
