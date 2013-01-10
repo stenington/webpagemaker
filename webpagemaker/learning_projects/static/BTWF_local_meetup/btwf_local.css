@@ -24,6 +24,7 @@ body {
 
 strong {
   font-family: 'Open Sans Bold';
+  font-weight: normal;
 }
 
 .content_wrapper {
