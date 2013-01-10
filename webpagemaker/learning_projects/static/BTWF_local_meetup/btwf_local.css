@@ -1,77 +1,77 @@
 @font-face {
-   font-family: 'Open Sans Regular';
-   src: url('fonts/OpenSans-Regular.ttf');
+  font-family: 'Open Sans Regular';
+  src: url('fonts/OpenSans-Regular.ttf');
 }
 
 @font-face {
-   font-family: 'Open Sans Bold';
-   src: url('fonts/OpenSans-Bold.ttf');
+  font-family: 'Open Sans Bold';
+  src: url('fonts/OpenSans-Bold.ttf');
 }
 
 body {
-   font-family: 'Open Sans Regular', sans-serif;
-   font-size: 1em;
-   padding-top: 10px;
-   margin: 0 auto;
-   background-image: url('btwf_bg.png');
-   background-color: #0b0b0b;
-   background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-position: center top;
-   text-align: center;
-   margin-bottom: 100px;
+  font-family: 'Open Sans Regular', sans-serif;
+  font-size: 1em;
+  padding-top: 10px;
+  margin: 0 auto;
+  background-image: url('btwf_bg.png');
+  background-color: #0b0b0b;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  text-align: center;
+  margin-bottom: 100px;
 }
 
 strong {
-font-family: 'Open Sans Bold';
+  font-family: 'Open Sans Bold';
 }
 
 .content_wrapper {
-   position: relative;
-   width: 800px;
-   top: 35px;
-   width: 700px;
-   margin: 0 auto;
-   padding: 0px;
+  position: relative;
+  width: 800px;
+  top: 35px;
+  width: 700px;
+  margin: 0 auto;
+  padding: 0px;
 }
 
 header {
-   background-color: #F7931D;
-   width: 700px;
-   height: 40px;
-   margin: 0 auto;
-   font-size: 1.5em;
-   color: white;
-   padding-top: 10px;
-   padding-bottom: 0px;
+  background-color: #F7931D;
+  width: 700px;
+  height: 40px;
+  margin: 0 auto;
+  font-size: 1.5em;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 
 h1,h2,h3,h4,h5 {
-   background-color: #F7931D;
-   color: #EF4036;
-   padding: 0px;
-   margin: 0px;
+  background-color: #F7931D;
+  color: #EF4036;
+  padding: 0px;
+  margin: 0px;
 }
 
 
 .left {
-   float: left;
-   width: 300px;
-   font-size: 0.9em;
-   color: white;
-   overflow: auto;
-   background-color: #EF4036;
-   text-align: left;
-   line-height: 1.32em;
-   min-height: 365px;
+  float: left;
+  width: 300px;
+  font-size: 0.9em;
+  color: white;
+  overflow: auto;
+  background-color: #EF4036;
+  text-align: left;
+  line-height: 1.32em;
+  min-height: 365px;
 }
 
 .right {
-   float: right;
-   width: 400px;
-   color: white;
-   padding: 0px;
-   margin: 0px;
+  float: right;
+  width: 400px;
+  color: white;
+  padding: 0px;
+  margin: 0px;
 }
 
 .stamp {
@@ -82,9 +82,9 @@ h1,h2,h3,h4,h5 {
 
 .topright {
   width: 100%;
-   font-size: 0.8em;
+  font-size: 0.8em;
   margin: 0px;
-padding: 0px;
+  padding: 0px;
 }
 
 .middleright {
@@ -103,6 +103,6 @@ padding: 0px;
 }
 
 p {
-padding: 15px;
-margin: 0;
+  padding: 15px;
+  margin: 0;
 }
