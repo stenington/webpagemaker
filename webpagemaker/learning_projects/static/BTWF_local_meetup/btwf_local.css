@@ -29,7 +29,6 @@ strong {
 
 .content_wrapper {
   position: relative;
-  width: 800px;
   top: 35px;
   width: 700px;
   margin: 0 auto;
@@ -44,7 +43,6 @@ header {
   font-size: 1.5em;
   color: white;
   padding-top: 10px;
-  padding-bottom: 0px;
 }
 
 h1,h2,h3,h4,h5 {
@@ -52,8 +50,8 @@ h1,h2,h3,h4,h5 {
   color: #EF4036;
   padding: 0px;
   margin: 0px;
+  padding-bottom: 7px;
 }
-
 
 .left {
   float: left;
@@ -100,10 +98,19 @@ h1,h2,h3,h4,h5 {
   font-size: 0.9em;
   line-height: 1.4em;
   padding: 0px;
-  min-height: 135px;
+  min-height: 125px;
 }
 
 p {
   padding: 15px;
   margin: 0;
+}
+
+.social {
+  text-align: right;
+  margin-right: 5px;
+}
+
+.twittericon {
+  text-align: right;
 }
