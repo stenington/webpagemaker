@@ -29,7 +29,6 @@ strong {
 
 .content_wrapper {
   position: relative;
-  width: 800px;
   top: 35px;
   width: 700px;
   margin: 0 auto;
@@ -51,10 +50,7 @@ h1,h2,h3,h4,h5 {
   color: #EF4036;
   padding: 0px;
   margin: 0px;
-  padding-top: -10px;
   padding-bottom: 7px;
-  margin-top: 0px;
-
 }
 
 .left {
@@ -113,7 +109,6 @@ p {
 .social {
   text-align: right;
   margin-right: 5px;
-  bottom: 5px;
 }
 
 .twittericon {
