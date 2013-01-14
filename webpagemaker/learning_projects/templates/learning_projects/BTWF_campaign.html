@@ -42,25 +42,25 @@ Next, let's edit the page header. Replace the text within the <strong> </strong>
 <!--
 This is where you will share your master list of resources, and coincidentally, where you'll master the art of formatting text using the paragraph <p> </p> and linebreak <br> tags. Replace the text within the <p> </p> tags with the information you want to share.
 
-Use the <br> tags wherever you want to have the text break to the next line. Note: The <br> tag does not have a closing tag. And can be placed just about anywhere. Use two <br> tags in a row to get a blank linespace. In the example below, each line starts with a <br> except where it is meant to be a continuous line of text. Also, notice that between two addresses there are two <br> tags for additional line spacing.
+Use the <br> tags wherever you want to have the text break to the next line. Note: The <br> tag does not have a closing tag. And can be placed just about anywhere. Use two <br> tags in a row to get a blank linespace. In the example below, each line starts with a <br> except where it is meant to be a continuous line of text.
 -->
 
       <p>WORD UP BOOK STORE
       <br>4157 Broadway @ 176 Street, NY, 10033, US
       <br>Volunteering
-      <br>Volunteer, participate in community events. Express yourself through art, music, reading, acting and poetry. Be yourself.
+      <br>Volunteer, participate in community events. Express yourself through art, music, reading, acting and poetry. Be yourself.</p>
 
-      <br><br>THE CENTER
+      <p>THE CENTER
       <br>208 W. 13th st., NY, 10011, US
-      <br>LGBT &amp; Questioning | 212 620 7310
-      <br>Participate in LGBTQ related discussion groups, info sessions, and various resources.
+      <br>LGBT and Questioning | 212 620 7310
+      <br>Participate in LGBTQ related discussion groups, info sessions, and various resources.</p>
 
-      <br><br>SYLVIA RIVERA LAW PROJECT
+      <p>SYLVIA RIVERA LAW PROJECT
       <br>147 W 24th St, 5th Floor, NY, 10011, US
-      <br>LGBT &amp; Questioning | 212-337-8550
-      <br>SRLP provides legal aid to transgender persons of color and/or of low income.
+      <br>LGBT and Questioning | 212-337-8550
+      <br>SRLP provides legal aid to transgender persons of color and/or of low income.</p>
 
-      <br><br>MCCNY CHARITIES
+      <p>MCCNY CHARITIES
       <br>446 West 36th Street, NY, 10018, US
       <br>Homeless Shelters/Soup Kitchens | 212-629-7440
       <br>Food Pantry Distribution on Thursday from 9-10am.</p>
@@ -71,7 +71,7 @@ Leverage the power of social networks to further your cause. You can keep the co
 A nice plus: add a contact email for people to get in touch. Link to these in the respective <a> tags below.
 -->
 
-      <div style="text-align: right; margin-right: 5px;">
+      <div class="social">
         <a href="Facebook link here"><img src="{{ HTTP_STATIC_URL }}BTWF_campaign/btwf_fb.png"></a>
         <a href="Twitter link here"><img src="{{ HTTP_STATIC_URL }}BTWF_campaign/btwf_twitter.png"></a>
         <a href="Email link here"><img src="{{ HTTP_STATIC_URL }}BTWF_campaign/btwf_email.png"></a>
@@ -89,18 +89,18 @@ Make a short announcement here. You could embed a tweet or write a short message
 <!-- Start embed code for tweet -->
         <div class="twitter-tweet"><p>#BTWFmanhattan Food
         pantry distribution on Thurs from 9-10am at soup kitchens of MCNY Charities
-        </p>@radatplay</div>
+        </p>@bbnmember</div>
 <!-- End embed code for tweet -->
 
-        <div style="text-align: right;"><img src="{{ HTTP_STATIC_URL }}BTWF_campaign/btwf_twitter_icon.png"></div>
+        <div class="twittericon"><img src="{{ HTTP_STATIC_URL }}BTWF_campaign/btwf_twitter_icon.png"></div>
       </div>
 
       <div class="middleright">
 
 <!--
-Add an image of bravery, acceptance, or love to your page by replacing the URL in the "src" value of the <img> tag. If you have some photos you'd like to use, first upload them to an image sharing site like Flickr. Then, while on Flickr, select the image you want to use, click "Share" and select the option to "Grab the link". Copy the link and paste it into the "src" value of the <img> tag below.
+Add an image of bravery, acceptance or love to your page by replacing the <img> tag below. It would be a good idea to first upload your image(s) to Flickr. Then choose the image you want to use, click "Share" and select the option to "Grab the HTML/BBCode". Copy the code and paste it here to replace the existing <img> tag. Then remove the link <a> </a> tags surrounding the <img> tag so that the image is not clickable.
 
-Similar options will exist for other photo sharing sites. Once you get the hang of it, feel free to add more images to the page by copy pasting the <img> tag and replacing the URL for each.
+Similar options will exist for other photo sharing sites. Once you get the hang of it, feel free to add more images to the page.
 
 Note: Crop or resize the image to a width of 250px wide so it properly fits the existing layout on this webpage.
 -->
@@ -115,11 +115,11 @@ Lastly, it's great to share an inspiring quote or excerpt. Replace the text betw
 
 There are certain special characters and symbols that cannot be generated by HTML when typed directly from a keyboard. Quotation marks are one of them. &ldquo; produces left double quotes and &rdquo; produces right double quotes. Swap these out for &lsquo; and &rsquo; to change the double quotes to singles quotes.
 
-These are also known as "named character references" or "HTML entities." Learn more here - https://developer.mozilla.org/en-US/docs/HTML/Introduction
+These are also known as "named character references" or "HTML entities." Notice in the authors name below the HTML entity &aacute; renders a lower case "a" with acute accent. Learn more here - https://developer.mozilla.org/en-US/docs/HTML/Introduction
 -->
 
         <p>&ldquo;Embrace what makes you unique, even if it makes others uncomfortable.&rdquo;<br>
-        - Janelle Monae</p>
+        - Janelle Mon&aacute;e</p>
       </div>
     </div>
   </div>
