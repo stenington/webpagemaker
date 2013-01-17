@@ -1,0 +1,84 @@
+@font-face {
+   font-family: 'Open Sans Regular';
+   src: url('fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+   font-family: 'Open Sans Bold';
+   src: url('fonts/OpenSans-Bold.ttf');
+}
+
+body {
+   font-family: 'Open Sans Regular', sans-serif;
+   font-size: 1em;
+   padding-top: 10px;
+   margin: 0 auto;
+   background-image: url('btwf_bg.png');
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   text-align: center;
+   margin-bottom: 100px;
+}
+
+strong {
+font-family: 'Open Sans Bold';
+}
+
+.content_wrapper {
+   position: relative;
+   width: 1000px;
+   top: 35px;
+   width: 700px;
+   margin: 0 auto;
+   padding: 0px;
+}
+
+header {
+   color: #EF4036;
+   margin: 0 auto;
+   font-size: 1.5em;
+}
+
+.frame {
+width: 420px;
+height: 315px;
+border-width: 15px;
+border-color: white;
+border-style: solid;
+padding: 0px;
+margin: 0px auto;
+}
+
+.left {
+position: relative;
+width: 150px;
+float: left;
+border-width: 15px;
+border-color: white;
+border-style: solid;
+padding: 20px;
+color: white;
+}
+
+.middle {
+position: relative;
+width: 150px;
+border-width: 15px;
+border-color: white;
+border-style: solid;
+padding: 20px;
+margin-left: 34%;
+margin-right: 34%;
+color: white;
+}
+
+.right {
+width: 150px;
+margin-left: 80%;
+margin-right: 0px;
+border-width: 15px;
+border-color: white;
+border-style: solid;
+padding: 20px;
+color: white;
+}
