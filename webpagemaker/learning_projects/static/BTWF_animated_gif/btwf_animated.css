@@ -48,12 +48,11 @@ iframe {
 }
 
 .gallery_wrapper {
-  margin-left: -20px;
   position: relative;
 }
 
 .gallery {
-display: inline-block;
+float: left;
 width: 180px;
 height: 210px;
 border-width: 15px;
