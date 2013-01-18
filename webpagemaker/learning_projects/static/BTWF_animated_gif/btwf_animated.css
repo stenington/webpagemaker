@@ -1,43 +1,43 @@
 @font-face {
-   font-family: 'Open Sans Regular';
-   src: url('fonts/OpenSans-Regular.ttf');
+  font-family: 'Open Sans Regular';
+  src: url('fonts/OpenSans-Regular.ttf');
 }
 
 @font-face {
-   font-family: 'Open Sans Bold';
-   src: url('fonts/OpenSans-Bold.ttf');
+  font-family: 'Open Sans Bold';
+  src: url('fonts/OpenSans-Bold.ttf');
 }
 
 body {
-   font-family: 'Open Sans Regular', sans-serif;
-   font-size: 1em;
-   padding-top: 10px;
-   margin: 0 auto;
-   margin-bottom: 100px;
-   background-color: #0b0b0b;
-   background-image: url('btwf_bg.png');
-   background-repeat: no-repeat;
-   background-attachment: fixed;
-   background-position: left top;
-   text-align: center;
+  font-family: 'Open Sans Regular', sans-serif;
+  font-size: 1em;
+  padding-top: 10px;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  background-color: #0b0b0b;
+  background-image: url('btwf_bg.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left top;
+  text-align: center;
 }
 
 strong {
-font-family: 'Open Sans Bold';
+  font-family: 'Open Sans Bold';
 }
 
 .content_wrapper {
-   position: relative;
-   width: 750px;
-   margin: 0 auto;
-   padding: 0px;
-   overflow: hidden;
+  position: relative;
+  width: 750px;
+  margin: 0 auto;
+  padding: 0px;
+  overflow: hidden;
 }
 
 header {
-   color: #EF4036;
-   margin: 36px auto;
-   font-size: 1.5em;
+  color: #EF4036;
+  margin: 36px auto;
+  font-size: 1.5em;
 }
 
 iframe {
@@ -53,16 +53,16 @@ iframe {
 }
 
 .gallery {
-float: left;
-width: 180px;
-height: 210px;
-border-width: 15px;
-border-color: white;
-border-style: solid;
-padding: 0px;
-margin: 20px;
-line-height: 200px;
-margin-bottom: 20px;
+  float: left;
+  width: 180px;
+  height: 210px;
+  border-width: 15px;
+  border-color: white;
+  border-style: solid;
+  padding: 0px;
+  margin: 20px;
+  line-height: 200px;
+  margin-bottom: 20px;
 }
 
 .arrow {
@@ -72,9 +72,9 @@ margin-bottom: 20px;
 }
 
 img {
-vertical-align: middle;
-margin: 0px;
-padding: 0px;
+  vertical-align: middle;
+  margin: 0px;
+  padding: 0px;
 }
 
 .logo {
