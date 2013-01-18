@@ -26,12 +26,16 @@ strong {
   font-family: 'Open Sans Bold';
 }
 
+.outer {
+  width: 100%;
+  overflow: auto;
+}
+
 .content_wrapper {
   position: relative;
   width: 750px;
   margin: 0 auto;
   padding: 0px;
-  overflow: hidden;
 }
 
 header {
