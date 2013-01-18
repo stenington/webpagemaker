@@ -39,14 +39,12 @@ header {
    font-size: 1.5em;
 }
 
-.frame {
-width: 560px;
-height: 358px;
-border-width: 15px;
-border-color: white;
-border-style: solid;
-padding: 0px;
-margin: 0px auto;
+iframe {
+  border-width: 15px;
+  border-color: white;
+  border-style: solid;
+  padding: 0px;
+  margin: 0px auto;
 }
 
 .gallery_wrapper {
