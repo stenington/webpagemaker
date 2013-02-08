@@ -30,7 +30,7 @@ def page_from_publish(response):
     corresponding Page object that was created.
     """
     
-    short_url_id = response.content.split('/')[-1]
+    short_url_id = response.content.split('/')[-2]
     return models.Page.objects.get(short_url_id=short_url_id)
 
 class PublishAuthTests(test_utils.TestCase):
@@ -124,7 +124,7 @@ class PublishTests(test_utils.TestCase):
         response = self.client.post('/api/page', {
           'html': '<script>alert("YO");</script>'
           })
-        src_response = self.client.get(response.content + '/raw')
+        src_response = self.client.get(response.content + 'raw')
         eq_(src_response['Content-Type'], 'text/plain')
         eq_(src_response.content, '<script>alert("YO");</script>')
 
@@ -179,5 +179,5 @@ class PublishTests(test_utils.TestCase):
 
     def test_edit_url_returns_200(self):
         url = self.client.post('/api/page', {'html': 'hi'}).content
-        response = self.client.get('%s/edit' % url)
+        response = self.client.get('%sedit' % url)
         eq_(response.status_code, 200)
