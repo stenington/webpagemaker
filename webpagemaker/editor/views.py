@@ -15,7 +15,7 @@ def _editor(request, remix_url):
         'CLOPENBADGER_URL': settings.CLOPENBADGER_URL,
         'PUBLISH_URL': request.build_absolute_uri("/")[:-1],
         'REMIX_URL_TEMPLATE': request.build_absolute_uri("/")[:-1] +
-                              "{{VIEW_URL}}/edit"
+                              "{{VIEW_URL}}edit"
     }
     if settings.CLOPENBADGER_URL == "http://fake-clopenbadger":
         ctx['USE_FAKE_CLOPENBADGER'] = True

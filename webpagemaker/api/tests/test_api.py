@@ -30,7 +30,7 @@ def page_from_publish(response):
     corresponding Page object that was created.
     """
     
-    short_url_id = response.content.split('/')[-1]
+    short_url_id = response.content.split('/')[-2]
     return models.Page.objects.get(short_url_id=short_url_id)
 
 class PublishAuthTests(test_utils.TestCase):
@@ -76,6 +76,19 @@ class PublishTests(test_utils.TestCase):
         eq_(type(response.content), str)
         eq_(response.content, expected_html)
         return response
+
+    def test_get_with_and_without_slash(self):
+        response = self.client.post('/api/page', {
+          'html': 'hi',
+          'original-url': 'http://foo.com/'
+          })
+        url = response.content;
+        response = self.client.get(url, follow=True)
+        slashed = response.content
+        url_noslash = url[0:-1]
+        response = self.client.get(url_noslash, follow=True)
+        unslashed = response.content
+        eq_(slashed, unslashed)
 
     def test_get_sanitizer_config(self):
         response = self.client.get('/api/config')
@@ -124,7 +137,7 @@ class PublishTests(test_utils.TestCase):
         response = self.client.post('/api/page', {
           'html': '<script>alert("YO");</script>'
           })
-        src_response = self.client.get(response.content + '/raw')
+        src_response = self.client.get(response.content + 'raw')
         eq_(src_response['Content-Type'], 'text/plain')
         eq_(src_response.content, '<script>alert("YO");</script>')
 
@@ -179,5 +192,5 @@ class PublishTests(test_utils.TestCase):
 
     def test_edit_url_returns_200(self):
         url = self.client.post('/api/page', {'html': 'hi'}).content
-        response = self.client.get('%s/edit' % url)
+        response = self.client.get('%sedit' % url)
         eq_(response.status_code, 200)
