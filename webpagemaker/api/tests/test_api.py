@@ -77,6 +77,19 @@ class PublishTests(test_utils.TestCase):
         eq_(response.content, expected_html)
         return response
 
+    def test_get_with_and_without_slash(self):
+        response = self.client.post('/api/page', {
+          'html': 'hi',
+          'original-url': 'http://foo.com/'
+          })
+        url = response.content;
+        response = self.client.get(url, follow=True)
+        slashed = response.content
+        url_noslash = url[0:-1]
+        response = self.client.get(url_noslash, follow=True)
+        unslashed = response.content
+        eq_(slashed, unslashed)
+
     def test_get_sanitizer_config(self):
         response = self.client.get('/api/config')
         eq_(response.status_code, 200)
