@@ -9,11 +9,29 @@ from datetime import datetime
 HEALTH_CHECK_USERNAME = 'health_check'
 HEALTH_CHECK_REALM = 'health_check'
 
-def ask_for_auth():
-    response = HttpResponse()
-    response.status_code = 401
-    response['WWW-Authenticate'] = 'Basic realm="%s"' % HEALTH_CHECK_REALM
-    return response
+def is_http_basic_auth_correct(request, expected_username, expected_password):
+    if not 'HTTP_AUTHORIZATION' in request.META:
+        return False
+
+    auth = request.META['HTTP_AUTHORIZATION'].split()
+    if len(auth) != 2:
+        return False
+
+    if auth[0].lower() != "basic":
+        return False
+
+    uname = None
+    passwd = None
+
+    try:
+        uname, passwd = base64.b64decode(auth[1]).split(':')
+    except Exception:
+        return False
+
+    if not (uname == expected_username and passwd == expected_password):
+        return False
+
+    return True
 
 def health_check(request):
     if request.GET.get('elb', '') == 'true':
@@ -26,28 +44,12 @@ def health_check(request):
         response.status_code = 501
         return response
 
-    if not 'HTTP_AUTHORIZATION' in request.META:
-        return ask_for_auth()
-
-    auth = request.META['HTTP_AUTHORIZATION'].split()
-    if len(auth) != 2:
-        return ask_for_auth()
-
-    # NOTE: We are only support basic authentication for now.
-    if auth[0].lower() != "basic":
-        return ask_for_auth()
-
-    uname = None
-    passwd = None
-
-    try:
-        uname, passwd = base64.b64decode(auth[1]).split(':')
-    except Exception:
-        return ask_for_auth()
-
-    if not (uname == HEALTH_CHECK_USERNAME and
-            passwd == settings.HEALTH_CHECK_PASSWORD):
-        return ask_for_auth()
+    if not is_http_basic_auth_correct(request, HEALTH_CHECK_USERNAME,
+                                      settings.HEALTH_CHECK_PASSWORD):
+        response = HttpResponse()
+        response.status_code = 401
+        response['WWW-Authenticate'] = 'Basic realm="%s"' % HEALTH_CHECK_REALM
+        return response
 
     # default data, None means the parameter hasn't been checked yet
     data    =   {
