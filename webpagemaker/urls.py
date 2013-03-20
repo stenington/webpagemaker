@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include
 
-from . import api, browserid_ajax
+from . import api, browserid_ajax, health_check
 
 from funfactory.monkeypatches import patch
 patch()
@@ -32,7 +32,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
-    (r'^browserid/', include(browserid_ajax.urls))
+    (r'^browserid/', include(browserid_ajax.urls)),
+    (r'^health_check', health_check.health_check)
 )
 
 ## In DEBUG mode, serve media files through Django.
