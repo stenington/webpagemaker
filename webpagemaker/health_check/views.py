@@ -33,6 +33,15 @@ def is_http_basic_auth_correct(request, expected_username, expected_password):
 
     return True
 
+def calculate_overall_status(data):
+    overall_status  =   "OK"
+    for key in data:
+        if not data[key]:
+            overall_status  =   "FAILED"
+        if type(data[key]) == dict:
+            overall_status = calculate_overall_status(data[key])
+    return overall_status
+
 def health_check(request):
     if request.GET.get('elb', '') == 'true':
         return HttpResponse('{"status": "OK"}', mimetype = 'application/json')
@@ -53,7 +62,6 @@ def health_check(request):
 
     # default data, None means the parameter hasn't been checked yet
     data    =   {
-        'status':       None,
         'database': {
             'online':   None
         },
@@ -70,17 +78,7 @@ def health_check(request):
     except Exception:
         pass
         
-    overall_status  =   "OK"
-    for key in data:
-        if key == 'status':
-            continue
-        if not data[key]:
-            overall_status  =   "FAILED"
-        if type(data[key]) == dict:
-            for k in data[key]:
-                if not data[key][k]:
-                    overall_status  =   "FAILED"
-    data['status']  =   overall_status
+    data['status']  =   calculate_overall_status(data)
     
     response    =   HttpResponse
     if not data['status'] == "OK":
