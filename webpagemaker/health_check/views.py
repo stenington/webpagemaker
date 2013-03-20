@@ -34,17 +34,17 @@ def is_http_basic_auth_correct(request, expected_username, expected_password):
     return True
 
 def calculate_overall_status(data):
-    overall_status  =   "OK"
+    overall_status = "OK"
     for key in data:
         if not data[key]:
-            overall_status  =   "FAILED"
+            overall_status = "FAILED"
         if type(data[key]) == dict:
             overall_status = calculate_overall_status(data[key])
     return overall_status
 
 def health_check(request):
     if request.GET.get('elb', '') == 'true':
-        return HttpResponse('{"status": "OK"}', mimetype = 'application/json')
+        return HttpResponse('{"status": "OK"}', mimetype='application/json')
 
     # See if they provided login credentials.
 
@@ -63,24 +63,24 @@ def health_check(request):
     # default data, None means the parameter hasn't been checked yet
     data    =   {
         'database': {
-            'online':   None
+            'online': None
         },
-        'timezone':     getattr(settings, 'TIME_ZONE', None),
+        'timezone': getattr(settings, 'TIME_ZONE', None),
     }
     
     # connect to the database, getting a user or a User.DoesNotExist
     # exception means the database is online
     try:
         User.objects.latest('pk')
-        data['database']['online']  =   True
+        data['database']['online'] = True
     except User.DoesNotExist:
-        data['database']['online']  =   True
+        data['database']['online'] = True
     except Exception:
         pass
         
-    data['status']  =   calculate_overall_status(data)
+    data['status'] = calculate_overall_status(data)
     
-    response    =   HttpResponse
+    response = HttpResponse
     if not data['status'] == "OK":
-        response    =   HttpResponseServerError
-    return response(json.dumps(data), mimetype = 'application/json')
+        response = HttpResponseServerError
+    return response(json.dumps(data), mimetype='application/json')
