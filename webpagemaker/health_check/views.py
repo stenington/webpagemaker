@@ -1,10 +1,8 @@
 from django.http import HttpResponse, HttpResponseServerError
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core.cache import cache
 
-import os, json, random, string, base64
-from datetime import datetime
+import json, base64
 
 HEALTH_CHECK_USERNAME = 'health_check'
 HEALTH_CHECK_REALM = 'health_check'
