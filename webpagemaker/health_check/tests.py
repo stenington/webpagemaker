@@ -53,7 +53,7 @@ class WithBadAuthTests(test_utils.TestCase):
 
     @mock.patch('django.conf.settings.HEALTH_CHECK_PASSWORD', 'hi')
     def test_returns_401_when_auth_header_username_is_not_correct(self):
-        creds = base64.b64encode('somebody:badpassword')
+        creds = base64.b64encode('somebody:hi')
         response = self.client.get('/health_check',
                                    HTTP_AUTHORIZATION='basic %s' % creds)
         eq_(response.status_code, 401)
