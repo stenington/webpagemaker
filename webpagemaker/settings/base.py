@@ -19,6 +19,7 @@ INSTALLED_APPS = list(INSTALLED_APPS) + [
     'webpagemaker.editor',
     'webpagemaker.learning_projects',
     'webpagemaker.browserid_ajax',
+    'webpagemaker.health_check',
     'django_browserid'
 ]
 
@@ -65,7 +66,9 @@ SUPPORTED_NONLOCALES = list(SUPPORTED_NONLOCALES) + [
     # Mission development API (debug only)
     'mission-slurp',
     # BrowserID auth backend
-    'browserid'
+    'browserid',
+    # Health check
+    'health_check'
 ]
 
 # Maximum size, in bytes, of published pages. Note that if you change this
@@ -109,3 +112,7 @@ CLOPENBADGER_TOKEN_LIFETIME = 604800 # 1 Week
 # removed.
 CLOPENBADGER_URL = 'http://fake-clopenbadger'
 CLOPENBADGER_SECRET = 'fake-clopenbadger-token'
+
+# By default, don't support the health check, unless local settings override
+# this value with an actual password.
+HEALTH_CHECK_PASSWORD = None
